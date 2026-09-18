@@ -1280,10 +1280,26 @@
 
 
 <style id="v41-profile-cleanup">
-  /* V41 — 60-second profile: stat grid removed */
+  /* V42 — 60-second profile: stat grid removed */
   .briefHeroV40 + .briefStoryV40{ margin-top:34px; }
 </style>
 
+
+<style id="v42-resume-upgrade">
+  /* V42 — resume-grounded portfolio upgrade */
+  .materialsFeature{
+    margin-top:22px;padding:clamp(24px,4vw,52px);border:1px solid rgba(13,16,18,.14);
+    background:#f0ede7;position:relative;overflow:hidden
+  }
+  .materialsFeature:before{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:#111518}
+  .materialsIndex{font-size:.68rem;letter-spacing:.13em;color:#6f7a80;margin-bottom:clamp(28px,5vw,58px)}
+  .materialsMain{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,6vw,90px);align-items:start}
+  .materialsMain h3{font-family:Syne,sans-serif;font-size:clamp(2rem,4vw,4.5rem);line-height:.93;letter-spacing:-.055em;margin:12px 0 0;max-width:780px}
+  .materialsCopy{display:grid;gap:18px;color:#4f5b61;font-size:clamp(.96rem,1.3vw,1.08rem);line-height:1.7}
+  .materialsTags{display:flex;flex-wrap:wrap;gap:8px;margin-top:clamp(34px,5vw,60px)}
+  .materialsTags span{border:1px solid rgba(13,16,18,.18);padding:9px 11px;font-size:.61rem;letter-spacing:.08em;background:rgba(255,255,255,.28)}
+  @media(max-width:760px){.materialsMain{grid-template-columns:1fr}.materialsMain h3{font-size:clamp(2rem,10vw,3.2rem)}}
+</style>
 </head>
 <body>
 
@@ -1419,7 +1435,7 @@
           <article class="aboutCard reveal">
             <small class="mono">EDUCATION</small>
             <strong>B.S. Mechanical Engineering</strong>
-            <p>University of Colorado Boulder.</p>
+            <p>University of Colorado Boulder · Expected May 2028</p>
           </article>
 
           <article class="aboutCard reveal">
@@ -1482,10 +1498,10 @@
           <article class="proofCard reveal">
             <div class="proofTop">
               <small class="mono">SYSTEM OWNERSHIP</small>
-              <b>80+</b>
+              <b>100+</b>
             </div>
             <h3>KEEP THE SYSTEM READY.</h3>
-            <p>Manage inventory and operational readiness across more than 80 automated medication dispensing systems throughout the hospital.</p>
+            <p>Manage inventory and operational readiness across more than 100 automated medication dispensing systems while coordinating supply needs with pharmacists, nurses, and clinical staff.</p>
           </article>
 
           <article class="proofCard reveal">
@@ -1494,7 +1510,7 @@
               <b>USP</b>
             </div>
             <h3>WORK WHERE PROCESS MATTERS.</h3>
-            <p>Support sterile compounding and TPN operations while following strict healthcare and USP standards.</p>
+            <p>Set up and operate sterile compounding equipment for TPN and IV workflows while following detailed procedures, quality standards, and process controls.</p>
           </article>
 
           <article class="proofCard reveal">
@@ -1503,7 +1519,7 @@
               <b>PEOPLE</b>
             </div>
             <h3>MAKE THE TEAM BETTER.</h3>
-            <p>Train and support pharmacy technicians while collaborating with pharmacists, nurses, and physicians.</p>
+            <p>Train technicians, troubleshoot workflow issues, and collaborate across disciplines in a fast-paced environment requiring precision and problem-solving.</p>
           </article>
         </div>
       </div>
@@ -1520,8 +1536,7 @@
         </div>
 
         <p class="caseIntro reveal">
-          A dual-user mechanical claw machine integrating coordinated X-Y motion,
-          motorized Z-axis motion, pneumatics, structural design, and iterative testing.
+          A 3-axis engineering prototype integrating manually driven X-Y motion, a motorized vertical axis, pneumatics, aluminum extrusion, PETG-CF components, and iterative functional testing.
         </p>
       </div>
 
@@ -1586,6 +1601,23 @@
           </div>
         </div>
       </article>
+
+      <article class="materialsFeature reveal">
+        <div class="materialsIndex mono">PROJECT 02 // MATERIALS SCIENCE LAB</div>
+        <div class="materialsMain">
+          <div>
+            <small class="mono">MATERIALS TESTING + MANUFACTURING ANALYSIS</small>
+            <h3>TEST THE MATERIAL. UNDERSTAND THE PROCESS.</h3>
+          </div>
+          <div class="materialsCopy">
+            <p>Performed tensile, Vickers hardness, and Rockwell hardness testing to evaluate material properties and processing effects.</p>
+            <p>Analyzed 4140 steel across multiple heat-treatment conditions and two carburizing durations, connecting manufacturing processes with measured material performance.</p>
+          </div>
+        </div>
+        <div class="materialsTags mono">
+          <span>TENSILE TESTING</span><span>VICKERS HARDNESS</span><span>ROCKWELL HARDNESS</span><span>4140 STEEL</span><span>TECHNICAL REPORTING</span>
+        </div>
+      </article>
     </div>
   </section>
 
@@ -1608,7 +1640,7 @@
 
       <div class="skillsBlock">
         <article class="skillGroup reveal"><h3>DESIGN</h3><p>SolidWorks · Fusion 360 · Mechanical Design · Prototyping</p></article>
-        <article class="skillGroup reveal"><h3>ANALYSIS</h3><p>Dynamics · Thermodynamics · Fluid Mechanics · Mechanics of Materials · Computational Methods</p></article>
+        <article class="skillGroup reveal"><h3>ANALYSIS</h3><p>Dynamics · Thermodynamics · Mechanics of Materials · Materials Science · Numerical Methods</p></article>
         <article class="skillGroup reveal"><h3>BUILD + COMMUNICATE</h3><p>C++ · HTML/CSS/JavaScript · Technical Documentation · English + Spanish</p></article>
       </div>
     </div>
