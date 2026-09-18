@@ -1,0 +1,1858 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0d1012">
+  <title>Juan Corona Enriquez | Mechanical Engineering</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --ink:#0d1012;
+      --ink-2:#151a1e;
+      --paper:#f4f1ea;
+      --paper-2:#ebe7df;
+      --steel:#8ca6b7;
+      --steel-dark:#5f788a;
+      --copper:#b77b59;
+      --muted:#75818a;
+      --line:rgba(13,16,18,.12);
+      --line-dark:rgba(255,255,255,.12);
+      --page:min(1440px,calc(100% - clamp(28px,6vw,92px)));
+      --radius:24px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;overflow-x:hidden;background:var(--paper)}
+    body{
+      margin:0;
+      min-width:320px;
+      overflow-x:hidden;
+      background:var(--paper);
+      color:var(--ink);
+      font-family:Manrope,system-ui,sans-serif;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+    body.modal-open{overflow:hidden}
+    img{display:block;max-width:100%}
+    a{color:inherit}
+    button,input{font:inherit}
+    ::selection{background:var(--steel);color:var(--ink)}
+
+    .shell{width:var(--page);margin-inline:auto}
+    .mono{
+      font-family:"DM Mono",monospace;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-size:.68rem;
+    }
+    .eyebrow{color:var(--steel-dark)}
+    .dark .eyebrow{color:#95a8b4}
+
+    /* =====================================================
+       NAV
+       ===================================================== */
+    .nav{
+      position:fixed;
+      z-index:100;
+      left:50%;
+      top:14px;
+      transform:translateX(-50%);
+      width:min(1420px,calc(100% - 28px));
+      height:58px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      padding:0 18px;
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:999px;
+      background:rgba(12,15,17,.78);
+      color:#f5f2eb;
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+      box-shadow:0 12px 40px rgba(0,0,0,.18);
+    }
+    .navBrand{text-decoration:none;min-width:0}
+    .navBrand strong{
+      display:block;
+      font-family:Syne,sans-serif;
+      font-size:.86rem;
+      letter-spacing:-.03em;
+      white-space:nowrap;
+    }
+    .navBrand span{
+      display:block;
+      margin-top:1px;
+      color:#8e9aa1;
+      font-family:"DM Mono",monospace;
+      font-size:.48rem;
+      letter-spacing:.09em;
+      white-space:nowrap;
+    }
+    .navLinks{display:flex;align-items:center;gap:18px}
+    .navLinks a{
+      text-decoration:none;
+      color:#abb5ba;
+      font-family:"DM Mono",monospace;
+      font-size:.56rem;
+      letter-spacing:.08em;
+      transition:color .2s ease;
+    }
+    .navLinks a:hover{color:#fff}
+    .navCta{
+      border:0;
+      border-radius:999px;
+      padding:11px 14px;
+      background:var(--paper);
+      color:var(--ink);
+      cursor:pointer;
+      font-family:"DM Mono",monospace;
+      font-size:.55rem;
+      letter-spacing:.07em;
+      transition:transform .2s ease,background .2s ease;
+    }
+    .navCta:hover{transform:translateY(-2px);background:var(--steel)}
+
+    /* =====================================================
+       HERO
+       ===================================================== */
+    .hero{
+      position:relative;
+      min-height:100svh;
+      padding:108px 0 28px;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 78% 24%,rgba(140,166,183,.16),transparent 28%),
+        var(--ink);
+      color:var(--paper);
+    }
+    .heroGrid{
+      position:absolute;inset:0;pointer-events:none;opacity:.45;
+      background:
+        linear-gradient(rgba(255,255,255,.032) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.032) 1px,transparent 1px);
+      background-size:72px 72px;
+      mask-image:linear-gradient(to bottom,black 0%,black 72%,transparent 100%);
+    }
+    .heroInner{
+      position:relative;
+      z-index:2;
+      min-height:calc(100svh - 136px);
+      display:grid;
+      grid-template-rows:auto 1fr auto;
+      gap:24px;
+    }
+    .heroTop{
+      display:flex;
+      justify-content:space-between;
+      gap:30px;
+      padding-bottom:18px;
+      border-bottom:1px solid var(--line-dark);
+      color:#84929a;
+    }
+    .heroStage{
+      display:grid;
+      grid-template-columns:minmax(0,.95fr) minmax(380px,.75fr);
+      gap:clamp(40px,6vw,96px);
+      align-items:center;
+    }
+    .heroCopy{min-width:0}
+    .heroKicker{margin-bottom:18px;color:#94a6b1}
+    .hero h1{
+      margin:0;
+      max-width:890px;
+      font-family:Syne,sans-serif;
+      font-weight:800;
+      font-size:clamp(5.1rem,10.2vw,11rem);
+      line-height:.73;
+      letter-spacing:-.09em;
+    }
+    .hero h1 span{display:block;white-space:nowrap}
+    .hero h1 .outline{
+      color:transparent;
+      -webkit-text-stroke:1.3px rgba(244,241,234,.95);
+    }
+    .heroPitch{
+      margin-top:34px;
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto;
+      gap:28px;
+      align-items:end;
+    }
+    .heroPitch p{
+      margin:0;
+      max-width:630px;
+      color:#a5afb4;
+      font-size:clamp(.98rem,1.25vw,1.12rem);
+      line-height:1.78;
+    }
+    .heroPitch strong{
+      color:#fff;
+      font-family:Syne,sans-serif;
+      font-size:1.05rem;
+      line-height:1.12;
+      white-space:nowrap;
+    }
+
+    .heroVisual{
+      position:relative;
+      min-height:590px;
+      border-radius:var(--radius);
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow:0 26px 80px rgba(0,0,0,.28);
+      background:linear-gradient(135deg,#20272c,#0d1012);
+    }
+    .heroVisual img{
+      width:100%;height:100%;position:absolute;inset:0;
+      object-fit:cover;object-position:center;
+      filter:saturate(.66) contrast(1.06) brightness(.72);
+      transition:transform .8s cubic-bezier(.2,.7,.2,1);
+    }
+    .heroVisual:hover img{transform:scale(1.025)}
+    .heroVisual::after{
+      content:"";position:absolute;inset:0;
+      background:
+        linear-gradient(180deg,rgba(13,16,18,.08),rgba(13,16,18,.10) 48%,rgba(13,16,18,.82)),
+        linear-gradient(90deg,rgba(13,16,18,.25),transparent 46%);
+    }
+    .heroVisualInfo{
+      position:absolute;
+      z-index:2;
+      left:24px;right:24px;bottom:22px;
+      display:flex;justify-content:space-between;gap:24px;align-items:end;
+    }
+    .heroVisualInfo small{
+      color:#aab5bb;
+      font-family:"DM Mono",monospace;
+      font-size:.53rem;
+      letter-spacing:.1em;
+    }
+    .heroVisualInfo strong{
+      display:block;
+      max-width:360px;
+      margin-top:8px;
+      font-family:Syne,sans-serif;
+      font-size:clamp(1.45rem,2vw,2.3rem);
+      line-height:1;
+      letter-spacing:-.05em;
+    }
+    .heroVisualInfo b{
+      font-family:"DM Mono",monospace;
+      font-size:.58rem;
+      font-weight:400;
+      color:#9da9af;
+      white-space:nowrap;
+    }
+    .heroBottom{
+      display:flex;
+      justify-content:space-between;
+      gap:24px;
+      padding-top:18px;
+      border-top:1px solid var(--line-dark);
+      color:#728088;
+    }
+
+    /* =====================================================
+       MANIFESTO / MINDSET
+       ===================================================== */
+    .mindset{padding:120px 0;background:var(--paper)}
+    .mindsetGrid{
+      display:grid;
+      grid-template-columns:170px minmax(0,1fr);
+      gap:64px;
+    }
+    .sectionNum{
+      font-family:Syne,sans-serif;
+      font-size:clamp(4rem,6vw,6.5rem);
+      line-height:.8;
+      font-weight:800;
+      letter-spacing:-.08em;
+      color:var(--steel);
+    }
+    .sectionNum small{
+      display:block;
+      margin-top:16px;
+      font-family:"DM Mono",monospace;
+      font-size:.52rem;
+      letter-spacing:.12em;
+      color:var(--muted);
+    }
+    .mindset h2,.about h2,.approach h2,.next h2{
+      margin:0;
+      max-width:1100px;
+      font-family:Syne,sans-serif;
+      font-size:clamp(4rem,7vw,7.7rem);
+      line-height:.82;
+      letter-spacing:-.075em;
+    }
+    .mindset h2 span,.about h2 span,.approach h2 span,.next h2 span{color:var(--steel-dark)}
+    .mindsetLead{
+      max-width:740px;
+      margin:34px 0 0;
+      color:#5d6970;
+      font-size:1rem;
+      line-height:1.82;
+    }
+    .mindsetPrinciples{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      margin-top:70px;
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+    }
+    .principle{
+      min-width:0;
+      min-height:240px;
+      padding:24px 26px 28px 0;
+      border-right:1px solid var(--line);
+    }
+    .principle + .principle{padding-left:26px}
+    .principle:last-child{border-right:0}
+    .principle small{color:var(--steel-dark)}
+    .principle strong{
+      display:block;
+      margin-top:76px;
+      font-family:Syne,sans-serif;
+      font-size:clamp(1.55rem,2.2vw,2.4rem);
+      line-height:.97;
+      letter-spacing:-.05em;
+    }
+    .principle p{
+      margin:14px 0 0;
+      color:#6c777d;
+      font-size:.78rem;
+      line-height:1.68;
+    }
+
+    /* =====================================================
+       ABOUT
+       ===================================================== */
+    .about{padding:118px 0;background:#dde6ea}
+    .aboutHead{
+      display:grid;
+      grid-template-columns:170px minmax(0,1fr);
+      gap:64px;
+      margin-bottom:58px;
+    }
+    .aboutGrid{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) minmax(380px,.78fr);
+      gap:18px;
+    }
+    .portrait{
+      position:relative;
+      min-height:680px;
+      overflow:hidden;
+      border-radius:var(--radius);
+      background:#d5cec3;
+      box-shadow:0 24px 64px rgba(13,16,18,.10);
+    }
+    .portrait img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;object-position:center top}
+    .portraitLabel{
+      position:absolute;left:18px;right:18px;bottom:18px;
+      padding:18px;
+      border-radius:16px;
+      background:rgba(13,16,18,.84);
+      color:#fff;
+      backdrop-filter:blur(12px);
+    }
+    .portraitLabel strong{
+      display:block;
+      font-family:Syne,sans-serif;
+      font-size:1.55rem;
+      letter-spacing:-.04em;
+    }
+    .portraitLabel span{display:block;margin-top:5px;color:#9da9af}
+    .aboutCards{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+    .aboutCard{
+      min-width:0;
+      padding:26px;
+      border-radius:20px;
+      background:rgba(244,241,234,.94);
+      border:1px solid rgba(13,16,18,.08);
+      box-shadow:0 12px 34px rgba(13,16,18,.045);
+    }
+    .aboutCard.wide{
+      grid-column:1/-1;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      min-height:300px;
+      background:var(--ink);
+      color:var(--paper);
+    }
+    .aboutCard small{color:var(--steel-dark)}
+    .aboutCard strong{
+      display:block;
+      margin-top:18px;
+      font-family:Syne,sans-serif;
+      font-size:clamp(1.35rem,2vw,2rem);
+      line-height:1.05;
+      letter-spacing:-.04em;
+    }
+    .aboutCard p{margin:14px 0 0;color:#6b777d;font-size:.79rem;line-height:1.7}
+    .aboutCard.wide p{color:#98a4aa;max-width:580px}
+
+    /* =====================================================
+       PROFESSIONAL DISCIPLINE
+       ===================================================== */
+    .discipline{
+      position:relative;
+      padding:124px 0 116px;
+      overflow:hidden;
+      background:var(--ink);
+      color:var(--paper);
+    }
+    .discipline::before{
+      content:"";position:absolute;inset:0;opacity:.45;pointer-events:none;
+      background:
+        linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+      background-size:76px 76px;
+      mask-image:linear-gradient(to bottom,black,transparent 92%);
+    }
+    .disciplineInner{position:relative;z-index:2}
+    .disciplineHead{
+      display:grid;
+      grid-template-columns:170px minmax(0,1fr);
+      gap:64px;
+    }
+    .discipline .sectionNum small{color:#8d9aa1}
+    .disciplineTitle{
+      margin:0;
+      max-width:1080px;
+      font-family:Syne,sans-serif;
+      font-size:clamp(4rem,7vw,7.6rem);
+      line-height:.81;
+      letter-spacing:-.075em;
+    }
+    .disciplineTitle span{color:#91a9b8}
+    .disciplineLead{
+      max-width:750px;
+      margin:32px 0 0;
+      color:#9ca7ad;
+      font-size:.96rem;
+      line-height:1.82;
+    }
+    .disciplineGrid{
+      display:grid;
+      grid-template-columns:minmax(300px,.7fr) minmax(0,1.3fr);
+      gap:16px;
+      margin-top:70px;
+    }
+    .disciplineQuote{
+      min-height:610px;
+      padding:28px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      border-radius:22px;
+      border:1px solid var(--line-dark);
+      background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.012));
+    }
+    .disciplineQuote blockquote{
+      margin:0;
+      font-family:Syne,sans-serif;
+      font-size:clamp(2.5rem,4.2vw,4.9rem);
+      line-height:.94;
+      letter-spacing:-.06em;
+    }
+    .disciplineQuote blockquote span{display:block;margin-top:12px;color:var(--steel)}
+    .disciplineProof{display:grid;gap:12px}
+    .proofCard{
+      min-width:0;
+      padding:24px 26px;
+      border-radius:18px;
+      border:1px solid var(--line-dark);
+      background:rgba(255,255,255,.025);
+      transition:transform .25s ease,border-color .25s ease,background .25s ease;
+    }
+    .proofCard:hover{transform:translateX(6px);border-color:rgba(140,166,183,.42);background:rgba(255,255,255,.045)}
+    .proofTop{display:flex;justify-content:space-between;gap:20px}
+    .proofTop b{font-family:Syne,sans-serif;font-size:2rem;color:var(--steel);letter-spacing:-.05em}
+    .proofCard h3{
+      margin:38px 0 0;
+      font-family:Syne,sans-serif;
+      font-size:clamp(1.55rem,2.2vw,2.4rem);
+      line-height:.98;
+      letter-spacing:-.05em;
+    }
+    .proofCard p{margin:12px 0 0;max-width:650px;color:#909ca2;font-size:.79rem;line-height:1.68}
+
+    /* =====================================================
+       CLAW CASE STUDY
+       ===================================================== */
+    .case{padding:122px 0;background:#161b1f;color:var(--paper)}
+    .caseHead{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) minmax(300px,.46fr);
+      gap:64px;
+      align-items:end;
+    }
+    .case h2{
+      margin:0;
+      max-width:940px;
+      font-family:Syne,sans-serif;
+      font-size:clamp(4.2rem,7.2vw,7.8rem);
+      line-height:.8;
+      letter-spacing:-.08em;
+    }
+    .case h2 span{color:var(--steel)}
+    .caseIntro{color:#97a3a9;font-size:.9rem;line-height:1.8}
+    .caseMetrics{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      margin-top:64px;
+      border-top:1px solid var(--line-dark);
+      border-bottom:1px solid var(--line-dark);
+    }
+    .metric{min-width:0;padding:22px;border-right:1px solid var(--line-dark)}
+    .metric:last-child{border-right:0}
+    .metric strong{font-family:Syne,sans-serif;font-size:clamp(1.7rem,2.7vw,3rem);letter-spacing:-.05em}
+    .metric span{display:block;margin-top:6px;color:#839097;font-size:.7rem}
+    .caseGallery{
+      display:grid;
+      grid-template-columns:1.1fr .8fr .8fr;
+      gap:14px;
+      margin-top:22px;
+    }
+    .galleryCard{
+      position:relative;
+      min-height:520px;
+      overflow:hidden;
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,.08);
+      background:#20272c;
+    }
+    .galleryCard img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;transition:transform .55s ease}
+    .galleryCard:hover img{transform:scale(1.025)}
+    .galleryCaption{
+      position:absolute;left:14px;right:14px;bottom:14px;
+      padding:15px;border-radius:13px;
+      background:rgba(13,16,18,.80);backdrop-filter:blur(10px)
+    }
+    .galleryCaption strong{display:block;font-family:Syne,sans-serif;font-size:1.15rem}
+    .galleryCaption span{display:block;margin-top:4px;color:#98a5ab;font-size:.68rem}
+    .caseBottom{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) minmax(280px,.55fr);
+      gap:60px;
+      margin-top:74px;
+      padding-top:32px;
+      border-top:1px solid var(--line-dark);
+    }
+    .caseBottom h3{
+      margin:0;
+      max-width:760px;
+      font-family:Syne,sans-serif;
+      font-size:clamp(2.3rem,4vw,4.2rem);
+      line-height:.95;
+      letter-spacing:-.055em;
+    }
+    .caseBottom p{margin:0;color:#929ea4;font-size:.84rem;line-height:1.76}
+    .caseLink{
+      display:inline-flex;align-items:center;gap:12px;margin-top:18px;
+      color:#fff;text-decoration:none;font-family:"DM Mono",monospace;font-size:.58rem;letter-spacing:.07em
+    }
+
+    /* =====================================================
+       PROJECT
+       ===================================================== */
+    .projects{padding:120px 0;background:var(--paper)}
+    .projectHead{
+      display:grid;
+      grid-template-columns:170px minmax(0,1fr);
+      gap:64px;
+      margin-bottom:56px;
+    }
+    .projectHead h2{
+      margin:0;
+      font-family:Syne,sans-serif;
+      font-size:clamp(4rem,7vw,7.5rem);
+      line-height:.82;
+      letter-spacing:-.075em;
+    }
+    .projectFeature{
+      display:grid;
+      grid-template-columns:minmax(0,1.18fr) minmax(320px,.72fr);
+      gap:28px;
+      align-items:center;
+    }
+    .projectImage{
+      position:relative;
+      min-height:620px;
+      overflow:hidden;
+      border-radius:var(--radius);
+      background:#ddd5ca;
+      box-shadow:0 22px 60px rgba(13,16,18,.09);
+    }
+    .projectImage img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover}
+    .projectCopy{padding:20px 0}
+    .projectCopy small{color:var(--steel-dark)}
+    .projectCopy h3{
+      margin:18px 0 0;
+      font-family:Syne,sans-serif;
+      font-size:clamp(2.4rem,4.3vw,4.8rem);
+      line-height:.92;
+      letter-spacing:-.06em;
+    }
+    .projectCopy p{margin:22px 0 0;color:#647077;font-size:.9rem;line-height:1.8}
+    .projectResult{
+      margin-top:34px;
+      padding-top:24px;
+      border-top:1px solid var(--line);
+    }
+    .projectResult strong{
+      display:block;
+      font-family:Syne,sans-serif;
+      font-size:clamp(2.6rem,4.7vw,5.4rem);
+      line-height:.84;
+      letter-spacing:-.075em;
+      color:var(--steel-dark)
+    }
+    .projectResult span{display:block;margin-top:8px;color:#6f7a80;font-size:.76rem}
+
+    /* =====================================================
+       APPROACH + SKILLS
+       ===================================================== */
+    .approach{padding:120px 0;background:#dce5e9}
+    .approachHead{
+      display:grid;
+      grid-template-columns:170px minmax(0,1fr);
+      gap:64px;
+    }
+    .approachSteps{
+      margin-top:66px;
+      border-top:1px solid var(--line);
+    }
+    .step{
+      display:grid;
+      grid-template-columns:70px minmax(180px,.7fr) minmax(0,1.3fr);
+      gap:28px;
+      align-items:start;
+      padding:28px 0;
+      border-bottom:1px solid var(--line);
+    }
+    .step b{font-family:Syne,sans-serif;font-size:2rem;color:var(--steel-dark)}
+    .step strong{font-family:Syne,sans-serif;font-size:1.8rem;letter-spacing:-.045em}
+    .step p{margin:0;color:#657178;font-size:.83rem;line-height:1.7}
+    .skillsBlock{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
+      margin-top:68px;
+    }
+    .skillGroup{
+      padding:26px;
+      border-radius:18px;
+      border:1px solid rgba(13,16,18,.09);
+      background:rgba(244,241,234,.78);
+    }
+    .skillGroup h3{margin:0;font-family:Syne,sans-serif;font-size:1.4rem;letter-spacing:-.04em}
+    .skillGroup p{margin:14px 0 0;color:#637077;font-size:.8rem;line-height:1.75}
+
+    /* =====================================================
+       NEXT / SHPE
+       ===================================================== */
+    .next{padding:124px 0;background:var(--paper)}
+    .nextGrid{
+      display:grid;
+      grid-template-columns:170px minmax(0,1fr);
+      gap:64px;
+    }
+    .nextCopy{max-width:1060px}
+    .nextCopy p{max-width:760px;margin:32px 0 0;color:#616d74;font-size:.95rem;line-height:1.82}
+    .nextPanel{
+      margin-top:64px;
+      padding:28px;
+      border-radius:22px;
+      background:var(--ink);
+      color:var(--paper);
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto;
+      gap:40px;
+      align-items:end;
+    }
+    .nextPanel strong{
+      max-width:760px;
+      font-family:Syne,sans-serif;
+      font-size:clamp(2rem,3.8vw,4.3rem);
+      line-height:.94;
+      letter-spacing:-.055em;
+    }
+    .nextPanel span{color:#95a3aa}
+    .nextPanel a{
+      text-decoration:none;border-radius:999px;background:var(--paper);color:var(--ink);
+      padding:16px 20px;font-family:"DM Mono",monospace;font-size:.58rem;letter-spacing:.07em;white-space:nowrap
+    }
+
+    /* =====================================================
+       CONTACT
+       ===================================================== */
+    .contact{
+      position:relative;
+      padding:120px 0 38px;
+      background:#0d1012;
+      color:var(--paper);
+      overflow:hidden;
+    }
+    .contact::before{
+      content:"";position:absolute;inset:0;pointer-events:none;
+      background:radial-gradient(circle at 80% 15%,rgba(140,166,183,.14),transparent 28%);
+    }
+    .contactInner{position:relative;z-index:2}
+    .contactTop{
+      display:grid;
+      grid-template-columns:minmax(0,1.2fr) minmax(300px,.55fr);
+      gap:64px;
+      align-items:end;
+    }
+    .contact h2{
+      margin:0;
+      max-width:950px;
+      font-family:Syne,sans-serif;
+      font-size:clamp(4.2rem,7.6vw,8.2rem);
+      line-height:.79;
+      letter-spacing:-.08em;
+    }
+    .contact h2 span{color:var(--steel)}
+    .contactPitch{color:#98a4aa;font-size:.9rem;line-height:1.8}
+    .contactPrompt{display:block;margin-top:26px;color:#fff;font-family:Syne,sans-serif;font-size:1.4rem;line-height:1.05}
+    .contactActions{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:12px;
+      margin-top:70px;
+    }
+    .contactAction{
+      min-width:0;
+      min-height:150px;
+      padding:22px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      border:1px solid var(--line-dark);
+      border-radius:18px;
+      color:#fff;
+      text-decoration:none;
+      background:rgba(255,255,255,.025);
+      transition:transform .25s ease,background .25s ease,color .25s ease,border-color .25s ease;
+    }
+    .contactAction:hover{transform:translateY(-5px);background:var(--paper);color:var(--ink);border-color:var(--paper)}
+    .contactAction small{color:#7c8a92}
+    .contactAction strong{font-family:Syne,sans-serif;font-size:clamp(1.5rem,2.1vw,2.2rem);letter-spacing:-.045em}
+    .contactFoot{
+      display:flex;justify-content:space-between;gap:24px;
+      margin-top:42px;padding-top:20px;border-top:1px solid var(--line-dark);
+      color:#68767d
+    }
+
+    /* =====================================================
+       RECRUITER MODAL
+       ===================================================== */
+    .modal{
+      position:fixed;inset:0;z-index:999;
+      display:none;
+      place-items:center;
+      padding:18px;
+      background:rgba(6,8,9,.78);
+      backdrop-filter:blur(14px);
+    }
+    .modal.open{display:grid}
+    .modalPanel{
+      width:min(1180px,100%);
+      max-height:calc(100svh - 36px);
+      overflow:auto;
+      border-radius:24px;
+      background:var(--paper);
+      color:var(--ink);
+      box-shadow:0 30px 120px rgba(0,0,0,.45);
+    }
+    .modalHead{
+      position:sticky;top:0;z-index:2;
+      display:flex;justify-content:space-between;gap:20px;align-items:center;
+      padding:18px 22px;border-bottom:1px solid var(--line);
+      background:rgba(244,241,234,.92);backdrop-filter:blur(12px)
+    }
+    .modalClose{
+      width:42px;height:42px;border:1px solid var(--line);border-radius:50%;
+      background:transparent;cursor:pointer;font-size:1.2rem
+    }
+    .modalBody{padding:34px}
+    .briefTitle{
+      margin:0;
+      max-width:900px;
+      font-family:Syne,sans-serif;
+      font-size:clamp(3rem,6vw,6rem);
+      line-height:.84;
+      letter-spacing:-.07em;
+    }
+    .briefGrid{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      margin-top:38px;
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+    }
+    .briefItem{padding:22px;border-right:1px solid var(--line)}
+    .briefItem:last-child{border-right:0}
+    .briefItem b{display:block;font-family:Syne,sans-serif;font-size:2rem;color:var(--steel-dark)}
+    .briefItem span{display:block;margin-top:6px;color:#6c777d;font-size:.72rem}
+    .briefColumns{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:34px;
+      margin-top:34px;
+    }
+    .briefColumns h3{font-family:Syne,sans-serif;font-size:1.4rem}
+    .briefColumns p{color:#647077;font-size:.85rem;line-height:1.78}
+
+    /* =====================================================
+       REVEALS
+       ===================================================== */
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .62s ease,transform .62s cubic-bezier(.2,.7,.2,1)}
+    .reveal.show{opacity:1;transform:none}
+
+    /* =====================================================
+       RESPONSIVE
+       ===================================================== */
+    @media(max-width:1100px){
+      .navLinks{display:none}
+      .heroStage{grid-template-columns:1fr;gap:34px}
+      .heroVisual{min-height:48svh}
+      .hero h1{font-size:clamp(5.2rem,15vw,9rem)}
+      .mindsetGrid,.aboutHead,.disciplineHead,.projectHead,.approachHead,.nextGrid{grid-template-columns:1fr;gap:28px}
+      .sectionNum{display:flex;align-items:center;gap:18px}
+      .sectionNum small{margin-top:0}
+      .aboutGrid{grid-template-columns:1fr}
+      .portrait{min-height:68svh}
+      .disciplineGrid{grid-template-columns:1fr}
+      .disciplineQuote{min-height:410px}
+      .caseHead{grid-template-columns:1fr}
+      .caseGallery{grid-template-columns:1fr 1fr}
+      .caseGallery .galleryCard:first-child{grid-column:1/-1}
+      .projectFeature{grid-template-columns:1fr}
+      .skillsBlock{grid-template-columns:1fr 1fr}
+      .contactTop{grid-template-columns:1fr}
+    }
+
+    @media(max-width:760px){
+      :root{--page:calc(100% - 28px)}
+      .nav{height:54px;top:9px;width:calc(100% - 18px)}
+      .navBrand strong{font-size:.76rem}
+      .navBrand span{display:none}
+      .navCta{padding:10px 12px}
+      .hero{padding-top:84px}
+      .heroTop span:last-child{display:none}
+      .hero h1{font-size:clamp(4.2rem,20vw,7rem)}
+      .heroPitch{grid-template-columns:1fr}
+      .heroPitch strong{white-space:normal}
+      .heroVisual{min-height:420px}
+      .heroBottom{display:grid;gap:7px}
+      .mindset,.about,.discipline,.case,.projects,.approach,.next,.contact{padding-top:86px;padding-bottom:86px}
+      .mindset h2,.about h2,.approach h2,.next h2,.disciplineTitle,.case h2,.projectHead h2,.contact h2{font-size:clamp(3rem,13.5vw,5rem);line-height:.87}
+      .mindsetPrinciples{grid-template-columns:1fr}
+      .principle,.principle + .principle{min-height:auto;padding:24px 0 30px;border-right:0;border-bottom:1px solid var(--line)}
+      .principle strong{margin-top:32px}
+      .aboutCards{grid-template-columns:1fr}
+      .aboutCard.wide{grid-column:auto}
+      .portrait{min-height:56svh}
+      .disciplineQuote blockquote{font-size:clamp(2.3rem,10.5vw,3.7rem)}
+      .caseMetrics{grid-template-columns:1fr 1fr}
+      .metric:nth-child(2){border-right:0}
+      .metric:nth-child(3),.metric:nth-child(4){border-top:1px solid var(--line-dark)}
+      .caseGallery{grid-template-columns:1fr}
+      .caseGallery .galleryCard:first-child{grid-column:auto}
+      .galleryCard{min-height:420px}
+      .caseBottom{grid-template-columns:1fr;gap:26px}
+      .projectImage{min-height:480px}
+      .step{grid-template-columns:40px 1fr;gap:16px}
+      .step p{grid-column:2}
+      .skillsBlock{grid-template-columns:1fr}
+      .nextPanel{grid-template-columns:1fr;gap:24px}
+      .nextPanel a{justify-self:start}
+      .contactActions{grid-template-columns:1fr}
+      .contactFoot{display:grid;gap:8px}
+      .briefGrid{grid-template-columns:1fr 1fr}
+      .briefItem:nth-child(2){border-right:0}
+      .briefItem:nth-child(3),.briefItem:nth-child(4){border-top:1px solid var(--line)}
+      .briefColumns{grid-template-columns:1fr}
+      .modalBody{padding:24px}
+    }
+
+    @media(max-width:430px){
+      .hero h1{font-size:18vw}
+      .heroVisual{min-height:360px}
+      .heroVisualInfo{display:block}
+      .heroVisualInfo b{display:block;margin-top:12px}
+      .caseMetrics{grid-template-columns:1fr}
+      .metric{border-right:0!important;border-top:1px solid var(--line-dark)}
+      .metric:first-child{border-top:0}
+      .briefGrid{grid-template-columns:1fr}
+      .briefItem{border-right:0;border-top:1px solid var(--line)}
+      .briefItem:first-child{border-top:0}
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
+      .reveal{opacity:1!important;transform:none!important}
+    }
+  
+    /* V38 Recruiter Brief */
+    .briefHero{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);gap:48px;align-items:end}
+    .briefTitle span{color:var(--steel-dark)}
+    .briefIntro{margin:0;color:#5f6b72;font-size:.88rem;line-height:1.8}
+    .briefProofLabel{margin-top:48px;padding-bottom:12px;color:var(--steel-dark);border-bottom:1px solid var(--line)}
+    .briefItem span strong{display:block;margin-bottom:6px;color:var(--ink);font-family:Syne,sans-serif;font-size:.82rem}
+    .briefStory{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:34px}
+    .briefStory article{min-width:0;padding:24px;border:1px solid var(--line);border-radius:18px;background:#eeebe4}
+    .briefStory h3{margin:34px 0 0;font-family:Syne,sans-serif;font-size:clamp(1.35rem,2vw,2rem);line-height:1;letter-spacing:-.045em}
+    .briefStory p{margin:14px 0 0;color:#647077;font-size:.78rem;line-height:1.7}
+    .briefClose{margin-top:34px;padding:28px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:44px;align-items:end;border-radius:20px;background:var(--ink);color:var(--paper)}
+    .briefClose h3{margin:16px 0 0;max-width:730px;font-family:Syne,sans-serif;font-size:clamp(1.8rem,3vw,3.2rem);line-height:.94;letter-spacing:-.055em}
+    .briefClose p{max-width:720px;margin:14px 0 0;color:#96a2a8;font-size:.78rem;line-height:1.7}
+    .briefActions{display:grid;min-width:180px;gap:8px}
+    .briefActions a{padding:12px 14px;border:1px solid rgba(255,255,255,.15);border-radius:999px;color:#fff;text-decoration:none;text-align:center;font-family:"DM Mono",monospace;font-size:.54rem;letter-spacing:.06em}
+    .briefActions a:first-child{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+    .briefActions a:hover{background:var(--steel);color:var(--ink);border-color:var(--steel)}
+    @media(max-width:900px){.briefHero,.briefClose{grid-template-columns:1fr}.briefStory{grid-template-columns:1fr}.briefActions{grid-template-columns:repeat(3,1fr);min-width:0}}
+    @media(max-width:600px){.briefActions{grid-template-columns:1fr}}
+
+  
+    /* =====================================================
+       V40 — Recruiter profile + cinematic transition
+       ===================================================== */
+
+    .briefTransition{
+      position:fixed;
+      inset:0;
+      z-index:1200;
+      pointer-events:none;
+      visibility:hidden;
+      overflow:hidden;
+    }
+
+    .briefTransitionPanel{
+      position:absolute;
+      left:0;
+      width:100%;
+      height:50%;
+      background:#0d1012;
+      transform:scaleY(0);
+    }
+
+    .briefTransitionPanelA{
+      top:0;
+      transform-origin:top;
+    }
+
+    .briefTransitionPanelB{
+      bottom:0;
+      transform-origin:bottom;
+    }
+
+    .briefTransitionContent{
+      position:absolute;
+      inset:0;
+      z-index:2;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      padding:24px;
+      color:#f4f1ea;
+      text-align:center;
+      opacity:0;
+      transform:translateY(18px);
+    }
+
+    .briefTransitionContent span,
+    .briefTransitionContent i{
+      font-family:"DM Mono",monospace;
+      font-size:.46rem;
+      letter-spacing:.14em;
+      font-style:normal;
+      color:#84959f;
+    }
+
+    .briefTransitionContent strong{
+      margin:18px 0;
+      font-family:Syne,sans-serif;
+      font-size:clamp(3rem,7vw,7.2rem);
+      line-height:.8;
+      letter-spacing:-.07em;
+    }
+
+    .briefHeroV40{
+      display:grid;
+      grid-template-columns:minmax(0,1.3fr) minmax(260px,.5fr);
+      gap:28px;
+      align-items:stretch;
+    }
+
+    .briefHeroCopy{
+      min-width:0;
+      padding:12px 0 6px;
+    }
+
+    .briefIntroV40{
+      max-width:720px;
+      margin:26px 0 0;
+      color:#5f6b72;
+      font-size:.9rem;
+      line-height:1.8;
+    }
+
+    .briefIdentityLine{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px 18px;
+      margin-top:26px;
+      padding-top:18px;
+      border-top:1px solid var(--line);
+    }
+
+    .briefIdentityLine span{
+      font-family:"DM Mono",monospace;
+      font-size:.47rem;
+      letter-spacing:.09em;
+      color:#66747d;
+    }
+
+    .briefPortrait{
+      position:relative;
+      min-height:390px;
+      margin:0;
+      overflow:hidden;
+      border-radius:20px;
+      background:linear-gradient(135deg,#d5cec3,#aebdc6);
+      border:1px solid var(--line);
+    }
+
+    .briefPortrait img{
+      width:100%;
+      height:100%;
+      position:absolute;
+      inset:0;
+      object-fit:cover;
+      object-position:center top;
+    }
+
+    .briefPortrait figcaption{
+      position:absolute;
+      left:12px;
+      right:12px;
+      bottom:12px;
+      padding:14px;
+      border-radius:12px;
+      background:rgba(13,16,18,.82);
+      color:#fff;
+      backdrop-filter:blur(10px);
+    }
+
+    .briefPortrait figcaption strong{
+      display:block;
+      font-family:Syne,sans-serif;
+      font-size:1rem;
+      letter-spacing:-.03em;
+    }
+
+    .briefPortrait figcaption span{
+      display:block;
+      margin-top:4px;
+      font-family:"DM Mono",monospace;
+      font-size:.39rem;
+      letter-spacing:.08em;
+      color:#9aa7ad;
+    }
+
+    .briefGridV40{
+      border:0;
+      gap:10px;
+      background:transparent;
+    }
+
+    .briefGridV40 .briefItem{
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:#efebe4;
+      padding:20px;
+    }
+
+    .briefGridV40 .briefItem:last-child{
+      border-right:1px solid var(--line);
+    }
+
+    .briefStoryV40 article{
+      background:#f3f0e9;
+      border-color:rgba(13,16,18,.10);
+    }
+
+    .briefCloseV40{
+      position:relative;
+      overflow:hidden;
+    }
+
+    .briefCloseV40::before{
+      content:"";
+      position:absolute;
+      width:240px;
+      height:240px;
+      right:-80px;
+      top:-110px;
+      border-radius:50%;
+      background:radial-gradient(circle,rgba(140,166,183,.18),transparent 70%);
+    }
+
+    .modal{
+      opacity:0;
+      visibility:hidden;
+      display:grid;
+      transition:opacity .26s ease,visibility .26s ease;
+    }
+
+    .modal.open{
+      opacity:1;
+      visibility:visible;
+    }
+
+    .modalPanel{
+      opacity:0;
+      transform:translateY(28px) scale(.975);
+      transition:
+        opacity .42s ease,
+        transform .48s cubic-bezier(.2,.75,.2,1);
+    }
+
+    .modal.open .modalPanel{
+      opacity:1;
+      transform:none;
+    }
+
+    @media(max-width:900px){
+      .briefHeroV40{
+        grid-template-columns:1fr;
+      }
+
+      .briefPortrait{
+        min-height:430px;
+      }
+    }
+
+    @media(max-width:600px){
+      .briefPortrait{
+        min-height:54svh;
+      }
+
+      .briefTransitionContent strong{
+        font-size:clamp(2.6rem,13vw,4rem);
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      .briefTransition{
+        display:none!important;
+      }
+      .modal,
+      .modalPanel{
+        transition:none!important;
+      }
+    }
+
+  </style>
+
+<style id="v39-about-alignment-fix">
+/* V39 — ABOUT SECTION ALIGNMENT / SCREEN-SAFE FIX */
+
+/* Keep the portrait and the information grid on the exact same top/bottom line */
+.aboutGrid{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(380px,.78fr)!important;
+  gap:18px!important;
+  align-items:stretch!important;
+}
+
+.portrait{
+  height:100%!important;
+  min-height:680px!important;
+  align-self:stretch!important;
+}
+
+/* Make the right side intentionally fill the portrait height */
+.aboutCards{
+  height:100%!important;
+  min-height:680px!important;
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  grid-template-rows:repeat(3,minmax(0,1fr))!important;
+  gap:14px!important;
+  align-content:stretch!important;
+}
+
+.aboutCard{
+  height:100%!important;
+  min-height:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:flex-start!important;
+}
+
+.aboutCard.wide{
+  grid-column:1 / -1!important;
+  min-height:0!important;
+  justify-content:flex-end!important;
+}
+
+/* Large visual blocks should not shift vertically during reveal */
+.aboutGrid > .portrait.reveal,
+.aboutCards > .aboutCard.reveal{
+  transform:none!important;
+}
+
+/* Consistent card rhythm */
+.aboutCard small{
+  margin-bottom:0!important;
+}
+
+.aboutCard strong{
+  margin-top:18px!important;
+}
+
+.aboutCard p{
+  margin-top:14px!important;
+}
+
+/* Laptop */
+@media(max-width:1100px){
+  .aboutGrid{
+    grid-template-columns:1fr!important;
+  }
+
+  .portrait{
+    height:auto!important;
+    min-height:62svh!important;
+  }
+
+  .aboutCards{
+    height:auto!important;
+    min-height:0!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    grid-template-rows:auto!important;
+  }
+
+  .aboutCard{
+    min-height:220px!important;
+  }
+
+  .aboutCard.wide{
+    min-height:260px!important;
+  }
+}
+
+/* Mobile */
+@media(max-width:760px){
+  .aboutCards{
+    grid-template-columns:1fr!important;
+  }
+
+  .aboutCard,
+  .aboutCard.wide{
+    min-height:auto!important;
+  }
+
+  .portrait{
+    min-height:54svh!important;
+  }
+}
+</style>
+
+
+<style id="v41-profile-cleanup">
+  /* V41 — 60-second profile: stat grid removed */
+  .briefHeroV40 + .briefStoryV40{ margin-top:34px; }
+</style>
+
+</head>
+<body>
+
+  <div class="briefTransition" id="briefTransition" aria-hidden="true">
+    <div class="briefTransitionPanel briefTransitionPanelA"></div>
+    <div class="briefTransitionPanel briefTransitionPanelB"></div>
+    <div class="briefTransitionContent">
+      <span>JUAN CORONA ENRIQUEZ</span>
+      <strong>60-SECOND<br>ENGINEERING PROFILE</strong>
+      <i>01 / PROFILE</i>
+    </div>
+  </div>
+
+
+  <nav class="nav" aria-label="Primary navigation">
+    <a href="#home" class="navBrand">
+      <strong>JUAN CORONA ENRIQUEZ</strong>
+      <span>MECHANICAL ENGINEERING // PORTFOLIO</span>
+    </a>
+
+    <div class="navLinks">
+      <a href="#about">ABOUT</a>
+      <a href="#experience">EXPERIENCE</a>
+      <a href="#claw">WORK</a>
+      <a href="#contact">CONTACT</a>
+    </div>
+
+    <button class="navCta" type="button" data-open-brief>60-SEC BRIEF</button>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero" id="home">
+    <div class="heroGrid"></div>
+    <div class="shell heroInner">
+      <div class="heroTop mono">
+        <span>JUAN CORONA ENRIQUEZ // MECHANICAL ENGINEERING</span>
+        <span>CU BOULDER // OPEN TO INTERNSHIPS</span>
+      </div>
+
+      <div class="heroStage">
+        <div class="heroCopy">
+          <div class="heroKicker mono">ENGINEERING STUDENT // BUILDER // LEARNER</div>
+          <h1>
+            <span>JUAN</span>
+            <span class="outline">CORONA</span>
+          </h1>
+
+          <div class="heroPitch">
+            <p>
+              I’m interested in the point where an idea leaves the page,
+              becomes something real, and has to prove that it works.
+            </p>
+            <strong>Design it.<br>Build it.<br>Learn from it.</strong>
+          </div>
+        </div>
+
+        <div class="heroVisual reveal">
+          <img src="f1-car.jpeg" alt="">
+          <div class="heroVisualInfo">
+            <div>
+              <small>PERFORMANCE // SYSTEMS // CURIOSITY</small>
+              <strong>Ambitious enough to chase difficult problems. Humble enough to keep learning.</strong>
+            </div>
+            <b>SCROLL ↓</b>
+          </div>
+        </div>
+      </div>
+
+      <div class="heroBottom mono">
+        <span>GRAND JUNCTION, COLORADO</span>
+        <span>DESIGN // BUILD // TEST // IMPROVE</span>
+        <span>PORTFOLIO 2026</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- MINDSET -->
+  <section class="mindset" id="mindset">
+    <div class="shell mindsetGrid">
+      <div class="sectionNum reveal">01<small>MINDSET</small></div>
+
+      <div>
+        <h2 class="reveal">EARLY IN MY CAREER.<br><span>NOT IN MY AMBITION.</span></h2>
+        <p class="mindsetLead reveal">
+          I don’t expect to walk into an engineering team knowing everything.
+          I expect to ask questions, learn from experienced engineers, put in the work,
+          and improve quickly.
+        </p>
+
+        <div class="mindsetPrinciples">
+          <article class="principle reveal">
+            <small class="mono">01 // LEARN</small>
+            <strong>LEARN FAST.</strong>
+            <p>Listen closely, ask better questions, and turn feedback into better work.</p>
+          </article>
+
+          <article class="principle reveal">
+            <small class="mono">02 // PROVE</small>
+            <strong>PROVE IT.</strong>
+            <p>Build, test, measure, and improve instead of relying on assumptions.</p>
+          </article>
+
+          <article class="principle reveal">
+            <small class="mono">03 // EARN</small>
+            <strong>EARN TRUST.</strong>
+            <p>Take the details seriously and become someone a team can depend on.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="shell">
+      <div class="aboutHead">
+        <div class="sectionNum reveal">02<small>WHO I AM</small></div>
+        <div>
+          <h2 class="reveal">CURIOUS BY NATURE.<br><span>STRUCTURED BY ENGINEERING.</span></h2>
+        </div>
+      </div>
+
+      <div class="aboutGrid">
+        <figure class="portrait reveal">
+          <img src="profile.png" loading="lazy" alt="Juan Corona Enriquez">
+          <figcaption class="portraitLabel">
+            <strong>Juan Corona Enriquez</strong>
+            <span class="mono">MECHANICAL ENGINEERING STUDENT</span>
+          </figcaption>
+        </figure>
+
+        <div class="aboutCards">
+          <article class="aboutCard reveal">
+            <small class="mono">EDUCATION</small>
+            <strong>B.S. Mechanical Engineering</strong>
+            <p>University of Colorado Boulder.</p>
+          </article>
+
+          <article class="aboutCard reveal">
+            <small class="mono">LANGUAGES</small>
+            <strong>English + Spanish</strong>
+            <p>Bilingual communication across technical and professional environments.</p>
+          </article>
+
+          <article class="aboutCard reveal">
+            <small class="mono">INTERESTS</small>
+            <strong>F1 · Fútbol · AI · Outdoors</strong>
+            <p>Performance, competition, technology, fishing, hiking, and rafting.</p>
+          </article>
+
+          <article class="aboutCard reveal">
+            <small class="mono">WHAT I VALUE</small>
+            <strong>Progress over ego.</strong>
+            <p>I care more about getting better than pretending I already know everything.</p>
+          </article>
+
+          <article class="aboutCard wide reveal">
+            <small class="mono">HOW I THINK</small>
+            <strong>CURIOSITY DRIVES THE WORK.</strong>
+            <p>I’m usually asking what can be improved, what can be simplified, and what the next test should teach me.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="discipline dark" id="experience">
+    <div class="shell disciplineInner">
+      <div class="disciplineHead">
+        <div class="sectionNum reveal">03<small>PROFESSIONAL DISCIPLINE</small></div>
+
+        <div>
+          <h2 class="disciplineTitle reveal">
+            BEFORE I DESIGNED SYSTEMS,<br>
+            <span>I LEARNED TO RESPECT THEM.</span>
+          </h2>
+          <p class="disciplineLead reveal">
+            Working in hospital pharmacy taught me what precision feels like when
+            the work cannot be casual. Process matters. Communication matters.
+            Details matter. That mindset is something I bring into engineering.
+          </p>
+        </div>
+      </div>
+
+      <div class="disciplineGrid">
+        <article class="disciplineQuote reveal">
+          <small class="mono">THE STANDARD I CARRY FORWARD</small>
+          <blockquote>
+            If the details can break the system,
+            <span>the details are the system.</span>
+          </blockquote>
+        </article>
+
+        <div class="disciplineProof">
+          <article class="proofCard reveal">
+            <div class="proofTop">
+              <small class="mono">SYSTEM OWNERSHIP</small>
+              <b>80+</b>
+            </div>
+            <h3>KEEP THE SYSTEM READY.</h3>
+            <p>Manage inventory and operational readiness across more than 80 automated medication dispensing systems throughout the hospital.</p>
+          </article>
+
+          <article class="proofCard reveal">
+            <div class="proofTop">
+              <small class="mono">PRECISION</small>
+              <b>USP</b>
+            </div>
+            <h3>WORK WHERE PROCESS MATTERS.</h3>
+            <p>Support sterile compounding and TPN operations while following strict healthcare and USP standards.</p>
+          </article>
+
+          <article class="proofCard reveal">
+            <div class="proofTop">
+              <small class="mono">TEAM</small>
+              <b>PEOPLE</b>
+            </div>
+            <h3>MAKE THE TEAM BETTER.</h3>
+            <p>Train and support pharmacy technicians while collaborating with pharmacists, nurses, and physicians.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLAW CASE STUDY -->
+  <section class="case dark" id="claw">
+    <div class="shell">
+      <div class="caseHead">
+        <div>
+          <small class="mono eyebrow">04 // FEATURED ENGINEERING CASE STUDY</small>
+          <h2 class="reveal">MST CLAW<br><span>MACHINE.</span></h2>
+        </div>
+
+        <p class="caseIntro reveal">
+          A dual-user mechanical claw machine integrating coordinated X-Y motion,
+          motorized Z-axis motion, pneumatics, structural design, and iterative testing.
+        </p>
+      </div>
+
+      <div class="caseMetrics">
+        <div class="metric reveal"><strong>93%</strong><span>Pneumatic grab success</span></div>
+        <div class="metric reveal"><strong>&lt;2 mm</strong><span>Observed backlash</span></div>
+        <div class="metric reveal"><strong>100+</strong><span>Gameplay cycles</span></div>
+        <div class="metric reveal"><strong>4.1 s</strong><span>Average Z descent</span></div>
+      </div>
+
+      <div class="caseGallery">
+        <article class="galleryCard reveal">
+          <img src="Screenshot 2026-09-12 194957.png" loading="lazy" alt="Final claw mechanism">
+          <div class="galleryCaption"><strong>FINAL CLAW DIRECTION</strong><span>Refined claw configuration integrated into the full machine.</span></div>
+        </article>
+
+        <article class="galleryCard reveal">
+          <img src="Screenshot 2026-09-12 194914.png" loading="lazy" alt="Early claw prototype">
+          <div class="galleryCaption"><strong>PROTOTYPE 01</strong><span>First physical direction.</span></div>
+        </article>
+
+        <article class="galleryCard reveal">
+          <img src="Screenshot 2026-09-12 194834.png" loading="lazy" alt="Refined claw prototype">
+          <div class="galleryCaption"><strong>PROTOTYPE 02</strong><span>Mechanism refinement through testing.</span></div>
+        </article>
+      </div>
+
+      <div class="caseBottom">
+        <h3 class="reveal">MY ROLE: FRAME. GANTRY. INTEGRATION.</h3>
+        <div class="reveal">
+          <p>I led frame and gantry base construction with an emphasis on structural stability and mounting precision, and assisted with pneumatic subsystem installation and tubing integration.</p>
+          <a class="caseLink" href="Final Design Report.docx.pdf" target="_blank" rel="noopener">VIEW DESIGN REPORT ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TREBUCHET -->
+  <section class="projects" id="projects">
+    <div class="shell">
+      <div class="projectHead">
+        <div class="sectionNum reveal">05<small>SELECTED WORK</small></div>
+        <h2 class="reveal">BUILD IT.<br>TEST IT.<br>LEARN FROM IT.</h2>
+      </div>
+
+      <article class="projectFeature">
+        <div class="projectImage reveal">
+          <img src="trebuchet.jpeg" loading="lazy" alt="Trebuchet engineering project">
+        </div>
+
+        <div class="projectCopy reveal">
+          <small class="mono">TREBUCHET ENGINEERING CHALLENGE</small>
+          <h3>DESIGN UNDER CONSTRAINT.</h3>
+          <p>
+            Designed and constructed a mechanical launching system using physics-based
+            analysis, then tested and refined the design as constraints changed.
+          </p>
+
+          <div class="projectResult">
+            <strong>1st / 25</strong>
+            <span>Engineering teams in the competition.</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- APPROACH -->
+  <section class="approach" id="approach">
+    <div class="shell">
+      <div class="approachHead">
+        <div class="sectionNum reveal">06<small>HOW I WORK</small></div>
+        <div>
+          <h2 class="reveal">GOOD ENGINEERING IS<br><span>A LOOP.</span></h2>
+
+          <div class="approachSteps">
+            <article class="step reveal"><b>01</b><strong>UNDERSTAND</strong><p>Define the problem, constraints, interfaces, and what success actually means.</p></article>
+            <article class="step reveal"><b>02</b><strong>BUILD</strong><p>Turn the idea into something tangible enough to expose the real problems.</p></article>
+            <article class="step reveal"><b>03</b><strong>TEST</strong><p>Use evidence to separate what feels right from what actually works.</p></article>
+            <article class="step reveal"><b>04</b><strong>IMPROVE</strong><p>Use the result, the failure, and the feedback to make the next version better.</p></article>
+          </div>
+        </div>
+      </div>
+
+      <div class="skillsBlock">
+        <article class="skillGroup reveal"><h3>DESIGN</h3><p>SolidWorks · Fusion 360 · Mechanical Design · Prototyping</p></article>
+        <article class="skillGroup reveal"><h3>ANALYSIS</h3><p>Dynamics · Thermodynamics · Fluid Mechanics · Mechanics of Materials · Computational Methods</p></article>
+        <article class="skillGroup reveal"><h3>BUILD + COMMUNICATE</h3><p>C++ · HTML/CSS/JavaScript · Technical Documentation · English + Spanish</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT -->
+  <section class="next" id="next">
+    <div class="shell nextGrid">
+      <div class="sectionNum reveal">07<small>WHAT’S NEXT</small></div>
+
+      <div class="nextCopy">
+        <h2 class="reveal">I HAVE A LOT LEFT TO LEARN.<br><span>THAT’S WHY I’M HUNGRY TO START.</span></h2>
+        <p class="reveal">
+          I’m drawn to engineering environments where the problems are difficult,
+          the expectations are high, and there is always more to learn. I’m exploring
+          opportunities in mechanical design, automotive, aerospace, manufacturing,
+          and product development.
+        </p>
+
+        <div class="nextPanel reveal">
+          <strong>AT SHPE, I’M LOOKING FOR THE CONVERSATION THAT LEADS TO REAL WORK.</strong>
+          <a href="#contact">LET’S TALK ↘</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <footer class="contact" id="contact">
+    <div class="shell contactInner">
+      <div class="contactTop">
+        <h2 class="reveal">READY TO LEARN.<br>READY TO CONTRIBUTE.<br><span>READY FOR THE OPPORTUNITY.</span></h2>
+
+        <div class="contactPitch reveal">
+          I’m looking for the team that will challenge me, teach me, and expect me to keep getting better.
+          <strong class="contactPrompt">Don’t let this be the last page.</strong>
+        </div>
+      </div>
+
+      <div class="contactActions">
+        <a class="contactAction reveal" href="mailto:Juancorenr4@gmail.com">
+          <small class="mono">START HERE</small>
+          <strong>EMAIL JUAN ↗</strong>
+        </a>
+
+        <a class="contactAction reveal" href="https://www.linkedin.com/in/mecengineering-juancorenr" target="_blank" rel="noopener">
+          <small class="mono">CONNECT</small>
+          <strong>LINKEDIN ↗</strong>
+        </a>
+
+        <a class="contactAction reveal" href="resume.pdf" target="_blank" rel="noopener">
+          <small class="mono">THE DETAILS</small>
+          <strong>VIEW RÉSUMÉ ↗</strong>
+        </a>
+      </div>
+
+      <div class="contactFoot mono">
+        <span>JUAN CORONA ENRIQUEZ</span>
+        <span>MECHANICAL ENGINEERING</span>
+        <span>GRAND JUNCTION, COLORADO</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- RECRUITER BRIEF -->
+  <div class="modal" id="briefModal" role="dialog" aria-modal="true" aria-labelledby="briefTitle">
+    <div class="modalPanel">
+      <div class="modalHead">
+        <div>
+          <strong>JUAN CORONA ENRIQUEZ</strong>
+          <div class="mono eyebrow">60-SECOND ENGINEERING PROFILE</div>
+        </div>
+        <button class="modalClose" type="button" aria-label="Close recruiter brief">×</button>
+      </div>
+
+      <div class="modalBody">
+        <section class="briefHeroV40">
+          <div class="briefHeroCopy">
+            <div class="mono eyebrow">RECRUITER BRIEF // 60 SECONDS</div>
+            <h2 class="briefTitle" id="briefTitle">
+              I’M NOT TRYING TO LOOK FINISHED.<br>
+              <span>I’M TRYING TO BECOME EXCEPTIONAL.</span>
+            </h2>
+
+            <p class="briefIntroV40">
+              I’m a mechanical engineering student who likes turning ideas into
+              something that can be built, tested, questioned, and improved.
+              I’m early in my career, but I already know the standard I want
+              to work toward: learn quickly, take ownership, and become someone
+              a strong engineering team can rely on.
+            </p>
+
+            <div class="briefIdentityLine">
+              <span>UNIVERSITY OF COLORADO BOULDER</span>
+              <span>MECHANICAL ENGINEERING</span>
+              <span>OPEN TO INTERNSHIPS</span>
+            </div>
+          </div>
+
+          <figure class="briefPortrait">
+            <img src="profile.png" alt="Juan Corona Enriquez">
+            <figcaption>
+              <strong>JUAN CORONA ENRIQUEZ</strong>
+              <span>MECHANICAL ENGINEERING STUDENT</span>
+            </figcaption>
+          </figure>
+        </section>
+
+        <div class="briefStory briefStoryV40">
+          <article>
+            <div class="mono eyebrow">HOW I THINK</div>
+            <h3>BUILD → TEST → LEARN → IMPROVE.</h3>
+            <p>
+              I want to understand why something works, not just get it to work
+              once. Testing and iteration help expose problems that are easy to
+              miss on paper.
+            </p>
+          </article>
+
+          <article>
+            <div class="mono eyebrow">WHAT WORK TAUGHT ME</div>
+            <h3>DETAILS EARN TRUST.</h3>
+            <p>
+              Hospital pharmacy taught me that accuracy, process, documentation,
+              and communication matter every day. That discipline carries into
+              the way I approach engineering.
+            </p>
+          </article>
+
+          <article>
+            <div class="mono eyebrow">WHAT I BRING</div>
+            <h3>CURIOSITY + DISCIPLINE.</h3>
+            <p>
+              SolidWorks, Fusion 360, C++, prototyping, technical documentation,
+              bilingual communication, and experience training and supporting others.
+            </p>
+          </article>
+        </div>
+
+        <div class="briefClose briefCloseV40">
+          <div>
+            <div class="mono eyebrow">WHAT I WANT NEXT</div>
+            <h3>GIVE ME A DIFFICULT PROBLEM AND A STRONG TEAM TO LEARN FROM.</h3>
+            <p>
+              I’m exploring mechanical design, automotive, aerospace,
+              manufacturing, and product-development internships where I can
+              contribute now and keep earning greater responsibility.
+            </p>
+          </div>
+
+          <div class="briefActions">
+            <a href="resume.pdf" target="_blank" rel="noopener">VIEW RÉSUMÉ ↗</a>
+            <a href="mailto:Juancorenr4@gmail.com">EMAIL JUAN ↗</a>
+            <a href="https://www.linkedin.com/in/mecengineering-juancorenr" target="_blank" rel="noopener">LINKEDIN ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Reveal on scroll — native, light, and smooth.
+    const revealObserver = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add("show");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },{threshold:.12,rootMargin:"0px 0px -7% 0px"});
+
+    document.querySelectorAll(".reveal").forEach(el=>revealObserver.observe(el));
+
+    // Recruiter brief modal + cinematic transition.
+    const modal = document.getElementById("briefModal");
+    const transition = document.getElementById("briefTransition");
+    const transitionPanels = transition.querySelectorAll(".briefTransitionPanel");
+    const transitionContent = transition.querySelector(".briefTransitionContent");
+    const openButtons = document.querySelectorAll("[data-open-brief]");
+    const closeButton = modal.querySelector(".modalClose");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function openBrief(){
+      if(reduceMotion){
+        modal.classList.add("open");
+        document.body.classList.add("modal-open");
+        closeButton.focus();
+        return;
+      }
+
+      transition.style.visibility = "visible";
+      transitionPanels.forEach(panel=>{
+        panel.style.transition = "transform .34s cubic-bezier(.76,0,.24,1)";
+        panel.style.transform = "scaleY(1)";
+      });
+
+      setTimeout(()=>{
+        transitionContent.style.transition = "opacity .22s ease, transform .22s ease";
+        transitionContent.style.opacity = "1";
+        transitionContent.style.transform = "translateY(0)";
+      },180);
+
+      setTimeout(()=>{
+        modal.classList.add("open");
+        document.body.classList.add("modal-open");
+      },520);
+
+      setTimeout(()=>{
+        transitionContent.style.opacity = "0";
+        transitionContent.style.transform = "translateY(-16px)";
+
+        transitionPanels.forEach(panel=>{
+          panel.style.transform = "scaleY(0)";
+        });
+      },680);
+
+      setTimeout(()=>{
+        transition.style.visibility = "hidden";
+        transitionContent.style.opacity = "0";
+        transitionContent.style.transform = "translateY(18px)";
+        closeButton.focus();
+      },1040);
+    }
+
+    function closeBrief(){
+      modal.classList.remove("open");
+      document.body.classList.remove("modal-open");
+    }
+
+    openButtons.forEach(btn=>btn.addEventListener("click",openBrief));
+    closeButton.addEventListener("click",closeBrief);
+    modal.addEventListener("click",(e)=>{if(e.target===modal) closeBrief()});
+    document.addEventListener("keydown",(e)=>{if(e.key==="Escape" && modal.classList.contains("open")) closeBrief()});
+
+    // Graceful image fallback: no giant broken-image dead zones.
+    document.querySelectorAll("img").forEach(img=>{
+      img.addEventListener("error",()=>{
+        img.style.display="none";
+        const parent=img.parentElement;
+        if(parent){
+          parent.style.background="linear-gradient(135deg,#cfd8dd,#9eb2bf)";
+        }
+      });
+    });
+  </script>
+</body>
+</html>
