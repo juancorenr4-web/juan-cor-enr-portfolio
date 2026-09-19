@@ -598,6 +598,165 @@ img{display:block}
 }
 </style>
 
+
+<style id="v68-profile-spacing-and-claw">
+/* V68 — safer desktop gutters + stronger personal profile */
+:root{
+ --page-gutter:clamp(32px,5vw,96px);
+ --content-max:1480px;
+}
+.wrap{
+ width:min(var(--content-max),calc(100% - (var(--page-gutter) * 2)))!important;
+ max-width:var(--content-max)!important;
+ margin-left:auto!important;
+ margin-right:auto!important;
+ padding-left:0!important;
+ padding-right:0!important;
+}
+.heroInner{
+ width:min(var(--content-max),calc(100% - (var(--page-gutter) * 2)))!important;
+ max-width:var(--content-max)!important;
+ margin-inline:auto!important;
+ padding-left:0!important;padding-right:0!important;
+}
+nav .navInner{
+ width:min(var(--content-max),calc(100% - (var(--page-gutter) * 2)))!important;
+ max-width:var(--content-max)!important;
+ margin-inline:auto!important;
+ padding-left:0!important;padding-right:0!important;
+}
+.launch-intro{padding-left:var(--page-gutter)!important;padding-right:var(--page-gutter)!important}
+.engineering-launchpad{overflow:hidden}
+.resource-grid{padding-left:0!important;padding-right:0!important}
+.caseStudy:nth-of-type(2),.caseStudy:nth-of-type(3){
+ margin-left:0!important;margin-right:0!important;
+ padding-left:0!important;padding-right:0!important;
+}
+.sectionHead,.caseTop,.caseSecondary,.endGrid,.eduGrid,.aboutGrid,.expGrid{
+ padding-left:0!important;padding-right:0!important;
+}
+
+/* keep giant display type away from browser edges */
+.heroCopy h1,.sectionHead h2,.caseInfo h3,.end h2{
+ max-width:100%!important;
+ overflow-wrap:normal!important;
+}
+.heroCopy{padding-right:clamp(10px,3vw,50px)}
+.heroCopy h1{font-size:clamp(62px,8.1vw,150px)!important}
+
+/* Make the Claw Machine image feel like a designed project plate */
+.caseStudy:first-of-type .caseMedia{
+ min-height:620px!important;
+ background:#111416!important;
+ border:1px solid rgba(207,184,124,.38)!important;
+ padding:18px!important;
+}
+.caseStudy:first-of-type .caseMedia picture{
+ position:absolute;inset:18px;overflow:hidden;background:#050606;
+}
+.caseStudy:first-of-type .caseMedia picture img{
+ width:100%;height:100%;object-fit:cover!important;
+ object-position:center 45%!important;
+ filter:grayscale(.18) contrast(1.06) brightness(.82)!important;
+}
+.caseStudy:first-of-type .caseMedia:before{
+ content:"PROJECT 01 // CLAW MACHINE";position:absolute;z-index:4;
+ top:28px;left:30px;background:#050606;color:#CFB87C;
+ border:1px solid rgba(207,184,124,.35);padding:8px 10px;
+ font:600 7px "DM Mono",monospace;letter-spacing:.1em;text-transform:uppercase;
+}
+.caseStudy:first-of-type .caseMedia:after{
+ inset:18px!important;background:linear-gradient(0deg,rgba(5,6,6,.8),transparent 42%)!important;
+}
+.caseStudy:first-of-type .caseMediaLabel{left:30px!important;bottom:30px!important}
+
+/* stronger About/Profile composition */
+.about .portrait{margin-left:0!important}
+.aboutGrid{gap:clamp(45px,7vw,110px)!important}
+.about h2{font-size:clamp(58px,7vw,112px)!important;line-height:.82!important}
+.about p{max-width:690px!important;font-size:clamp(13px,1.05vw,16px)!important;line-height:1.8!important}
+
+/* Ultra-wide screens: stop everything from stretching too far */
+@media(min-width:1700px){
+ :root{--content-max:1540px;--page-gutter:clamp(70px,7vw,150px)}
+ .heroCopy h1{font-size:138px!important}
+ .caseTop{grid-template-columns:1fr 1fr!important}
+}
+@media(max-width:900px){
+ :root{--page-gutter:clamp(20px,5vw,42px)}
+ .heroInner,.wrap,nav .navInner{width:calc(100% - (var(--page-gutter) * 2))!important}
+ .launch-intro{padding-left:var(--page-gutter)!important;padding-right:var(--page-gutter)!important}
+ .caseStudy:first-of-type .caseMedia{min-height:500px!important}
+}
+@media(max-width:560px){
+ :root{--page-gutter:20px}
+ .caseStudy:first-of-type .caseMedia{padding:10px!important;min-height:410px!important}
+ .caseStudy:first-of-type .caseMedia picture{inset:10px}
+ .caseStudy:first-of-type .caseMedia:after{inset:10px!important}
+ .caseStudy:first-of-type .caseMedia:before{top:18px;left:20px}
+ .caseStudy:first-of-type .caseMediaLabel{left:20px!important;bottom:20px!important}
+}
+</style>
+
+
+<style id="v69-cinematic-upgrade">
+:root{--mx:50%;--my:50%}
+html{scroll-behavior:smooth}
+body{cursor:default}
+
+/* subtle engineering grid / cursor glow */
+body:before{content:"";position:fixed;inset:0;z-index:9998;pointer-events:none;background:radial-gradient(420px circle at var(--mx) var(--my),rgba(207,184,124,.07),transparent 62%)}
+.hero:after,.projects:after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.12;background-image:linear-gradient(rgba(207,184,124,.18) 1px,transparent 1px),linear-gradient(90deg,rgba(207,184,124,.18) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,black,transparent 75%)}
+
+/* animated top progress */
+.scroll-progress{position:fixed;z-index:10000;top:0;left:0;height:3px;width:0;background:#CFB87C;box-shadow:0 0 18px rgba(207,184,124,.55)}
+
+/* hero engineering HUD */
+.hero-hud{position:absolute;z-index:6;right:var(--page-gutter);bottom:34px;width:min(330px,30vw);border:1px solid rgba(207,184,124,.28);background:rgba(5,6,6,.58);backdrop-filter:blur(14px);padding:14px}
+.hud-top{display:flex;justify-content:space-between;color:#CFB87C;font:600 7px "DM Mono",monospace;letter-spacing:.11em;text-transform:uppercase}
+.hud-line{height:1px;background:rgba(207,184,124,.2);margin:12px 0}
+.hud-bars{display:grid;gap:7px}.hud-row{display:grid;grid-template-columns:64px 1fr 28px;gap:8px;align-items:center;font:500 6px "DM Mono",monospace;color:#9b9b94;text-transform:uppercase}
+.hud-track{height:3px;background:#2c2d2b;overflow:hidden}.hud-fill{height:100%;background:#CFB87C;transform-origin:left;animation:hudGrow 1.6s cubic-bezier(.2,.8,.2,1) both}
+@keyframes hudGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* marquee creates motion between chapters */
+.mech-marquee{overflow:hidden;background:#050606;border-block:1px solid rgba(207,184,124,.22);padding:13px 0}
+.mech-track{display:flex;width:max-content;animation:marquee 26s linear infinite;font:700 8px "DM Mono",monospace;letter-spacing:.16em;color:#CFB87C;text-transform:uppercase}
+.mech-track span{padding-right:44px}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* project figures */
+.figure-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px}
+.eng-figure{position:relative;min-height:210px;border:1px solid rgba(207,184,124,.18);background:#0d1011;padding:18px;overflow:hidden}
+.eng-figure .fig-label{font:600 7px "DM Mono",monospace;letter-spacing:.09em;color:#CFB87C;text-transform:uppercase}
+.eng-figure svg{position:absolute;inset:45px 16px 14px;width:calc(100% - 32px);height:calc(100% - 59px)}
+.eng-figure svg *{vector-effect:non-scaling-stroke}
+.eng-figure:hover{border-color:#CFB87C}
+.eng-figure:hover svg{transform:scale(1.035)}
+.eng-figure svg{transition:.35s}
+.motion-path{stroke-dasharray:7 7;animation:dash 8s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-140}}
+
+/* premium hover depth */
+.caseMedia,.resource-card,.contactCard,.systemCell,.eng-figure{will-change:transform}
+.caseMedia{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.caseMedia:hover{transform:translateY(-6px);box-shadow:0 24px 70px rgba(0,0,0,.28)}
+.metricBox strong{transition:transform .25s}.metricBox:hover strong{transform:translateY(-4px)}
+.resource-card .resource-content{transition:transform .4s}.resource-card:hover .resource-content{transform:translateY(-8px)}
+
+/* chapter numbers */
+.section-chapter{position:absolute;right:var(--page-gutter);top:35px;font:900 clamp(70px,10vw,170px)/.7 "Barlow Condensed",sans-serif;color:rgba(207,184,124,.06);pointer-events:none}
+
+/* stronger reveal enhancement; visible by default */
+[data-motion]{transition:opacity .7s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+.motion-ready [data-motion]{opacity:.15;transform:translateY(32px)}
+.motion-ready [data-motion].in-view{opacity:1;transform:none}
+
+/* responsive */
+@media(max-width:900px){.hero-hud{display:none}.figure-strip{grid-template-columns:1fr}.section-chapter{display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.mech-track,.motion-path,.hud-fill{animation:none!important}[data-motion]{transition:none!important;opacity:1!important;transform:none!important}}
+</style>
+
 </head>
 <body>
 
@@ -678,7 +837,7 @@ img{display:block}
  </div>
 </section>
 
-<section class="section about" id="about">
+<section class="section about" id="about"><div class="section-chapter">01</div>
  <div class="wrap aboutGrid reveal">
   <div class="portrait"><img src="profile.png" alt="Juan Corona Enriquez"></div>
   <div>
@@ -695,7 +854,7 @@ img{display:block}
  </div>
 </section>
 
-<section class="section experience" id="experience">
+<section class="section experience" id="experience"><div class="section-chapter">02</div>
  <div class="wrap expGrid reveal">
   <div class="expIntro">
    <div class="kicker">02 // Experience</div>
@@ -732,7 +891,11 @@ img{display:block}
  </div>
 </section>
 
-<section class="section projects" id="projects">
+<div class="mech-marquee" aria-hidden="true"><div class="mech-track">
+<span>MECHANICAL DESIGN // PROTOTYPING // MATERIALS // TESTING // THERMODYNAMICS // NUMERICAL METHODS // PERFORMANCE // </span>
+<span>MECHANICAL DESIGN // PROTOTYPING // MATERIALS // TESTING // THERMODYNAMICS // NUMERICAL METHODS // PERFORMANCE // </span>
+</div></div>
+<section class="section projects" id="projects"><div class="section-chapter">03</div>
  <div class="wrap">
   <div class="sectionHead reveal">
    <div>
@@ -746,9 +909,9 @@ img{display:block}
   </div>
 
   <article class="caseStudy reveal">
-   <div class="caseTop">
+   <div class="caseTop data-motion">
     <div class="caseMedia">
-     <img src="claw-machine.jpeg" alt="Claw machine engineering project">
+     <picture><source srcset="claw-machine-2.jpeg"><img src="claw-machine.jpeg" alt="Claw machine engineering project"></picture>
      <div class="caseMediaLabel">ASM-01 // Design → Fabrication → Testing</div>
     </div>
     <div class="caseInfo">
@@ -762,25 +925,56 @@ img{display:block}
     </div>
    </div>
 
-   <div class="metricStrip">
+   <div class="metricStrip data-motion">
     <div class="metricBox"><strong>93%</strong><span>Pneumatic grab success<br>30 test items</span></div>
     <div class="metricBox"><strong>100+</strong><span>Gameplay cycles<br>completed in testing</span></div>
     <div class="metricBox"><strong>&lt;2 mm</strong><span>Observed X-Y<br>backlash</span></div>
     <div class="metricBox"><strong>15 kg</strong><span>Static structural<br>load test</span></div>
    </div>
 
-   <div class="systemBreakdown">
+   <div class="systemBreakdown data-motion">
     <div class="systemCell"><span class="n">01 // STRUCTURE</span><h4>Frame</h4><p>20 × 20 mm aluminum extrusion, PETG-CF printed brackets, and clear plexiglass formed the machine structure and enclosure.</p></div>
     <div class="systemCell"><span class="n">02 // X-Y MOTION</span><h4>Manual positioning</h4><p>Two user-operated cranks drove a pulley-and-string mechanism to position the claw across the playing field.</p></div>
     <div class="systemCell"><span class="n">03 // Z MOTION</span><h4>Motorized travel</h4><p>A 9 V DC motor and winch controlled vertical claw travel, averaging 4.1 s down and 4.3 s up across ten test cycles.</p></div>
     <div class="systemCell"><span class="n">04 // END EFFECTOR</span><h4>Pneumatic claw</h4><p>A LEGO hand pump, valve, tubing, and pneumatic claw provided the gripping action; testing averaged 9.6 pumps per successful grab.</p></div>
    </div>
 
+   <div class="figure-strip data-motion" aria-label="Claw machine subsystem figures">
+    <figure class="eng-figure">
+     <figcaption class="fig-label">FIG 01 // X-Y POSITIONING</figcaption>
+     <svg viewBox="0 0 300 130" fill="none" aria-hidden="true">
+      <rect x="28" y="18" width="244" height="92" stroke="#6e6e68"/>
+      <circle cx="50" cy="38" r="8" stroke="#CFB87C"/><circle cx="250" cy="38" r="8" stroke="#CFB87C"/>
+      <circle cx="50" cy="92" r="8" stroke="#CFB87C"/><circle cx="250" cy="92" r="8" stroke="#CFB87C"/>
+      <path class="motion-path" d="M50 38H250V92H50Z" stroke="#CFB87C"/>
+      <circle cx="164" cy="65" r="10" fill="#CFB87C"/><path d="M164 65H220M164 65V100" stroke="#F3F0E9"/>
+     </svg>
+    </figure>
+    <figure class="eng-figure">
+     <figcaption class="fig-label">FIG 02 // MOTORIZED Z-AXIS</figcaption>
+     <svg viewBox="0 0 300 130" fill="none" aria-hidden="true">
+      <rect x="115" y="12" width="70" height="28" stroke="#CFB87C"/><circle cx="150" cy="26" r="8" stroke="#CFB87C"/>
+      <path class="motion-path" d="M150 40V105" stroke="#CFB87C"/>
+      <path d="M135 98L150 114L165 98" stroke="#F3F0E9"/>
+      <text x="194" y="68" fill="#777" font-size="8">4.1 s DOWN</text><text x="194" y="81" fill="#777" font-size="8">4.3 s UP</text>
+     </svg>
+    </figure>
+    <figure class="eng-figure">
+     <figcaption class="fig-label">FIG 03 // TEST EVIDENCE</figcaption>
+     <svg viewBox="0 0 300 130" fill="none" aria-hidden="true">
+      <path d="M28 106H272M28 106V18" stroke="#555"/>
+      <path d="M40 94L86 78L132 81L178 53L224 41L260 29" stroke="#CFB87C" stroke-width="2"/>
+      <circle cx="40" cy="94" r="3" fill="#CFB87C"/><circle cx="86" cy="78" r="3" fill="#CFB87C"/><circle cx="132" cy="81" r="3" fill="#CFB87C"/><circle cx="178" cy="53" r="3" fill="#CFB87C"/><circle cx="224" cy="41" r="3" fill="#CFB87C"/><circle cx="260" cy="29" r="3" fill="#CFB87C"/>
+      <text x="185" y="96" fill="#F3F0E9" font-size="18" font-weight="700">93%</text>
+     </svg>
+    </figure>
+   </div>
+
    <div class="caseNote">Testing also included 100 consecutive structural cycles with no observed bracket cracks or shifts, no screw loosening, and less than 5 mm measured deflection during the structural test. Total project cost was $464.79, including donated/existing materials.</div>
   </article>
 
   <article class="caseStudy reveal">
-   <div class="caseSecondary">
+   <div class="caseSecondary data-motion">
     <div class="caseInfo">
      <div class="caseId">MAT-02 // Materials science laboratory</div>
      <h3>4140 STEEL<br><span>TESTING.</span></h3>
@@ -802,7 +996,7 @@ img{display:block}
   </article>
 
   <article class="caseStudy reveal">
-   <div class="caseSecondary reverse">
+   <div class="caseSecondary reverse data-motion">
     <div class="caseMedia">
      <img src="trebuchet.jpeg" alt="Trebuchet engineering challenge">
      <div class="caseMediaLabel">MEC-03 // Mechanics + iteration</div>
@@ -822,7 +1016,7 @@ img{display:block}
  </div>
 </section>
 
-<section class="section education" id="education">
+<section class="section education" id="education"><div class="section-chapter">04</div>
  <div class="wrap eduGrid reveal">
   <div class="eduVisual">
    <img src="https://www.colorado.edu/engineering/sites/default/files/styles/medium_750px_50_display_size_/public/2024-10/Engineering_Center_Sunset_2024_MAH_0000015.JPG?itok=oCc__R6P" alt="University of Colorado Boulder Engineering Center">
@@ -836,7 +1030,7 @@ img{display:block}
  </div>
 </section>
 
-<section class="section end" id="next">
+<section class="section end" id="next"><div class="section-chapter">05</div>
  <div class="wrap">
   <div class="endGrid reveal">
    <div>
@@ -875,4 +1069,43 @@ document.getElementById('profileOpen').onclick=()=>modal.showModal();
 document.getElementById('profileClose').onclick=()=>modal.close();
 modal.addEventListener('click',e=>{if(e.target===modal)modal.close()});
 </script>
-</body></html>
+
+<script id="v69-motion">
+(() => {
+ const root=document.documentElement;
+ const bar=document.createElement('div'); bar.className='scroll-progress'; document.body.appendChild(bar);
+ let ticking=false;
+ const update=()=>{
+   const max=document.documentElement.scrollHeight-innerHeight;
+   bar.style.width=(max>0?(scrollY/max)*100:0)+'%';
+   ticking=false;
+ };
+ addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(update);ticking=true}}, {passive:true}); update();
+
+ addEventListener('pointermove',e=>{
+   root.style.setProperty('--mx',e.clientX+'px');
+   root.style.setProperty('--my',e.clientY+'px');
+ },{passive:true});
+
+ if(!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window){
+   document.body.classList.add('motion-ready');
+   const io=new IntersectionObserver(entries=>{
+     entries.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in-view');io.unobserve(x.target)}})
+   },{threshold:.08,rootMargin:'0px 0px -5% 0px'});
+   document.querySelectorAll('[data-motion]').forEach(el=>io.observe(el));
+   setTimeout(()=>document.querySelectorAll('[data-motion]').forEach(el=>el.classList.add('in-view')),2200);
+ }
+})();
+</script>
+
+</body></html
+<div class="hero-hud" aria-hidden="true">
+ <div class="hud-top"><span>JCE // Engineering profile</span><span>LIVE</span></div>
+ <div class="hud-line"></div>
+ <div class="hud-bars">
+  <div class="hud-row"><span>Design</span><div class="hud-track"><div class="hud-fill" style="width:88%"></div></div><span>01</span></div>
+  <div class="hud-row"><span>Build</span><div class="hud-track"><div class="hud-fill" style="width:82%"></div></div><span>02</span></div>
+  <div class="hud-row"><span>Test</span><div class="hud-track"><div class="hud-fill" style="width:91%"></div></div><span>03</span></div>
+  <div class="hud-row"><span>Iterate</span><div class="hud-track"><div class="hud-fill" style="width:86%"></div></div><span>04</span></div>
+ </div>
+</div>>
