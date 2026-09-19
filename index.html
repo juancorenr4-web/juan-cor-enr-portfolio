@@ -377,12 +377,56 @@ dialog::backdrop{background:rgba(0,0,0,.8);backdrop-filter:blur(6px)}
 }
 </style>
 
+
+<style id="v63-name-and-visuals">
+/* Make Juan's identity impossible to miss */
+.identity{gap:12px!important}
+.identity .name-lockup{display:flex;flex-direction:column;line-height:1}
+.identity .name-lockup strong{font:800 17px "Barlow Condensed",sans-serif;letter-spacing:.035em;text-transform:uppercase;color:#F3F0E9}
+.identity .name-lockup small{margin-top:5px;color:#8e8e88}
+.hero-name{font:500 11px "DM Mono",monospace;letter-spacing:.17em;text-transform:uppercase;color:#CFB87C;margin-bottom:14px}
+.hero-name:after{content:"";display:inline-block;width:80px;height:1px;background:#CFB87C;margin-left:18px;vertical-align:middle}
+.name-watermark{position:absolute;right:-.02em;top:20%;z-index:-1;font:900 clamp(130px,22vw,360px)/.7 "Barlow Condensed",sans-serif;letter-spacing:-.07em;color:rgba(255,255,255,.025);white-space:nowrap;pointer-events:none}
+.hero-school{margin-bottom:16px!important}
+
+/* Internet-sourced context imagery, clearly separated from personal project evidence */
+.visualBreak{position:relative;min-height:460px;overflow:hidden;border-top:1px solid rgba(207,184,124,.25);border-bottom:1px solid rgba(207,184,124,.25);background:#050606}
+.visualBreak img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(.62) sepia(.12) brightness(.52) contrast(1.12)}
+.visualBreak:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,6,6,.94),rgba(5,6,6,.38) 55%,rgba(5,6,6,.7))}
+.visualBreak .vbIn{position:relative;z-index:2;min-height:460px;display:flex;align-items:center}
+.vbCopy{max-width:700px}
+.vbCopy .kicker{margin-bottom:16px}
+.vbCopy h3{font:900 clamp(55px,7vw,105px)/.78 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:-.045em;margin:0 0 22px}
+.vbCopy h3 span{color:#CFB87C}
+.vbCopy p{max-width:580px;color:#bbb8b0;line-height:1.7}
+.vbSource{margin-top:22px;color:#777770;font:500 7px "DM Mono",monospace;letter-spacing:.09em;text-transform:uppercase}
+
+/* Materials image: contextual lab visual, not claimed as Juan's specimen */
+.caseSecondary .material-context{background:#090a0b!important}
+.caseSecondary .material-context img{filter:grayscale(.65) brightness(.63)!important}
+.contextFlag{position:absolute;z-index:3;right:15px;top:15px;background:#050606;color:#CFB87C;border:1px solid rgba(207,184,124,.35);padding:8px 10px;font:500 7px "DM Mono",monospace;letter-spacing:.08em;text-transform:uppercase}
+
+/* CU education photo becomes a stronger full-bleed visual */
+.eduVisual:before{content:"CU BOULDER";position:absolute;z-index:3;left:18px;top:18px;color:#F3F0E9;font:900 clamp(42px,6vw,88px)/.8 "Barlow Condensed",sans-serif;letter-spacing:-.04em;text-shadow:0 2px 18px rgba(0,0,0,.55)}
+.eduVisual{isolation:isolate}
+.eduVisual:after{z-index:3!important}
+
+/* More personal identity in final close */
+.end-person{margin-bottom:16px;color:#CFB87C;font:500 10px "DM Mono",monospace;letter-spacing:.13em;text-transform:uppercase}
+.end h2 small{display:block;font:700 clamp(20px,2vw,31px)/1 "Barlow Condensed",sans-serif;letter-spacing:.03em;color:#F3F0E9;margin-top:24px}
+@media(max-width:720px){
+ .identity .name-lockup strong{font-size:14px}.identity .name-lockup small{display:none}
+ .name-watermark{top:32%;font-size:38vw}
+ .visualBreak,.visualBreak .vbIn{min-height:520px}
+}
+</style>
+
 </head>
 <body>
 
 <nav>
  <div class="wrap navin">
-  <a class="identity" href="#top"><span class="jce">JCE</span><small>Mechanical Engineering</small></a>
+  <a class="identity" href="#top"><span class="jce">JCE</span><span class="name-lockup"><strong>Juan Corona Enriquez</strong><small>Mechanical Engineering</small></span></a>
   <div class="navlinks">
    <a href="#about">About</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#education">Education</a>
    <a class="pill" href="#next">Let's connect →</a>
@@ -393,7 +437,7 @@ dialog::backdrop{background:rgba(0,0,0,.8);backdrop-filter:blur(6px)}
 <header class="hero" id="top">
  <div class="hero-bg"><img src="f1-car.jpeg" alt="Formula-style race car, used as a visual expression of Juan's interest in performance engineering"></div>
  <div class="wrap heroin">
-  <div class="hero-school mono"><span class="school-badge">CU</span><span>University of Colorado Boulder // Mechanical Engineering</span></div>
+  <div class="hero-school mono"><span class="school-badge">CU</span><span>University of Colorado Boulder // Mechanical Engineering</span></div><div class="hero-name">Juan Corona Enriquez // Mechanical Engineering Student</div><div class="name-watermark" aria-hidden="true">JUAN</div>
   <h1>ENGINEER.<br><em>PROBLEM SOLVER.</em><br>LIFELONG LEARNER.</h1>
   <div class="hero-copy">
    <div>
@@ -461,6 +505,18 @@ dialog::backdrop{background:rgba(0,0,0,.8);backdrop-filter:blur(6px)}
  </div>
 </section>
 
+<section class="visualBreak" aria-label="Performance engineering inspiration">
+ <img src="https://cdn.southampton.ac.uk/assets/imported/transforms/content-block/LinkImage/A8B99B60AC2F426FB263E1AE8193793E/RJ%20Mitchell.jpg_SIA_JPG_fit_to_width_INLINE.jpg" alt="Formula-style vehicle being tested in a university wind tunnel">
+ <div class="wrap vbIn">
+  <div class="vbCopy reveal">
+   <div class="kicker">Engineering direction // Performance</div>
+   <h3>CURIOUS ABOUT<br><span>WHY IT WORKS.</span></h3>
+   <p>Performance engineering is where many of my interests meet: mechanics, testing, data, fluid behavior, design decisions, and the constant search for a better iteration.</p>
+   <div class="vbSource">Context image // University wind-tunnel testing // not personal project work</div>
+  </div>
+ </div>
+</section>
+
 <section class="section projects" id="projects">
  <div class="wrap">
   <div class="sectionHead reveal">
@@ -522,8 +578,9 @@ dialog::backdrop{background:rgba(0,0,0,.8);backdrop-filter:blur(6px)}
      </div>
      <div class="caseRole"><b>Engineering focus</b><p>Collect test data, compare material conditions, document laboratory procedures, and connect manufacturing/heat-treatment choices to measured material behavior.</p></div>
     </div>
-    <div class="caseMedia material">
-     <div class="specimen" aria-hidden="true"></div>
+    <div class="caseMedia material-context">
+     <img src="https://www.tensiontech.com/files/TTI-testing/facilities/30kN%20Instron.jpg?aspect-ratio=3%3A4" alt="Universal materials testing machine in a laboratory">
+     <div class="contextFlag">Context image // Testing equipment</div>
      <div class="caseMediaLabel">Material response // Test → Compare → Interpret</div>
     </div>
    </div>
@@ -553,7 +610,7 @@ dialog::backdrop{background:rgba(0,0,0,.8);backdrop-filter:blur(6px)}
 <section class="section education" id="education">
  <div class="wrap eduGrid reveal">
   <div class="eduVisual">
-   <img src="https://www.colorado.edu/faculty/summers/sites/default/files/styles/medium_750px_50_display_size_/public/page/engineering_center_blue.jpg?itok=3d-VZk19" alt="University of Colorado Boulder Engineering Center">
+   <img src="https://www.colorado.edu/engineering/sites/default/files/styles/medium_750px_50_display_size_/public/2024-10/Engineering_Center_Sunset_2024_MAH_0000015.JPG?itok=oCc__R6P" alt="University of Colorado Boulder Engineering Center">
   </div>
   <div class="eduStack">
    <div class="mono">04 // Education</div>
@@ -568,8 +625,9 @@ dialog::backdrop{background:rgba(0,0,0,.8);backdrop-filter:blur(6px)}
  <div class="wrap">
   <div class="endGrid reveal">
    <div>
+    <div class="end-person">Juan Corona Enriquez // Mechanical Engineering</div>
     <div class="kicker">05 // What's next</div>
-    <h2>GIVE ME THE<br><span>OPPORTUNITY</span><br>TO GROW.</h2>
+    <h2>GIVE ME THE<br><span>OPPORTUNITY</span><br>TO GROW.<small>Design it. Build it. Test it. Learn from it.</small></h2>
    </div>
    <div class="endCopy">
     <p>I’m looking for a team that will challenge me, teach me, and give me the opportunity to take on greater responsibility.</p>
