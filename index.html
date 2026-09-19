@@ -1,1890 +1,557 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0d1012">
-  <title>Juan Corona Enriquez | Mechanical Engineering</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
-
-  <style>
-    :root{
-      --ink:#0d1012;
-      --ink-2:#151a1e;
-      --paper:#f4f1ea;
-      --paper-2:#ebe7df;
-      --steel:#8ca6b7;
-      --steel-dark:#5f788a;
-      --copper:#b77b59;
-      --muted:#75818a;
-      --line:rgba(13,16,18,.12);
-      --line-dark:rgba(255,255,255,.12);
-      --page:min(1440px,calc(100% - clamp(28px,6vw,92px)));
-      --radius:24px;
-    }
-
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth;overflow-x:hidden;background:var(--paper)}
-    body{
-      margin:0;
-      min-width:320px;
-      overflow-x:hidden;
-      background:var(--paper);
-      color:var(--ink);
-      font-family:Manrope,system-ui,sans-serif;
-      -webkit-font-smoothing:antialiased;
-      text-rendering:optimizeLegibility;
-    }
-    body.modal-open{overflow:hidden}
-    img{display:block;max-width:100%}
-    a{color:inherit}
-    button,input{font:inherit}
-    ::selection{background:var(--steel);color:var(--ink)}
-
-    .shell{width:var(--page);margin-inline:auto}
-    .mono{
-      font-family:"DM Mono",monospace;
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      font-size:.68rem;
-    }
-    .eyebrow{color:var(--steel-dark)}
-    .dark .eyebrow{color:#95a8b4}
-
-    /* =====================================================
-       NAV
-       ===================================================== */
-    .nav{
-      position:fixed;
-      z-index:100;
-      left:50%;
-      top:14px;
-      transform:translateX(-50%);
-      width:min(1420px,calc(100% - 28px));
-      height:58px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:20px;
-      padding:0 18px;
-      border:1px solid rgba(255,255,255,.14);
-      border-radius:999px;
-      background:rgba(12,15,17,.78);
-      color:#f5f2eb;
-      backdrop-filter:blur(18px);
-      -webkit-backdrop-filter:blur(18px);
-      box-shadow:0 12px 40px rgba(0,0,0,.18);
-    }
-    .navBrand{text-decoration:none;min-width:0}
-    .navBrand strong{
-      display:block;
-      font-family:Syne,sans-serif;
-      font-size:.86rem;
-      letter-spacing:-.03em;
-      white-space:nowrap;
-    }
-    .navBrand span{
-      display:block;
-      margin-top:1px;
-      color:#8e9aa1;
-      font-family:"DM Mono",monospace;
-      font-size:.48rem;
-      letter-spacing:.09em;
-      white-space:nowrap;
-    }
-    .navLinks{display:flex;align-items:center;gap:18px}
-    .navLinks a{
-      text-decoration:none;
-      color:#abb5ba;
-      font-family:"DM Mono",monospace;
-      font-size:.56rem;
-      letter-spacing:.08em;
-      transition:color .2s ease;
-    }
-    .navLinks a:hover{color:#fff}
-    .navCta{
-      border:0;
-      border-radius:999px;
-      padding:11px 14px;
-      background:var(--paper);
-      color:var(--ink);
-      cursor:pointer;
-      font-family:"DM Mono",monospace;
-      font-size:.55rem;
-      letter-spacing:.07em;
-      transition:transform .2s ease,background .2s ease;
-    }
-    .navCta:hover{transform:translateY(-2px);background:var(--steel)}
-
-    /* =====================================================
-       HERO
-       ===================================================== */
-    .hero{
-      position:relative;
-      min-height:100svh;
-      padding:108px 0 28px;
-      overflow:hidden;
-      background:
-        radial-gradient(circle at 78% 24%,rgba(140,166,183,.16),transparent 28%),
-        var(--ink);
-      color:var(--paper);
-    }
-    .heroGrid{
-      position:absolute;inset:0;pointer-events:none;opacity:.45;
-      background:
-        linear-gradient(rgba(255,255,255,.032) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.032) 1px,transparent 1px);
-      background-size:72px 72px;
-      mask-image:linear-gradient(to bottom,black 0%,black 72%,transparent 100%);
-    }
-    .heroInner{
-      position:relative;
-      z-index:2;
-      min-height:calc(100svh - 136px);
-      display:grid;
-      grid-template-rows:auto 1fr auto;
-      gap:24px;
-    }
-    .heroTop{
-      display:flex;
-      justify-content:space-between;
-      gap:30px;
-      padding-bottom:18px;
-      border-bottom:1px solid var(--line-dark);
-      color:#84929a;
-    }
-    .heroStage{
-      display:grid;
-      grid-template-columns:minmax(0,.95fr) minmax(380px,.75fr);
-      gap:clamp(40px,6vw,96px);
-      align-items:center;
-    }
-    .heroCopy{min-width:0}
-    .heroKicker{margin-bottom:18px;color:#94a6b1}
-    .hero h1{
-      margin:0;
-      max-width:890px;
-      font-family:Syne,sans-serif;
-      font-weight:800;
-      font-size:clamp(5.1rem,10.2vw,11rem);
-      line-height:.73;
-      letter-spacing:-.09em;
-    }
-    .hero h1 span{display:block;white-space:nowrap}
-    .hero h1 .outline{
-      color:transparent;
-      -webkit-text-stroke:1.3px rgba(244,241,234,.95);
-    }
-    .heroPitch{
-      margin-top:34px;
-      display:grid;
-      grid-template-columns:minmax(0,1fr) auto;
-      gap:28px;
-      align-items:end;
-    }
-    .heroPitch p{
-      margin:0;
-      max-width:630px;
-      color:#a5afb4;
-      font-size:clamp(.98rem,1.25vw,1.12rem);
-      line-height:1.78;
-    }
-    .heroPitch strong{
-      color:#fff;
-      font-family:Syne,sans-serif;
-      font-size:1.05rem;
-      line-height:1.12;
-      white-space:nowrap;
-    }
-
-    .heroVisual{
-      position:relative;
-      min-height:590px;
-      border-radius:var(--radius);
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow:0 26px 80px rgba(0,0,0,.28);
-      background:linear-gradient(135deg,#20272c,#0d1012);
-    }
-    .heroVisual img{
-      width:100%;height:100%;position:absolute;inset:0;
-      object-fit:cover;object-position:center;
-      filter:saturate(.66) contrast(1.06) brightness(.72);
-      transition:transform .8s cubic-bezier(.2,.7,.2,1);
-    }
-    .heroVisual:hover img{transform:scale(1.025)}
-    .heroVisual::after{
-      content:"";position:absolute;inset:0;
-      background:
-        linear-gradient(180deg,rgba(13,16,18,.08),rgba(13,16,18,.10) 48%,rgba(13,16,18,.82)),
-        linear-gradient(90deg,rgba(13,16,18,.25),transparent 46%);
-    }
-    .heroVisualInfo{
-      position:absolute;
-      z-index:2;
-      left:24px;right:24px;bottom:22px;
-      display:flex;justify-content:space-between;gap:24px;align-items:end;
-    }
-    .heroVisualInfo small{
-      color:#aab5bb;
-      font-family:"DM Mono",monospace;
-      font-size:.53rem;
-      letter-spacing:.1em;
-    }
-    .heroVisualInfo strong{
-      display:block;
-      max-width:360px;
-      margin-top:8px;
-      font-family:Syne,sans-serif;
-      font-size:clamp(1.45rem,2vw,2.3rem);
-      line-height:1;
-      letter-spacing:-.05em;
-    }
-    .heroVisualInfo b{
-      font-family:"DM Mono",monospace;
-      font-size:.58rem;
-      font-weight:400;
-      color:#9da9af;
-      white-space:nowrap;
-    }
-    .heroBottom{
-      display:flex;
-      justify-content:space-between;
-      gap:24px;
-      padding-top:18px;
-      border-top:1px solid var(--line-dark);
-      color:#728088;
-    }
-
-    /* =====================================================
-       MANIFESTO / MINDSET
-       ===================================================== */
-    .mindset{padding:120px 0;background:var(--paper)}
-    .mindsetGrid{
-      display:grid;
-      grid-template-columns:170px minmax(0,1fr);
-      gap:64px;
-    }
-    .sectionNum{
-      font-family:Syne,sans-serif;
-      font-size:clamp(4rem,6vw,6.5rem);
-      line-height:.8;
-      font-weight:800;
-      letter-spacing:-.08em;
-      color:var(--steel);
-    }
-    .sectionNum small{
-      display:block;
-      margin-top:16px;
-      font-family:"DM Mono",monospace;
-      font-size:.52rem;
-      letter-spacing:.12em;
-      color:var(--muted);
-    }
-    .mindset h2,.about h2,.approach h2,.next h2{
-      margin:0;
-      max-width:1100px;
-      font-family:Syne,sans-serif;
-      font-size:clamp(4rem,7vw,7.7rem);
-      line-height:.82;
-      letter-spacing:-.075em;
-    }
-    .mindset h2 span,.about h2 span,.approach h2 span,.next h2 span{color:var(--steel-dark)}
-    .mindsetLead{
-      max-width:740px;
-      margin:34px 0 0;
-      color:#5d6970;
-      font-size:1rem;
-      line-height:1.82;
-    }
-    .mindsetPrinciples{
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      margin-top:70px;
-      border-top:1px solid var(--line);
-      border-bottom:1px solid var(--line);
-    }
-    .principle{
-      min-width:0;
-      min-height:240px;
-      padding:24px 26px 28px 0;
-      border-right:1px solid var(--line);
-    }
-    .principle + .principle{padding-left:26px}
-    .principle:last-child{border-right:0}
-    .principle small{color:var(--steel-dark)}
-    .principle strong{
-      display:block;
-      margin-top:76px;
-      font-family:Syne,sans-serif;
-      font-size:clamp(1.55rem,2.2vw,2.4rem);
-      line-height:.97;
-      letter-spacing:-.05em;
-    }
-    .principle p{
-      margin:14px 0 0;
-      color:#6c777d;
-      font-size:.78rem;
-      line-height:1.68;
-    }
-
-    /* =====================================================
-       ABOUT
-       ===================================================== */
-    .about{padding:118px 0;background:#dde6ea}
-    .aboutHead{
-      display:grid;
-      grid-template-columns:170px minmax(0,1fr);
-      gap:64px;
-      margin-bottom:58px;
-    }
-    .aboutGrid{
-      display:grid;
-      grid-template-columns:minmax(0,1fr) minmax(380px,.78fr);
-      gap:18px;
-    }
-    .portrait{
-      position:relative;
-      min-height:680px;
-      overflow:hidden;
-      border-radius:var(--radius);
-      background:#d5cec3;
-      box-shadow:0 24px 64px rgba(13,16,18,.10);
-    }
-    .portrait img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;object-position:center top}
-    .portraitLabel{
-      position:absolute;left:18px;right:18px;bottom:18px;
-      padding:18px;
-      border-radius:16px;
-      background:rgba(13,16,18,.84);
-      color:#fff;
-      backdrop-filter:blur(12px);
-    }
-    .portraitLabel strong{
-      display:block;
-      font-family:Syne,sans-serif;
-      font-size:1.55rem;
-      letter-spacing:-.04em;
-    }
-    .portraitLabel span{display:block;margin-top:5px;color:#9da9af}
-    .aboutCards{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:14px;
-    }
-    .aboutCard{
-      min-width:0;
-      padding:26px;
-      border-radius:20px;
-      background:rgba(244,241,234,.94);
-      border:1px solid rgba(13,16,18,.08);
-      box-shadow:0 12px 34px rgba(13,16,18,.045);
-    }
-    .aboutCard.wide{
-      grid-column:1/-1;
-      display:flex;
-      flex-direction:column;
-      justify-content:flex-end;
-      min-height:300px;
-      background:var(--ink);
-      color:var(--paper);
-    }
-    .aboutCard small{color:var(--steel-dark)}
-    .aboutCard strong{
-      display:block;
-      margin-top:18px;
-      font-family:Syne,sans-serif;
-      font-size:clamp(1.35rem,2vw,2rem);
-      line-height:1.05;
-      letter-spacing:-.04em;
-    }
-    .aboutCard p{margin:14px 0 0;color:#6b777d;font-size:.79rem;line-height:1.7}
-    .aboutCard.wide p{color:#98a4aa;max-width:580px}
-
-    /* =====================================================
-       PROFESSIONAL DISCIPLINE
-       ===================================================== */
-    .discipline{
-      position:relative;
-      padding:124px 0 116px;
-      overflow:hidden;
-      background:var(--ink);
-      color:var(--paper);
-    }
-    .discipline::before{
-      content:"";position:absolute;inset:0;opacity:.45;pointer-events:none;
-      background:
-        linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
-      background-size:76px 76px;
-      mask-image:linear-gradient(to bottom,black,transparent 92%);
-    }
-    .disciplineInner{position:relative;z-index:2}
-    .disciplineHead{
-      display:grid;
-      grid-template-columns:170px minmax(0,1fr);
-      gap:64px;
-    }
-    .discipline .sectionNum small{color:#8d9aa1}
-    .disciplineTitle{
-      margin:0;
-      max-width:1080px;
-      font-family:Syne,sans-serif;
-      font-size:clamp(4rem,7vw,7.6rem);
-      line-height:.81;
-      letter-spacing:-.075em;
-    }
-    .disciplineTitle span{color:#91a9b8}
-    .disciplineLead{
-      max-width:750px;
-      margin:32px 0 0;
-      color:#9ca7ad;
-      font-size:.96rem;
-      line-height:1.82;
-    }
-    .disciplineGrid{
-      display:grid;
-      grid-template-columns:minmax(300px,.7fr) minmax(0,1.3fr);
-      gap:16px;
-      margin-top:70px;
-    }
-    .disciplineQuote{
-      min-height:610px;
-      padding:28px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      border-radius:22px;
-      border:1px solid var(--line-dark);
-      background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.012));
-    }
-    .disciplineQuote blockquote{
-      margin:0;
-      font-family:Syne,sans-serif;
-      font-size:clamp(2.5rem,4.2vw,4.9rem);
-      line-height:.94;
-      letter-spacing:-.06em;
-    }
-    .disciplineQuote blockquote span{display:block;margin-top:12px;color:var(--steel)}
-    .disciplineProof{display:grid;gap:12px}
-    .proofCard{
-      min-width:0;
-      padding:24px 26px;
-      border-radius:18px;
-      border:1px solid var(--line-dark);
-      background:rgba(255,255,255,.025);
-      transition:transform .25s ease,border-color .25s ease,background .25s ease;
-    }
-    .proofCard:hover{transform:translateX(6px);border-color:rgba(140,166,183,.42);background:rgba(255,255,255,.045)}
-    .proofTop{display:flex;justify-content:space-between;gap:20px}
-    .proofTop b{font-family:Syne,sans-serif;font-size:2rem;color:var(--steel);letter-spacing:-.05em}
-    .proofCard h3{
-      margin:38px 0 0;
-      font-family:Syne,sans-serif;
-      font-size:clamp(1.55rem,2.2vw,2.4rem);
-      line-height:.98;
-      letter-spacing:-.05em;
-    }
-    .proofCard p{margin:12px 0 0;max-width:650px;color:#909ca2;font-size:.79rem;line-height:1.68}
-
-    /* =====================================================
-       CLAW CASE STUDY
-       ===================================================== */
-    .case{padding:122px 0;background:#161b1f;color:var(--paper)}
-    .caseHead{
-      display:grid;
-      grid-template-columns:minmax(0,1fr) minmax(300px,.46fr);
-      gap:64px;
-      align-items:end;
-    }
-    .case h2{
-      margin:0;
-      max-width:940px;
-      font-family:Syne,sans-serif;
-      font-size:clamp(4.2rem,7.2vw,7.8rem);
-      line-height:.8;
-      letter-spacing:-.08em;
-    }
-    .case h2 span{color:var(--steel)}
-    .caseIntro{color:#97a3a9;font-size:.9rem;line-height:1.8}
-    .caseMetrics{
-      display:grid;
-      grid-template-columns:repeat(4,minmax(0,1fr));
-      margin-top:64px;
-      border-top:1px solid var(--line-dark);
-      border-bottom:1px solid var(--line-dark);
-    }
-    .metric{min-width:0;padding:22px;border-right:1px solid var(--line-dark)}
-    .metric:last-child{border-right:0}
-    .metric strong{font-family:Syne,sans-serif;font-size:clamp(1.7rem,2.7vw,3rem);letter-spacing:-.05em}
-    .metric span{display:block;margin-top:6px;color:#839097;font-size:.7rem}
-    .caseGallery{
-      display:grid;
-      grid-template-columns:1.1fr .8fr .8fr;
-      gap:14px;
-      margin-top:22px;
-    }
-    .galleryCard{
-      position:relative;
-      min-height:520px;
-      overflow:hidden;
-      border-radius:20px;
-      border:1px solid rgba(255,255,255,.08);
-      background:#20272c;
-    }
-    .galleryCard img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;transition:transform .55s ease}
-    .galleryCard:hover img{transform:scale(1.025)}
-    .galleryCaption{
-      position:absolute;left:14px;right:14px;bottom:14px;
-      padding:15px;border-radius:13px;
-      background:rgba(13,16,18,.80);backdrop-filter:blur(10px)
-    }
-    .galleryCaption strong{display:block;font-family:Syne,sans-serif;font-size:1.15rem}
-    .galleryCaption span{display:block;margin-top:4px;color:#98a5ab;font-size:.68rem}
-    .caseBottom{
-      display:grid;
-      grid-template-columns:minmax(0,1fr) minmax(280px,.55fr);
-      gap:60px;
-      margin-top:74px;
-      padding-top:32px;
-      border-top:1px solid var(--line-dark);
-    }
-    .caseBottom h3{
-      margin:0;
-      max-width:760px;
-      font-family:Syne,sans-serif;
-      font-size:clamp(2.3rem,4vw,4.2rem);
-      line-height:.95;
-      letter-spacing:-.055em;
-    }
-    .caseBottom p{margin:0;color:#929ea4;font-size:.84rem;line-height:1.76}
-    .caseLink{
-      display:inline-flex;align-items:center;gap:12px;margin-top:18px;
-      color:#fff;text-decoration:none;font-family:"DM Mono",monospace;font-size:.58rem;letter-spacing:.07em
-    }
-
-    /* =====================================================
-       PROJECT
-       ===================================================== */
-    .projects{padding:120px 0;background:var(--paper)}
-    .projectHead{
-      display:grid;
-      grid-template-columns:170px minmax(0,1fr);
-      gap:64px;
-      margin-bottom:56px;
-    }
-    .projectHead h2{
-      margin:0;
-      font-family:Syne,sans-serif;
-      font-size:clamp(4rem,7vw,7.5rem);
-      line-height:.82;
-      letter-spacing:-.075em;
-    }
-    .projectFeature{
-      display:grid;
-      grid-template-columns:minmax(0,1.18fr) minmax(320px,.72fr);
-      gap:28px;
-      align-items:center;
-    }
-    .projectImage{
-      position:relative;
-      min-height:620px;
-      overflow:hidden;
-      border-radius:var(--radius);
-      background:#ddd5ca;
-      box-shadow:0 22px 60px rgba(13,16,18,.09);
-    }
-    .projectImage img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover}
-    .projectCopy{padding:20px 0}
-    .projectCopy small{color:var(--steel-dark)}
-    .projectCopy h3{
-      margin:18px 0 0;
-      font-family:Syne,sans-serif;
-      font-size:clamp(2.4rem,4.3vw,4.8rem);
-      line-height:.92;
-      letter-spacing:-.06em;
-    }
-    .projectCopy p{margin:22px 0 0;color:#647077;font-size:.9rem;line-height:1.8}
-    .projectResult{
-      margin-top:34px;
-      padding-top:24px;
-      border-top:1px solid var(--line);
-    }
-    .projectResult strong{
-      display:block;
-      font-family:Syne,sans-serif;
-      font-size:clamp(2.6rem,4.7vw,5.4rem);
-      line-height:.84;
-      letter-spacing:-.075em;
-      color:var(--steel-dark)
-    }
-    .projectResult span{display:block;margin-top:8px;color:#6f7a80;font-size:.76rem}
-
-    /* =====================================================
-       APPROACH + SKILLS
-       ===================================================== */
-    .approach{padding:120px 0;background:#dce5e9}
-    .approachHead{
-      display:grid;
-      grid-template-columns:170px minmax(0,1fr);
-      gap:64px;
-    }
-    .approachSteps{
-      margin-top:66px;
-      border-top:1px solid var(--line);
-    }
-    .step{
-      display:grid;
-      grid-template-columns:70px minmax(180px,.7fr) minmax(0,1.3fr);
-      gap:28px;
-      align-items:start;
-      padding:28px 0;
-      border-bottom:1px solid var(--line);
-    }
-    .step b{font-family:Syne,sans-serif;font-size:2rem;color:var(--steel-dark)}
-    .step strong{font-family:Syne,sans-serif;font-size:1.8rem;letter-spacing:-.045em}
-    .step p{margin:0;color:#657178;font-size:.83rem;line-height:1.7}
-    .skillsBlock{
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:14px;
-      margin-top:68px;
-    }
-    .skillGroup{
-      padding:26px;
-      border-radius:18px;
-      border:1px solid rgba(13,16,18,.09);
-      background:rgba(244,241,234,.78);
-    }
-    .skillGroup h3{margin:0;font-family:Syne,sans-serif;font-size:1.4rem;letter-spacing:-.04em}
-    .skillGroup p{margin:14px 0 0;color:#637077;font-size:.8rem;line-height:1.75}
-
-    /* =====================================================
-       NEXT / SHPE
-       ===================================================== */
-    .next{padding:124px 0;background:var(--paper)}
-    .nextGrid{
-      display:grid;
-      grid-template-columns:170px minmax(0,1fr);
-      gap:64px;
-    }
-    .nextCopy{max-width:1060px}
-    .nextCopy p{max-width:760px;margin:32px 0 0;color:#616d74;font-size:.95rem;line-height:1.82}
-    .nextPanel{
-      margin-top:64px;
-      padding:28px;
-      border-radius:22px;
-      background:var(--ink);
-      color:var(--paper);
-      display:grid;
-      grid-template-columns:minmax(0,1fr) auto;
-      gap:40px;
-      align-items:end;
-    }
-    .nextPanel strong{
-      max-width:760px;
-      font-family:Syne,sans-serif;
-      font-size:clamp(2rem,3.8vw,4.3rem);
-      line-height:.94;
-      letter-spacing:-.055em;
-    }
-    .nextPanel span{color:#95a3aa}
-    .nextPanel a{
-      text-decoration:none;border-radius:999px;background:var(--paper);color:var(--ink);
-      padding:16px 20px;font-family:"DM Mono",monospace;font-size:.58rem;letter-spacing:.07em;white-space:nowrap
-    }
-
-    /* =====================================================
-       CONTACT
-       ===================================================== */
-    .contact{
-      position:relative;
-      padding:120px 0 38px;
-      background:#0d1012;
-      color:var(--paper);
-      overflow:hidden;
-    }
-    .contact::before{
-      content:"";position:absolute;inset:0;pointer-events:none;
-      background:radial-gradient(circle at 80% 15%,rgba(140,166,183,.14),transparent 28%);
-    }
-    .contactInner{position:relative;z-index:2}
-    .contactTop{
-      display:grid;
-      grid-template-columns:minmax(0,1.2fr) minmax(300px,.55fr);
-      gap:64px;
-      align-items:end;
-    }
-    .contact h2{
-      margin:0;
-      max-width:950px;
-      font-family:Syne,sans-serif;
-      font-size:clamp(4.2rem,7.6vw,8.2rem);
-      line-height:.79;
-      letter-spacing:-.08em;
-    }
-    .contact h2 span{color:var(--steel)}
-    .contactPitch{color:#98a4aa;font-size:.9rem;line-height:1.8}
-    .contactPrompt{display:block;margin-top:26px;color:#fff;font-family:Syne,sans-serif;font-size:1.4rem;line-height:1.05}
-    .contactActions{
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:12px;
-      margin-top:70px;
-    }
-    .contactAction{
-      min-width:0;
-      min-height:150px;
-      padding:22px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      border:1px solid var(--line-dark);
-      border-radius:18px;
-      color:#fff;
-      text-decoration:none;
-      background:rgba(255,255,255,.025);
-      transition:transform .25s ease,background .25s ease,color .25s ease,border-color .25s ease;
-    }
-    .contactAction:hover{transform:translateY(-5px);background:var(--paper);color:var(--ink);border-color:var(--paper)}
-    .contactAction small{color:#7c8a92}
-    .contactAction strong{font-family:Syne,sans-serif;font-size:clamp(1.5rem,2.1vw,2.2rem);letter-spacing:-.045em}
-    .contactFoot{
-      display:flex;justify-content:space-between;gap:24px;
-      margin-top:42px;padding-top:20px;border-top:1px solid var(--line-dark);
-      color:#68767d
-    }
-
-    /* =====================================================
-       RECRUITER MODAL
-       ===================================================== */
-    .modal{
-      position:fixed;inset:0;z-index:999;
-      display:none;
-      place-items:center;
-      padding:18px;
-      background:rgba(6,8,9,.78);
-      backdrop-filter:blur(14px);
-    }
-    .modal.open{display:grid}
-    .modalPanel{
-      width:min(1180px,100%);
-      max-height:calc(100svh - 36px);
-      overflow:auto;
-      border-radius:24px;
-      background:var(--paper);
-      color:var(--ink);
-      box-shadow:0 30px 120px rgba(0,0,0,.45);
-    }
-    .modalHead{
-      position:sticky;top:0;z-index:2;
-      display:flex;justify-content:space-between;gap:20px;align-items:center;
-      padding:18px 22px;border-bottom:1px solid var(--line);
-      background:rgba(244,241,234,.92);backdrop-filter:blur(12px)
-    }
-    .modalClose{
-      width:42px;height:42px;border:1px solid var(--line);border-radius:50%;
-      background:transparent;cursor:pointer;font-size:1.2rem
-    }
-    .modalBody{padding:34px}
-    .briefTitle{
-      margin:0;
-      max-width:900px;
-      font-family:Syne,sans-serif;
-      font-size:clamp(3rem,6vw,6rem);
-      line-height:.84;
-      letter-spacing:-.07em;
-    }
-    .briefGrid{
-      display:grid;
-      grid-template-columns:repeat(4,minmax(0,1fr));
-      margin-top:38px;
-      border-top:1px solid var(--line);
-      border-bottom:1px solid var(--line);
-    }
-    .briefItem{padding:22px;border-right:1px solid var(--line)}
-    .briefItem:last-child{border-right:0}
-    .briefItem b{display:block;font-family:Syne,sans-serif;font-size:2rem;color:var(--steel-dark)}
-    .briefItem span{display:block;margin-top:6px;color:#6c777d;font-size:.72rem}
-    .briefColumns{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:34px;
-      margin-top:34px;
-    }
-    .briefColumns h3{font-family:Syne,sans-serif;font-size:1.4rem}
-    .briefColumns p{color:#647077;font-size:.85rem;line-height:1.78}
-
-    /* =====================================================
-       REVEALS
-       ===================================================== */
-    .reveal{opacity:0;transform:translateY(24px);transition:opacity .62s ease,transform .62s cubic-bezier(.2,.7,.2,1)}
-    .reveal.show{opacity:1;transform:none}
-
-    /* =====================================================
-       RESPONSIVE
-       ===================================================== */
-    @media(max-width:1100px){
-      .navLinks{display:none}
-      .heroStage{grid-template-columns:1fr;gap:34px}
-      .heroVisual{min-height:48svh}
-      .hero h1{font-size:clamp(5.2rem,15vw,9rem)}
-      .mindsetGrid,.aboutHead,.disciplineHead,.projectHead,.approachHead,.nextGrid{grid-template-columns:1fr;gap:28px}
-      .sectionNum{display:flex;align-items:center;gap:18px}
-      .sectionNum small{margin-top:0}
-      .aboutGrid{grid-template-columns:1fr}
-      .portrait{min-height:68svh}
-      .disciplineGrid{grid-template-columns:1fr}
-      .disciplineQuote{min-height:410px}
-      .caseHead{grid-template-columns:1fr}
-      .caseGallery{grid-template-columns:1fr 1fr}
-      .caseGallery .galleryCard:first-child{grid-column:1/-1}
-      .projectFeature{grid-template-columns:1fr}
-      .skillsBlock{grid-template-columns:1fr 1fr}
-      .contactTop{grid-template-columns:1fr}
-    }
-
-    @media(max-width:760px){
-      :root{--page:calc(100% - 28px)}
-      .nav{height:54px;top:9px;width:calc(100% - 18px)}
-      .navBrand strong{font-size:.76rem}
-      .navBrand span{display:none}
-      .navCta{padding:10px 12px}
-      .hero{padding-top:84px}
-      .heroTop span:last-child{display:none}
-      .hero h1{font-size:clamp(4.2rem,20vw,7rem)}
-      .heroPitch{grid-template-columns:1fr}
-      .heroPitch strong{white-space:normal}
-      .heroVisual{min-height:420px}
-      .heroBottom{display:grid;gap:7px}
-      .mindset,.about,.discipline,.case,.projects,.approach,.next,.contact{padding-top:86px;padding-bottom:86px}
-      .mindset h2,.about h2,.approach h2,.next h2,.disciplineTitle,.case h2,.projectHead h2,.contact h2{font-size:clamp(3rem,13.5vw,5rem);line-height:.87}
-      .mindsetPrinciples{grid-template-columns:1fr}
-      .principle,.principle + .principle{min-height:auto;padding:24px 0 30px;border-right:0;border-bottom:1px solid var(--line)}
-      .principle strong{margin-top:32px}
-      .aboutCards{grid-template-columns:1fr}
-      .aboutCard.wide{grid-column:auto}
-      .portrait{min-height:56svh}
-      .disciplineQuote blockquote{font-size:clamp(2.3rem,10.5vw,3.7rem)}
-      .caseMetrics{grid-template-columns:1fr 1fr}
-      .metric:nth-child(2){border-right:0}
-      .metric:nth-child(3),.metric:nth-child(4){border-top:1px solid var(--line-dark)}
-      .caseGallery{grid-template-columns:1fr}
-      .caseGallery .galleryCard:first-child{grid-column:auto}
-      .galleryCard{min-height:420px}
-      .caseBottom{grid-template-columns:1fr;gap:26px}
-      .projectImage{min-height:480px}
-      .step{grid-template-columns:40px 1fr;gap:16px}
-      .step p{grid-column:2}
-      .skillsBlock{grid-template-columns:1fr}
-      .nextPanel{grid-template-columns:1fr;gap:24px}
-      .nextPanel a{justify-self:start}
-      .contactActions{grid-template-columns:1fr}
-      .contactFoot{display:grid;gap:8px}
-      .briefGrid{grid-template-columns:1fr 1fr}
-      .briefItem:nth-child(2){border-right:0}
-      .briefItem:nth-child(3),.briefItem:nth-child(4){border-top:1px solid var(--line)}
-      .briefColumns{grid-template-columns:1fr}
-      .modalBody{padding:24px}
-    }
-
-    @media(max-width:430px){
-      .hero h1{font-size:18vw}
-      .heroVisual{min-height:360px}
-      .heroVisualInfo{display:block}
-      .heroVisualInfo b{display:block;margin-top:12px}
-      .caseMetrics{grid-template-columns:1fr}
-      .metric{border-right:0!important;border-top:1px solid var(--line-dark)}
-      .metric:first-child{border-top:0}
-      .briefGrid{grid-template-columns:1fr}
-      .briefItem{border-right:0;border-top:1px solid var(--line)}
-      .briefItem:first-child{border-top:0}
-    }
-
-    @media(prefers-reduced-motion:reduce){
-      html{scroll-behavior:auto}
-      *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
-      .reveal{opacity:1!important;transform:none!important}
-    }
-  
-    /* V38 Recruiter Brief */
-    .briefHero{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);gap:48px;align-items:end}
-    .briefTitle span{color:var(--steel-dark)}
-    .briefIntro{margin:0;color:#5f6b72;font-size:.88rem;line-height:1.8}
-    .briefProofLabel{margin-top:48px;padding-bottom:12px;color:var(--steel-dark);border-bottom:1px solid var(--line)}
-    .briefItem span strong{display:block;margin-bottom:6px;color:var(--ink);font-family:Syne,sans-serif;font-size:.82rem}
-    .briefStory{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:34px}
-    .briefStory article{min-width:0;padding:24px;border:1px solid var(--line);border-radius:18px;background:#eeebe4}
-    .briefStory h3{margin:34px 0 0;font-family:Syne,sans-serif;font-size:clamp(1.35rem,2vw,2rem);line-height:1;letter-spacing:-.045em}
-    .briefStory p{margin:14px 0 0;color:#647077;font-size:.78rem;line-height:1.7}
-    .briefClose{margin-top:34px;padding:28px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:44px;align-items:end;border-radius:20px;background:var(--ink);color:var(--paper)}
-    .briefClose h3{margin:16px 0 0;max-width:730px;font-family:Syne,sans-serif;font-size:clamp(1.8rem,3vw,3.2rem);line-height:.94;letter-spacing:-.055em}
-    .briefClose p{max-width:720px;margin:14px 0 0;color:#96a2a8;font-size:.78rem;line-height:1.7}
-    .briefActions{display:grid;min-width:180px;gap:8px}
-    .briefActions a{padding:12px 14px;border:1px solid rgba(255,255,255,.15);border-radius:999px;color:#fff;text-decoration:none;text-align:center;font-family:"DM Mono",monospace;font-size:.54rem;letter-spacing:.06em}
-    .briefActions a:first-child{background:var(--paper);color:var(--ink);border-color:var(--paper)}
-    .briefActions a:hover{background:var(--steel);color:var(--ink);border-color:var(--steel)}
-    @media(max-width:900px){.briefHero,.briefClose{grid-template-columns:1fr}.briefStory{grid-template-columns:1fr}.briefActions{grid-template-columns:repeat(3,1fr);min-width:0}}
-    @media(max-width:600px){.briefActions{grid-template-columns:1fr}}
-
-  
-    /* =====================================================
-       V40 — Recruiter profile + cinematic transition
-       ===================================================== */
-
-    .briefTransition{
-      position:fixed;
-      inset:0;
-      z-index:1200;
-      pointer-events:none;
-      visibility:hidden;
-      overflow:hidden;
-    }
-
-    .briefTransitionPanel{
-      position:absolute;
-      left:0;
-      width:100%;
-      height:50%;
-      background:#0d1012;
-      transform:scaleY(0);
-    }
-
-    .briefTransitionPanelA{
-      top:0;
-      transform-origin:top;
-    }
-
-    .briefTransitionPanelB{
-      bottom:0;
-      transform-origin:bottom;
-    }
-
-    .briefTransitionContent{
-      position:absolute;
-      inset:0;
-      z-index:2;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      padding:24px;
-      color:#f4f1ea;
-      text-align:center;
-      opacity:0;
-      transform:translateY(18px);
-    }
-
-    .briefTransitionContent span,
-    .briefTransitionContent i{
-      font-family:"DM Mono",monospace;
-      font-size:.46rem;
-      letter-spacing:.14em;
-      font-style:normal;
-      color:#84959f;
-    }
-
-    .briefTransitionContent strong{
-      margin:18px 0;
-      font-family:Syne,sans-serif;
-      font-size:clamp(3rem,7vw,7.2rem);
-      line-height:.8;
-      letter-spacing:-.07em;
-    }
-
-    .briefHeroV40{
-      display:grid;
-      grid-template-columns:minmax(0,1.3fr) minmax(260px,.5fr);
-      gap:28px;
-      align-items:stretch;
-    }
-
-    .briefHeroCopy{
-      min-width:0;
-      padding:12px 0 6px;
-    }
-
-    .briefIntroV40{
-      max-width:720px;
-      margin:26px 0 0;
-      color:#5f6b72;
-      font-size:.9rem;
-      line-height:1.8;
-    }
-
-    .briefIdentityLine{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px 18px;
-      margin-top:26px;
-      padding-top:18px;
-      border-top:1px solid var(--line);
-    }
-
-    .briefIdentityLine span{
-      font-family:"DM Mono",monospace;
-      font-size:.47rem;
-      letter-spacing:.09em;
-      color:#66747d;
-    }
-
-    .briefPortrait{
-      position:relative;
-      min-height:390px;
-      margin:0;
-      overflow:hidden;
-      border-radius:20px;
-      background:linear-gradient(135deg,#d5cec3,#aebdc6);
-      border:1px solid var(--line);
-    }
-
-    .briefPortrait img{
-      width:100%;
-      height:100%;
-      position:absolute;
-      inset:0;
-      object-fit:cover;
-      object-position:center top;
-    }
-
-    .briefPortrait figcaption{
-      position:absolute;
-      left:12px;
-      right:12px;
-      bottom:12px;
-      padding:14px;
-      border-radius:12px;
-      background:rgba(13,16,18,.82);
-      color:#fff;
-      backdrop-filter:blur(10px);
-    }
-
-    .briefPortrait figcaption strong{
-      display:block;
-      font-family:Syne,sans-serif;
-      font-size:1rem;
-      letter-spacing:-.03em;
-    }
-
-    .briefPortrait figcaption span{
-      display:block;
-      margin-top:4px;
-      font-family:"DM Mono",monospace;
-      font-size:.39rem;
-      letter-spacing:.08em;
-      color:#9aa7ad;
-    }
-
-    .briefGridV40{
-      border:0;
-      gap:10px;
-      background:transparent;
-    }
-
-    .briefGridV40 .briefItem{
-      border:1px solid var(--line);
-      border-radius:16px;
-      background:#efebe4;
-      padding:20px;
-    }
-
-    .briefGridV40 .briefItem:last-child{
-      border-right:1px solid var(--line);
-    }
-
-    .briefStoryV40 article{
-      background:#f3f0e9;
-      border-color:rgba(13,16,18,.10);
-    }
-
-    .briefCloseV40{
-      position:relative;
-      overflow:hidden;
-    }
-
-    .briefCloseV40::before{
-      content:"";
-      position:absolute;
-      width:240px;
-      height:240px;
-      right:-80px;
-      top:-110px;
-      border-radius:50%;
-      background:radial-gradient(circle,rgba(140,166,183,.18),transparent 70%);
-    }
-
-    .modal{
-      opacity:0;
-      visibility:hidden;
-      display:grid;
-      transition:opacity .26s ease,visibility .26s ease;
-    }
-
-    .modal.open{
-      opacity:1;
-      visibility:visible;
-    }
-
-    .modalPanel{
-      opacity:0;
-      transform:translateY(28px) scale(.975);
-      transition:
-        opacity .42s ease,
-        transform .48s cubic-bezier(.2,.75,.2,1);
-    }
-
-    .modal.open .modalPanel{
-      opacity:1;
-      transform:none;
-    }
-
-    @media(max-width:900px){
-      .briefHeroV40{
-        grid-template-columns:1fr;
-      }
-
-      .briefPortrait{
-        min-height:430px;
-      }
-    }
-
-    @media(max-width:600px){
-      .briefPortrait{
-        min-height:54svh;
-      }
-
-      .briefTransitionContent strong{
-        font-size:clamp(2.6rem,13vw,4rem);
-      }
-    }
-
-    @media(prefers-reduced-motion:reduce){
-      .briefTransition{
-        display:none!important;
-      }
-      .modal,
-      .modalPanel{
-        transition:none!important;
-      }
-    }
-
-  </style>
-
-<style id="v39-about-alignment-fix">
-/* V39 — ABOUT SECTION ALIGNMENT / SCREEN-SAFE FIX */
-
-/* Keep the portrait and the information grid on the exact same top/bottom line */
-.aboutGrid{
-  display:grid!important;
-  grid-template-columns:minmax(0,1fr) minmax(380px,.78fr)!important;
-  gap:18px!important;
-  align-items:stretch!important;
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0a0d0f">
+<title>Juan Corona Enriquez | Mechanical Engineering Portfolio</title>
+<meta name="description" content="Mechanical engineering portfolio of Juan Corona Enriquez — design, prototyping, materials testing, and professional discipline.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+ --ink:#0a0d0f;--ink2:#151a1e;--paper:#f2efe8;--paper2:#e7e2d8;
+ --line:rgba(10,13,15,.18);--muted:#667078;--accent:#9bb4c4;
+ --pad:clamp(20px,4vw,64px);--max:1440px;--ease:cubic-bezier(.22,.8,.22,1)
 }
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--ink)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Manrope,Arial,sans-serif;overflow-x:hidden}
+a{color:inherit} img{display:block;max-width:100%}
+button{font:inherit}
+::selection{background:var(--ink);color:var(--paper)}
+.mono{font-family:"DM Mono",monospace;text-transform:uppercase;letter-spacing:.12em}
+.wrap{width:min(var(--max),calc(100% - 2*var(--pad)));margin:auto}
+.rule{height:1px;background:var(--line)}
+.eyebrow{font:500 10px/1.2 "DM Mono",monospace;letter-spacing:.16em;text-transform:uppercase}
+.display{font-family:Syne,sans-serif;font-weight:800;letter-spacing:-.065em;line-height:.86;margin:0}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
 
-.portrait{
-  height:100%!important;
-  min-height:680px!important;
-  align-self:stretch!important;
+/* NAV */
+.nav{position:fixed;z-index:100;left:0;right:0;top:0;color:#f4f1ea;mix-blend-mode:difference;pointer-events:none}
+.navIn{height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand,.navLinks{pointer-events:auto}
+.brand{text-decoration:none;font-family:Syne,sans-serif;font-weight:800;letter-spacing:-.04em}
+.navLinks{display:flex;gap:26px;align-items:center}
+.navLinks a{text-decoration:none;font:500 10px "DM Mono",monospace;letter-spacing:.12em;text-transform:uppercase}
+.navLinks a:last-child{border:1px solid currentColor;padding:10px 14px;border-radius:999px}
+
+/* HERO */
+.hero{position:relative;min-height:100svh;background:var(--ink);color:#f4f1ea;overflow:hidden;display:flex;align-items:flex-end}
+.heroGrid{position:absolute;inset:0;opacity:.12;background-image:linear-gradient(rgba(255,255,255,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.14) 1px,transparent 1px);background-size:40px 40px}
+.heroGrid:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 72% 48%,transparent 0 17%,rgba(10,13,15,.35) 44%,var(--ink) 76%)}
+.heroIn{position:relative;z-index:2;padding-top:120px;padding-bottom:46px;width:100%}
+.heroMeta{display:grid;grid-template-columns:1fr auto;gap:20px;border-top:1px solid rgba(255,255,255,.28);padding-top:13px;margin-bottom:36px}
+.heroMeta span{font:500 9px "DM Mono",monospace;letter-spacing:.14em;text-transform:uppercase;opacity:.7}
+.heroTitle{font-size:clamp(62px,11.2vw,182px);max-width:1320px}
+.heroTitle .outline{-webkit-text-stroke:1px rgba(244,241,234,.72);color:transparent}
+.heroSub{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,430px);gap:48px;align-items:end;margin-top:34px}
+.heroSub h2{font-size:clamp(20px,2.6vw,38px);line-height:1.05;margin:0;font-weight:500;max-width:650px}
+.heroSub p{margin:0;font-size:14px;line-height:1.65;color:#aeb6bb}
+.heroActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.btn{display:inline-flex;align-items:center;gap:12px;text-decoration:none;border:1px solid rgba(255,255,255,.34);padding:12px 16px;border-radius:999px;font:500 10px "DM Mono",monospace;letter-spacing:.1em;text-transform:uppercase;transition:.25s var(--ease)}
+.btn:hover{background:#f4f1ea;color:#0a0d0f;transform:translateY(-2px)}
+
+/* HERO MECHANISM */
+.machine{position:absolute;z-index:1;right:clamp(-90px,-2vw,-20px);top:50%;width:clamp(350px,43vw,720px);aspect-ratio:1;transform:translateY(-50%);opacity:.42}
+.ring{position:absolute;border:1px solid rgba(255,255,255,.65);border-radius:50%;inset:5%;animation:spin 28s linear infinite}
+.ring.r2{inset:22%;animation-direction:reverse;animation-duration:17s}
+.ring.r3{inset:39%;animation-duration:9s}
+.ring:before,.ring:after{content:"";position:absolute;left:50%;top:50%;background:rgba(255,255,255,.65);transform:translate(-50%,-50%)}
+.ring:before{width:118%;height:1px}.ring:after{height:118%;width:1px}
+.bolt{position:absolute;width:16px;height:16px;border:1px solid rgba(255,255,255,.8);border-radius:50%;left:50%;top:50%;background:var(--ink)}
+.b1{transform:translate(-50%,-50%) rotate(0deg) translateY(-260px)}
+.b2{transform:translate(-50%,-50%) rotate(60deg) translateY(-260px)}
+.b3{transform:translate(-50%,-50%) rotate(120deg) translateY(-260px)}
+.b4{transform:translate(-50%,-50%) rotate(180deg) translateY(-260px)}
+.b5{transform:translate(-50%,-50%) rotate(240deg) translateY(-260px)}
+.b6{transform:translate(-50%,-50%) rotate(300deg) translateY(-260px)}
+.piston{position:absolute;left:8%;right:34%;top:61%;height:2px;background:rgba(255,255,255,.8);transform-origin:right center;animation:rock 4s ease-in-out infinite}
+.piston:before,.piston:after{content:"";position:absolute;width:24px;height:24px;border:1px solid #fff;border-radius:50%;top:50%;transform:translateY(-50%);background:var(--ink)}
+.piston:before{left:-12px}.piston:after{right:-12px}
+@keyframes spin{to{transform:rotate(360deg)}} @keyframes rock{50%{transform:rotate(16deg)}0%,100%{transform:rotate(-10deg)}}
+.scrollMark{position:absolute;right:var(--pad);bottom:46px;z-index:3;writing-mode:vertical-rl;font:500 9px "DM Mono",monospace;letter-spacing:.16em;opacity:.6}
+.scrollMark:after{content:"";display:inline-block;height:64px;width:1px;background:#fff;margin-top:14px;animation:scrollPulse 2s ease-in-out infinite}
+@keyframes scrollPulse{50%{transform:scaleY(.45);transform-origin:top}}
+
+/* MANIFESTO */
+.manifesto{padding:120px 0 110px}
+.manifestoGrid{display:grid;grid-template-columns:.42fr 1.58fr;gap:60px}
+.manifesto h2{font-size:clamp(44px,7.4vw,108px)}
+.manifestoCopy{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:42px}
+.manifestoCopy p{font-size:15px;line-height:1.7;margin:0;color:#3f484e}
+.path{margin-top:64px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr)}
+.path div{padding:18px 14px;border-right:1px solid var(--line);min-width:0}
+.path div:last-child{border:0}
+.path b{display:block;font:500 9px "DM Mono",monospace;letter-spacing:.12em;opacity:.45;margin-bottom:8px}
+.path strong{font-size:13px}
+
+/* PROJECT REGISTER */
+.projects{background:var(--ink);color:#f4f1ea;padding:110px 0}
+.sectionHead{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end;margin-bottom:48px}
+.sectionHead h2{font-size:clamp(48px,8vw,118px)}
+.sectionHead p{max-width:390px;color:#aeb6bb;font-size:13px;line-height:1.65;margin:0 0 8px}
+.project{display:grid;grid-template-columns:86px 1.15fr .85fr;gap:30px;padding:30px 0;border-top:1px solid rgba(255,255,255,.2);position:relative}
+.project:last-child{border-bottom:1px solid rgba(255,255,255,.2)}
+.projectId{font:500 10px "DM Mono",monospace;letter-spacing:.12em;color:#8d989f}
+.project h3{font-family:Syne,sans-serif;font-size:clamp(28px,4vw,54px);letter-spacing:-.045em;line-height:.95;margin:0 0 16px}
+.project p{max-width:660px;color:#aeb6bb;line-height:1.65;font-size:14px;margin:0}
+.specs{display:grid;grid-template-columns:1fr 1fr;border:1px solid rgba(255,255,255,.2);align-self:start}
+.spec{padding:12px;border-right:1px solid rgba(255,255,255,.2);border-bottom:1px solid rgba(255,255,255,.2)}
+.spec:nth-child(2n){border-right:0}.spec:nth-last-child(-n+2){border-bottom:0}
+.spec b{display:block;font:500 8px "DM Mono",monospace;letter-spacing:.12em;color:#7f8b92;margin-bottom:5px}
+.spec span{font-size:11px;line-height:1.35}
+
+/* KINEMATICS */
+.kinematics{padding:110px 0}
+.kinGrid{display:grid;grid-template-columns:.72fr 1.28fr;gap:60px;align-items:center}
+.kinCopy h2{font-size:clamp(44px,6vw,88px)}
+.kinCopy p{font-size:14px;line-height:1.7;color:#485158;max-width:450px}
+.diagram{position:relative;min-height:480px;border:1px solid var(--line);overflow:hidden;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:30px 30px}
+.railX{position:absolute;left:9%;right:9%;top:50%;height:3px;background:var(--ink)}
+.railY{position:absolute;top:10%;bottom:10%;left:50%;width:3px;background:var(--ink)}
+.pulley{position:absolute;top:calc(50% - 18px);width:36px;height:36px;border:2px solid var(--ink);border-radius:50%;animation:spin 3s linear infinite;background:var(--paper)}
+.pulley.a{left:7%}.pulley.b{right:7%;animation-direction:reverse}
+.carriage{position:absolute;width:58px;height:58px;border:2px solid var(--ink);left:28%;top:34%;transform:translate(-50%,-50%);background:var(--paper);animation:xy 8s var(--ease) infinite}
+.carriage:after{content:"Z";position:absolute;inset:0;display:grid;place-items:center;font:500 11px "DM Mono",monospace}
+@keyframes xy{0%,100%{left:28%;top:34%}25%{left:72%;top:34%}50%{left:72%;top:66%}75%{left:28%;top:66%}}
+.axis{position:absolute;font:500 9px "DM Mono",monospace;letter-spacing:.12em}
+.ax{right:4%;top:53%}.ay{left:52%;top:5%}
+.dimline{position:absolute;left:9%;right:9%;bottom:8%;height:18px;border-left:1px solid var(--ink);border-right:1px solid var(--ink)}
+.dimline:before{content:"";position:absolute;left:0;right:0;top:0;border-top:1px solid var(--ink)}
+.dimline:after{content:"COREXY-STYLE X-Y MOTION // CONCEPTUAL";position:absolute;left:50%;top:-5px;transform:translateX(-50%);padding:0 8px;background:var(--paper);font:500 8px "DM Mono",monospace;letter-spacing:.1em;white-space:nowrap}
+
+/* PROFESSIONAL */
+.prof{padding:110px 0;background:var(--paper2)}
+.profGrid{display:grid;grid-template-columns:.7fr 1.3fr;gap:60px}
+.prof h2{font-size:clamp(44px,7vw,100px)}
+.profStory{border-top:1px solid var(--line)}
+.profRow{display:grid;grid-template-columns:120px 1fr;gap:24px;padding:24px 0;border-bottom:1px solid var(--line)}
+.profRow b{font:500 9px "DM Mono",monospace;letter-spacing:.12em;opacity:.48}
+.profRow strong{font-size:clamp(18px,2.3vw,29px);display:block;margin-bottom:7px}
+.profRow p{margin:0;color:#4e585e;font-size:13px;line-height:1.6}
+
+/* ABOUT */
+.about{padding:110px 0}
+.aboutGrid{display:grid;grid-template-columns:minmax(320px,.8fr) minmax(0,1.2fr);gap:48px;align-items:stretch}
+.portrait{position:relative;min-height:680px;background:var(--ink);overflow:hidden}
+.portrait img{width:100%;height:100%;object-fit:cover;filter:grayscale(100%);transition:filter .4s}
+.portrait:hover img{filter:grayscale(0)}
+.portrait:after{content:"JCE // 2026";position:absolute;left:18px;bottom:18px;color:#fff;font:500 9px "DM Mono",monospace;letter-spacing:.14em}
+.aboutContent{display:flex;flex-direction:column;justify-content:space-between}
+.aboutContent h2{font-size:clamp(48px,7vw,104px)}
+.aboutIntro{font-size:clamp(18px,2.2vw,28px);line-height:1.35;max-width:720px}
+.aboutFacts{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
+.fact{padding:18px 18px 18px 0;border-bottom:1px solid var(--line)}
+.fact b{display:block;font:500 9px "DM Mono",monospace;letter-spacing:.12em;opacity:.45;margin-bottom:7px}
+.fact span{font-size:13px;line-height:1.45}
+
+/* FUTURE */
+.future{background:#c8d5dc;color:var(--ink);padding:110px 0;overflow:hidden}
+.future h2{font-size:clamp(58px,10vw,150px)}
+.futureGrid{display:grid;grid-template-columns:1fr 1fr;gap:50px;margin-top:44px}
+.futureGrid p{font-size:15px;line-height:1.7;max-width:560px;margin:0}
+.sectors{display:flex;flex-wrap:wrap;gap:8px;align-content:start}
+.sectors span{border:1px solid rgba(10,13,15,.35);border-radius:999px;padding:10px 13px;font:500 9px "DM Mono",monospace;letter-spacing:.1em}
+
+/* END */
+.end{background:var(--ink);color:#f4f1ea;padding:120px 0 54px}
+.end h2{font-size:clamp(54px,9vw,136px)}
+.end p{font-size:clamp(17px,2vw,25px);line-height:1.45;color:#aeb6bb;max-width:780px;margin:32px 0 38px}
+.endLinks{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(255,255,255,.25)}
+.endLinks a{padding:22px 0;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.25);font-family:Syne,sans-serif;font-weight:700;font-size:clamp(18px,2.5vw,32px);transition:.25s}
+.endLinks a:hover{padding-left:12px}
+.footer{display:flex;justify-content:space-between;gap:20px;padding-top:34px;font:500 9px "DM Mono",monospace;letter-spacing:.12em;color:#7f898f}
+
+/* MODAL */
+.modal{position:fixed;z-index:500;inset:0;background:rgba(10,13,15,.92);display:none;place-items:center;padding:20px}
+.modal.open{display:grid}
+.modalPanel{width:min(1050px,100%);max-height:90vh;overflow:auto;background:var(--paper);color:var(--ink);padding:clamp(24px,4vw,52px);position:relative}
+.modalClose{position:sticky;top:0;float:right;border:1px solid var(--line);background:var(--paper);width:42px;height:42px;border-radius:50%;cursor:pointer}
+.briefTop{display:grid;grid-template-columns:1.3fr .7fr;gap:40px}
+.briefTop h2{font-size:clamp(40px,6vw,78px)}
+.briefTop p{font-size:14px;line-height:1.65;color:#4e585e}
+.briefPhoto{min-height:390px;background:var(--ink)}
+.briefPhoto img{width:100%;height:100%;object-fit:cover;filter:grayscale(1)}
+.briefThree{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:34px}
+.briefCard{border:1px solid var(--line);padding:20px}
+.briefCard b{font:500 9px "DM Mono",monospace;letter-spacing:.12em;opacity:.48}
+.briefCard strong{display:block;font-size:18px;margin:12px 0 8px}
+.briefCard p{font-size:12px;line-height:1.55;margin:0;color:#515b61}
+
+/* progress */
+.progress{position:fixed;z-index:1000;left:0;top:0;height:2px;width:100%;background:#fff;transform-origin:left;transform:scaleX(0);mix-blend-mode:difference;pointer-events:none}
+
+@media(max-width:950px){
+ .machine{opacity:.2;right:-140px}.heroSub,.manifestoGrid,.kinGrid,.profGrid,.futureGrid{grid-template-columns:1fr}
+ .project{grid-template-columns:60px 1fr}.specs{grid-column:2}
+ .aboutGrid{grid-template-columns:1fr}.portrait{min-height:60svh}
 }
-
-/* Make the right side intentionally fill the portrait height */
-.aboutCards{
-  height:100%!important;
-  min-height:680px!important;
-  display:grid!important;
-  grid-template-columns:repeat(2,minmax(0,1fr))!important;
-  grid-template-rows:repeat(3,minmax(0,1fr))!important;
-  gap:14px!important;
-  align-content:stretch!important;
+@media(max-width:680px){
+ :root{--pad:16px}.navLinks a:not(:last-child){display:none}.navIn{height:60px}
+ .hero{min-height:850px}.heroIn{padding-top:100px}.heroMeta{grid-template-columns:1fr}.heroTitle{font-size:clamp(58px,19vw,100px)}
+ .machine{width:440px;right:-220px;top:38%}.heroSub{gap:22px}
+ .manifesto,.projects,.kinematics,.prof,.about,.future,.end{padding:76px 0}
+ .manifestoCopy{grid-template-columns:1fr}.path{grid-template-columns:1fr}.path div{border-right:0;border-bottom:1px solid var(--line)}
+ .project{grid-template-columns:1fr;gap:12px}.specs{grid-column:1}
+ .diagram{min-height:340px}.aboutFacts{grid-template-columns:1fr}.portrait{min-height:520px}
+ .endLinks{grid-template-columns:1fr}.briefTop,.briefThree{grid-template-columns:1fr}
+ .footer{display:grid}.scrollMark{display:none}
 }
-
-.aboutCard{
-  height:100%!important;
-  min-height:0!important;
-  display:flex!important;
-  flex-direction:column!important;
-  justify-content:flex-start!important;
-}
-
-.aboutCard.wide{
-  grid-column:1 / -1!important;
-  min-height:0!important;
-  justify-content:flex-end!important;
-}
-
-/* Large visual blocks should not shift vertically during reveal */
-.aboutGrid > .portrait.reveal,
-.aboutCards > .aboutCard.reveal{
-  transform:none!important;
-}
-
-/* Consistent card rhythm */
-.aboutCard small{
-  margin-bottom:0!important;
-}
-
-.aboutCard strong{
-  margin-top:18px!important;
-}
-
-.aboutCard p{
-  margin-top:14px!important;
-}
-
-/* Laptop */
-@media(max-width:1100px){
-  .aboutGrid{
-    grid-template-columns:1fr!important;
-  }
-
-  .portrait{
-    height:auto!important;
-    min-height:62svh!important;
-  }
-
-  .aboutCards{
-    height:auto!important;
-    min-height:0!important;
-    grid-template-columns:repeat(2,minmax(0,1fr))!important;
-    grid-template-rows:auto!important;
-  }
-
-  .aboutCard{
-    min-height:220px!important;
-  }
-
-  .aboutCard.wide{
-    min-height:260px!important;
-  }
-}
-
-/* Mobile */
-@media(max-width:760px){
-  .aboutCards{
-    grid-template-columns:1fr!important;
-  }
-
-  .aboutCard,
-  .aboutCard.wide{
-    min-height:auto!important;
-  }
-
-  .portrait{
-    min-height:54svh!important;
-  }
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}.ring,.piston,.pulley,.carriage,.scrollMark:after{animation:none!important}.reveal{opacity:1;transform:none;transition:none}
 }
 </style>
 
+<style id="v48-finishing-touches">
+/* V48 — finishing touches: cinematic, responsive, and performance-conscious */
 
-<style id="v41-profile-cleanup">
-  /* V42 — 60-second profile: stat grid removed */
-  .briefHeroV40 + .briefStoryV40{ margin-top:34px; }
+/* Initial page reveal */
+body{opacity:0;transition:opacity .55s ease}
+body.v48-ready{opacity:1}
+
+/* Precision cursor for desktop */
+.v48-cursor,.v48-cursorDot{position:fixed;z-index:9999;pointer-events:none;left:0;top:0;mix-blend-mode:difference}
+.v48-cursor{width:34px;height:34px;border:1px solid #fff;border-radius:50%;transform:translate(-50%,-50%);transition:width .2s var(--ease),height .2s var(--ease),opacity .2s}
+.v48-cursorDot{width:3px;height:3px;background:#fff;border-radius:50%;transform:translate(-50%,-50%)}
+body.v48-hover .v48-cursor{width:54px;height:54px}
+body.v48-hover .v48-cursorDot{opacity:.25}
+
+/* Hero scan line + moving engineering coordinates */
+.hero:after{content:"";position:absolute;z-index:1;left:0;right:0;top:-2px;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.65),transparent);opacity:.28;animation:v48scan 8s linear infinite}
+@keyframes v48scan{to{top:100%}}
+.v48-coordinates{position:absolute;z-index:3;left:var(--pad);top:84px;font:500 8px "DM Mono",monospace;letter-spacing:.14em;opacity:.46}
+.v48-coordinates span{display:block;margin-bottom:5px}
+
+/* Hero title enters like assembled components */
+.heroTitle>br,.heroTitle .outline{pointer-events:none}
+.heroTitle{animation:v48heroIn 1.05s var(--ease) both}
+.heroSub{animation:v48subIn 1s .18s var(--ease) both}
+.heroMeta{animation:v48subIn .9s .08s var(--ease) both}
+@keyframes v48heroIn{from{opacity:0;transform:translateY(48px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes v48subIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+
+/* Dynamic project marker */
+.project:before{content:"";position:absolute;left:0;top:-1px;width:0;height:1px;background:#f4f1ea;transition:width .75s var(--ease)}
+.project:hover:before{width:100%}
+.project h3{transition:transform .35s var(--ease)}
+.project:hover h3{transform:translateX(8px)}
+.projectId{transition:opacity .3s,transform .3s}
+.project:hover .projectId{opacity:1;transform:translateX(4px)}
+.spec{transition:background .25s}
+.project:hover .spec{background:rgba(255,255,255,.035)}
+
+/* Interactive engineering diagram */
+.diagram{transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+@media(hover:hover) and (pointer:fine){
+ .diagram:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(10,13,15,.08)}
+}
+.diagram:after{content:"LIVE KINEMATIC MODEL";position:absolute;right:12px;top:12px;font:500 8px "DM Mono",monospace;letter-spacing:.12em;opacity:.45}
+.carriage{box-shadow:0 0 0 0 rgba(10,13,15,.12);animation:xy 8s var(--ease) infinite,v48carriagePulse 2s ease-in-out infinite}
+@keyframes v48carriagePulse{50%{box-shadow:0 0 0 10px rgba(10,13,15,.035)}}
+
+/* Subtle image engineering treatment */
+.portrait:before{content:"";position:absolute;z-index:2;inset:14px;border:1px solid rgba(255,255,255,.35);pointer-events:none}
+.portrait img{transform:scale(1.015);transition:filter .45s,transform 1.1s var(--ease)}
+.portrait:hover img{transform:scale(1.045)}
+.portrait .v48-focus{position:absolute;z-index:3;right:24px;top:24px;width:46px;height:46px;border-top:1px solid #fff;border-right:1px solid #fff;opacity:.6}
+
+/* Section number ghosting */
+.v48-sectionNo{position:absolute;right:var(--pad);font:800 clamp(74px,13vw,190px)/.75 Syne,sans-serif;letter-spacing:-.08em;opacity:.035;pointer-events:none;user-select:none}
+.manifesto,.kinematics,.prof,.about,.future{position:relative}
+
+/* Magnetic buttons */
+.btn,.endLinks a{will-change:transform}
+
+/* Footer pulse */
+.end .eyebrow:before{content:"";display:inline-block;width:7px;height:7px;border:1px solid currentColor;border-radius:50%;margin-right:10px;animation:v48pulse 2.2s ease-in-out infinite}
+@keyframes v48pulse{50%{background:currentColor;transform:scale(.7)}}
+
+/* Modal cinematic open */
+.modal.open .modalPanel{animation:v48modal .5s var(--ease) both}
+@keyframes v48modal{from{opacity:0;transform:translateY(30px) scale(.985)}to{opacity:1;transform:none}}
+
+/* Scroll-driven mechanical rotation gets applied by JS */
+.machine{will-change:transform}
+.ring,.piston,.carriage,.pulley{animation-play-state:var(--motion-state,running)}
+
+@media(max-width:950px){
+ .v48-cursor,.v48-cursorDot{display:none}
+ .v48-coordinates{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+ body{opacity:1!important;transition:none!important}
+ .hero:after,.heroTitle,.heroSub,.heroMeta,.carriage,.end .eyebrow:before{animation:none!important}
+ .v48-cursor,.v48-cursorDot{display:none!important}
+}
 </style>
 
-
-<style id="v42-resume-upgrade">
-  /* V42 — resume-grounded portfolio upgrade */
-  .materialsFeature{
-    margin-top:22px;padding:clamp(24px,4vw,52px);border:1px solid rgba(13,16,18,.14);
-    background:#f0ede7;position:relative;overflow:hidden
-  }
-  .materialsFeature:before{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:#111518}
-  .materialsIndex{font-size:.68rem;letter-spacing:.13em;color:#6f7a80;margin-bottom:clamp(28px,5vw,58px)}
-  .materialsMain{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,6vw,90px);align-items:start}
-  .materialsMain h3{font-family:Syne,sans-serif;font-size:clamp(2rem,4vw,4.5rem);line-height:.93;letter-spacing:-.055em;margin:12px 0 0;max-width:780px}
-  .materialsCopy{display:grid;gap:18px;color:#4f5b61;font-size:clamp(.96rem,1.3vw,1.08rem);line-height:1.7}
-  .materialsTags{display:flex;flex-wrap:wrap;gap:8px;margin-top:clamp(34px,5vw,60px)}
-  .materialsTags span{border:1px solid rgba(13,16,18,.18);padding:9px 11px;font-size:.61rem;letter-spacing:.08em;background:rgba(255,255,255,.28)}
-  @media(max-width:760px){.materialsMain{grid-template-columns:1fr}.materialsMain h3{font-size:clamp(2rem,10vw,3.2rem)}}
-</style>
 </head>
 <body>
+<div class="progress" id="progress"></div>
 
-  <div class="briefTransition" id="briefTransition" aria-hidden="true">
-    <div class="briefTransitionPanel briefTransitionPanelA"></div>
-    <div class="briefTransitionPanel briefTransitionPanelB"></div>
-    <div class="briefTransitionContent">
-      <span>JUAN CORONA ENRIQUEZ</span>
-      <strong>60-SECOND<br>ENGINEERING PROFILE</strong>
-      <i>01 / PROFILE</i>
+<nav class="nav">
+ <div class="wrap navIn">
+  <a class="brand" href="#top">JCE / ME</a>
+  <div class="navLinks">
+   <a href="#work">Work</a><a href="#approach">Approach</a><a href="#about">About</a>
+   <a href="#" id="briefOpen">60-sec profile</a>
+  </div>
+ </div>
+</nav>
+
+<header class="hero" id="top">
+<div class="v48-coordinates" aria-hidden="true"><span>JCE // ME-PORTFOLIO</span><span>X 39.0639 // Y -108.5506</span><span>REV 04.8 // SYSTEM ONLINE</span></div>
+ <div class="heroGrid"></div>
+ <div class="machine" aria-hidden="true">
+  <div class="ring"><i class="bolt b1"></i><i class="bolt b2"></i><i class="bolt b3"></i><i class="bolt b4"></i><i class="bolt b5"></i><i class="bolt b6"></i></div>
+  <div class="ring r2"></div><div class="ring r3"></div><div class="piston"></div>
+ </div>
+ <div class="wrap heroIn">
+  <div class="heroMeta"><span>Mechanical Engineering Portfolio // 2026</span><span>Grand Junction, Colorado // Open to relocation</span></div>
+  <h1 class="display heroTitle">JUAN<br><span class="outline">CORONA</span><br>ENRIQUEZ.</h1>
+  <div class="heroSub">
+   <div>
+    <h2>Mechanical engineering student focused on turning ideas into systems that can be built, tested, measured, and improved.</h2>
+    <div class="heroActions">
+     <a class="btn" href="#work">Explore engineering work ↓</a>
+     <a class="btn" href="#" id="briefOpen2">60-sec profile ↗</a>
     </div>
+   </div>
+   <p>I’m early in my engineering career. That means I’m here to learn fast, take ownership, and build the technical judgment that makes a strong engineer useful to a team.</p>
+  </div>
+ </div>
+ <div class="scrollMark">SCROLL // ENTER SYSTEM</div>
+</header>
+
+<section class="manifesto" id="approach"><div class="v48-sectionNo" aria-hidden="true">01</div>
+ <div class="wrap reveal">
+  <div class="manifestoGrid">
+   <div class="eyebrow">Engineering philosophy // 01</div>
+   <div>
+    <h2 class="display">UNDERSTAND<br>THE SYSTEM.<br>THEN MOVE IT.</h2>
+    <div class="manifestoCopy">
+     <p>Mechanical engineering is where geometry, force, motion, materials, energy, manufacturing, and real-world constraints meet. I’m most interested in what happens at those interfaces.</p>
+     <p>I don’t want a design to work once by accident. I want to understand why it works, test the assumptions behind it, and use the result to make the next iteration better.</p>
+    </div>
+   </div>
+  </div>
+  <div class="path">
+   <div><b>01 // DEFINE</b><strong>Constraints + requirements</strong></div>
+   <div><b>02 // MODEL</b><strong>Geometry + mechanics</strong></div>
+   <div><b>03 // BUILD</b><strong>Prototype + integrate</strong></div>
+   <div><b>04 // TEST</b><strong>Measure + observe</strong></div>
+   <div><b>05 // ITERATE</b><strong>Improve with evidence</strong></div>
+  </div>
+ </div>
+</section>
+
+<section class="projects" id="work">
+ <div class="wrap">
+  <div class="sectionHead reveal">
+   <h2 class="display">SELECTED<br>ENGINEERING<br>WORK.</h2>
+   <p>Not a list of assignments. A record of systems I’ve helped design, build, test, analyze, and improve.</p>
   </div>
 
+  <article class="project reveal">
+   <div class="projectId">ASM-001</div>
+   <div><h3>CLAW MACHINE // INTEGRATED MECHANICAL SYSTEM</h3><p>A five-person design-build project combining a 20×20 mm aluminum-extrusion structure, manually driven X-Y motion, a motorized Z-axis, and a pneumatic claw. I led frame and gantry-base construction and assisted with pneumatic subsystem installation and tubing integration.</p></div>
+   <div class="specs">
+    <div class="spec"><b>STRUCTURE</b><span>Aluminum extrusion</span></div><div class="spec"><b>FABRICATION</b><span>PETG-CF + plexiglass</span></div>
+    <div class="spec"><b>MOTION</b><span>Manual X-Y + motorized Z</span></div><div class="spec"><b>ACTUATION</b><span>Pneumatic claw</span></div>
+   </div>
+  </article>
 
-  <nav class="nav" aria-label="Primary navigation">
-    <a href="#home" class="navBrand">
-      <strong>JUAN CORONA ENRIQUEZ</strong>
-      <span>MECHANICAL ENGINEERING // PORTFOLIO</span>
-    </a>
+  <article class="project reveal">
+   <div class="projectId">MAT-002</div>
+   <div><h3>4140 STEEL // PROCESS → PROPERTY</h3><p>Materials laboratory work using tensile, Vickers hardness, and Rockwell hardness testing to evaluate how processing and heat-treatment conditions influence measured material behavior and engineering conclusions.</p></div>
+   <div class="specs">
+    <div class="spec"><b>MATERIAL</b><span>4140 steel</span></div><div class="spec"><b>METHOD</b><span>Mechanical testing</span></div>
+    <div class="spec"><b>TESTS</b><span>Tensile + hardness</span></div><div class="spec"><b>OUTPUT</b><span>Technical reports</span></div>
+   </div>
+  </article>
 
-    <div class="navLinks">
-      <a href="#about">ABOUT</a>
-      <a href="#experience">EXPERIENCE</a>
-      <a href="#claw">WORK</a>
-      <a href="#contact">CONTACT</a>
-    </div>
+  <article class="project reveal">
+   <div class="projectId">MEC-003</div>
+   <div><h3>TREBUCHET // BUILD → TEST → REFINE</h3><p>A mechanical launching-system challenge developed through physics-based analysis, construction, testing, and refinement under changing constraints. The project finished first among 25 engineering teams.</p></div>
+   <div class="specs">
+    <div class="spec"><b>SYSTEM</b><span>Mechanical launcher</span></div><div class="spec"><b>METHOD</b><span>Physical iteration</span></div>
+    <div class="spec"><b>RESULT</b><span>1st / 25 teams</span></div><div class="spec"><b>FOCUS</b><span>Performance</span></div>
+   </div>
+  </article>
+ </div>
+</section>
 
-    <button class="navCta" type="button" data-open-brief>60-SEC BRIEF</button>
-  </nav>
-
-  <!-- HERO -->
-  <header class="hero" id="home">
-    <div class="heroGrid"></div>
-    <div class="shell heroInner">
-      <div class="heroTop mono">
-        <span>JUAN CORONA ENRIQUEZ // MECHANICAL ENGINEERING</span>
-        <span>CU BOULDER // OPEN TO INTERNSHIPS</span>
-      </div>
-
-      <div class="heroStage">
-        <div class="heroCopy">
-          <div class="heroKicker mono">ENGINEERING STUDENT // BUILDER // LEARNER</div>
-          <h1>
-            <span>JUAN</span>
-            <span class="outline">CORONA</span>
-          </h1>
-
-          <div class="heroPitch">
-            <p>
-              I’m interested in the point where an idea leaves the page,
-              becomes something real, and has to prove that it works.
-            </p>
-            <strong>Design it.<br>Build it.<br>Learn from it.</strong>
-          </div>
-        </div>
-
-        <div class="heroVisual reveal">
-          <img src="f1-car.jpeg" alt="">
-          <div class="heroVisualInfo">
-            <div>
-              <small>PERFORMANCE // SYSTEMS // CURIOSITY</small>
-              <strong>Ambitious enough to chase difficult problems. Humble enough to keep learning.</strong>
-            </div>
-            <b>SCROLL ↓</b>
-          </div>
-        </div>
-      </div>
-
-      <div class="heroBottom mono">
-        <span>GRAND JUNCTION, COLORADO</span>
-        <span>DESIGN // BUILD // TEST // IMPROVE</span>
-        <span>PORTFOLIO 2026</span>
-      </div>
-    </div>
-  </header>
-
-  <!-- MINDSET -->
-  <section class="mindset" id="mindset">
-    <div class="shell mindsetGrid">
-      <div class="sectionNum reveal">01<small>MINDSET</small></div>
-
-      <div>
-        <h2 class="reveal">EARLY IN MY CAREER.<br><span>NOT IN MY AMBITION.</span></h2>
-        <p class="mindsetLead reveal">
-          I don’t expect to walk into an engineering team knowing everything.
-          I expect to ask questions, learn from experienced engineers, put in the work,
-          and improve quickly.
-        </p>
-
-        <div class="mindsetPrinciples">
-          <article class="principle reveal">
-            <small class="mono">01 // LEARN</small>
-            <strong>LEARN FAST.</strong>
-            <p>Listen closely, ask better questions, and turn feedback into better work.</p>
-          </article>
-
-          <article class="principle reveal">
-            <small class="mono">02 // PROVE</small>
-            <strong>PROVE IT.</strong>
-            <p>Build, test, measure, and improve instead of relying on assumptions.</p>
-          </article>
-
-          <article class="principle reveal">
-            <small class="mono">03 // EARN</small>
-            <strong>EARN TRUST.</strong>
-            <p>Take the details seriously and become someone a team can depend on.</p>
-          </article>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section class="about" id="about">
-    <div class="shell">
-      <div class="aboutHead">
-        <div class="sectionNum reveal">02<small>WHO I AM</small></div>
-        <div>
-          <h2 class="reveal">CURIOUS BY NATURE.<br><span>STRUCTURED BY ENGINEERING.</span></h2>
-        </div>
-      </div>
-
-      <div class="aboutGrid">
-        <figure class="portrait reveal">
-          <img src="profile.png" loading="lazy" alt="Juan Corona Enriquez">
-          <figcaption class="portraitLabel">
-            <strong>Juan Corona Enriquez</strong>
-            <span class="mono">MECHANICAL ENGINEERING STUDENT</span>
-          </figcaption>
-        </figure>
-
-        <div class="aboutCards">
-          <article class="aboutCard reveal">
-            <small class="mono">EDUCATION</small>
-            <strong>B.S. Mechanical Engineering</strong>
-            <p>University of Colorado Boulder · Expected May 2028</p>
-          </article>
-
-          <article class="aboutCard reveal">
-            <small class="mono">LANGUAGES</small>
-            <strong>English + Spanish</strong>
-            <p>Bilingual communication across technical and professional environments.</p>
-          </article>
-
-          <article class="aboutCard reveal">
-            <small class="mono">INTERESTS</small>
-            <strong>F1 · Fútbol · AI · Outdoors</strong>
-            <p>Performance, competition, technology, fishing, hiking, and rafting.</p>
-          </article>
-
-          <article class="aboutCard reveal">
-            <small class="mono">WHAT I VALUE</small>
-            <strong>Progress over ego.</strong>
-            <p>I care more about getting better than pretending I already know everything.</p>
-          </article>
-
-          <article class="aboutCard wide reveal">
-            <small class="mono">HOW I THINK</small>
-            <strong>CURIOSITY DRIVES THE WORK.</strong>
-            <p>I’m usually asking what can be improved, what can be simplified, and what the next test should teach me.</p>
-          </article>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- EXPERIENCE -->
-  <section class="discipline dark" id="experience">
-    <div class="shell disciplineInner">
-      <div class="disciplineHead">
-        <div class="sectionNum reveal">03<small>PROFESSIONAL DISCIPLINE</small></div>
-
-        <div>
-          <h2 class="disciplineTitle reveal">
-            BEFORE I DESIGNED SYSTEMS,<br>
-            <span>I LEARNED TO RESPECT THEM.</span>
-          </h2>
-          <p class="disciplineLead reveal">
-            Working in hospital pharmacy taught me what precision feels like when
-            the work cannot be casual. Process matters. Communication matters.
-            Details matter. That mindset is something I bring into engineering.
-          </p>
-        </div>
-      </div>
-
-      <div class="disciplineGrid">
-        <article class="disciplineQuote reveal">
-          <small class="mono">THE STANDARD I CARRY FORWARD</small>
-          <blockquote>
-            If the details can break the system,
-            <span>the details are the system.</span>
-          </blockquote>
-        </article>
-
-        <div class="disciplineProof">
-          <article class="proofCard reveal">
-            <div class="proofTop">
-              <small class="mono">SYSTEM OWNERSHIP</small>
-              <b>100+</b>
-            </div>
-            <h3>KEEP THE SYSTEM READY.</h3>
-            <p>Manage inventory and operational readiness across more than 100 automated medication dispensing systems while coordinating supply needs with pharmacists, nurses, and clinical staff.</p>
-          </article>
-
-          <article class="proofCard reveal">
-            <div class="proofTop">
-              <small class="mono">PRECISION</small>
-              <b>USP</b>
-            </div>
-            <h3>WORK WHERE PROCESS MATTERS.</h3>
-            <p>Set up and operate sterile compounding equipment for TPN and IV workflows while following detailed procedures, quality standards, and process controls.</p>
-          </article>
-
-          <article class="proofCard reveal">
-            <div class="proofTop">
-              <small class="mono">TEAM</small>
-              <b>PEOPLE</b>
-            </div>
-            <h3>MAKE THE TEAM BETTER.</h3>
-            <p>Train technicians, troubleshoot workflow issues, and collaborate across disciplines in a fast-paced environment requiring precision and problem-solving.</p>
-          </article>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CLAW CASE STUDY -->
-  <section class="case dark" id="claw">
-    <div class="shell">
-      <div class="caseHead">
-        <div>
-          <small class="mono eyebrow">04 // FEATURED ENGINEERING CASE STUDY</small>
-          <h2 class="reveal">MST CLAW<br><span>MACHINE.</span></h2>
-        </div>
-
-        <p class="caseIntro reveal">
-          A 3-axis engineering prototype integrating manually driven X-Y motion, a motorized vertical axis, pneumatics, aluminum extrusion, PETG-CF components, and iterative functional testing.
-        </p>
-      </div>
-
-      <div class="caseMetrics">
-        <div class="metric reveal"><strong>93%</strong><span>Pneumatic grab success</span></div>
-        <div class="metric reveal"><strong>&lt;2 mm</strong><span>Observed backlash</span></div>
-        <div class="metric reveal"><strong>100+</strong><span>Gameplay cycles</span></div>
-        <div class="metric reveal"><strong>4.1 s</strong><span>Average Z descent</span></div>
-      </div>
-
-      <div class="caseGallery">
-        <article class="galleryCard reveal">
-          <img src="Screenshot 2026-09-12 194957.png" loading="lazy" alt="Final claw mechanism">
-          <div class="galleryCaption"><strong>FINAL CLAW DIRECTION</strong><span>Refined claw configuration integrated into the full machine.</span></div>
-        </article>
-
-        <article class="galleryCard reveal">
-          <img src="Screenshot 2026-09-12 194914.png" loading="lazy" alt="Early claw prototype">
-          <div class="galleryCaption"><strong>PROTOTYPE 01</strong><span>First physical direction.</span></div>
-        </article>
-
-        <article class="galleryCard reveal">
-          <img src="Screenshot 2026-09-12 194834.png" loading="lazy" alt="Refined claw prototype">
-          <div class="galleryCaption"><strong>PROTOTYPE 02</strong><span>Mechanism refinement through testing.</span></div>
-        </article>
-      </div>
-
-      <div class="caseBottom">
-        <h3 class="reveal">MY ROLE: FRAME. GANTRY. INTEGRATION.</h3>
-        <div class="reveal">
-          <p>I led frame and gantry base construction with an emphasis on structural stability and mounting precision, and assisted with pneumatic subsystem installation and tubing integration.</p>
-          <a class="caseLink" href="Final Design Report.docx.pdf" target="_blank" rel="noopener">VIEW DESIGN REPORT ↗</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TREBUCHET -->
-  <section class="projects" id="projects">
-    <div class="shell">
-      <div class="projectHead">
-        <div class="sectionNum reveal">05<small>SELECTED WORK</small></div>
-        <h2 class="reveal">BUILD IT.<br>TEST IT.<br>LEARN FROM IT.</h2>
-      </div>
-
-      <article class="projectFeature">
-        <div class="projectImage reveal">
-          <img src="trebuchet.jpeg" loading="lazy" alt="Trebuchet engineering project">
-        </div>
-
-        <div class="projectCopy reveal">
-          <small class="mono">TREBUCHET ENGINEERING CHALLENGE</small>
-          <h3>DESIGN UNDER CONSTRAINT.</h3>
-          <p>
-            Designed and constructed a mechanical launching system using physics-based
-            analysis, then tested and refined the design as constraints changed.
-          </p>
-
-          <div class="projectResult">
-            <strong>1st / 25</strong>
-            <span>Engineering teams in the competition.</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="materialsFeature reveal">
-        <div class="materialsIndex mono">PROJECT 02 // MATERIALS SCIENCE LAB</div>
-        <div class="materialsMain">
-          <div>
-            <small class="mono">MATERIALS TESTING + MANUFACTURING ANALYSIS</small>
-            <h3>TEST THE MATERIAL. UNDERSTAND THE PROCESS.</h3>
-          </div>
-          <div class="materialsCopy">
-            <p>Performed tensile, Vickers hardness, and Rockwell hardness testing to evaluate material properties and processing effects.</p>
-            <p>Analyzed 4140 steel across multiple heat-treatment conditions and two carburizing durations, connecting manufacturing processes with measured material performance.</p>
-          </div>
-        </div>
-        <div class="materialsTags mono">
-          <span>TENSILE TESTING</span><span>VICKERS HARDNESS</span><span>ROCKWELL HARDNESS</span><span>4140 STEEL</span><span>TECHNICAL REPORTING</span>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- APPROACH -->
-  <section class="approach" id="approach">
-    <div class="shell">
-      <div class="approachHead">
-        <div class="sectionNum reveal">06<small>HOW I WORK</small></div>
-        <div>
-          <h2 class="reveal">GOOD ENGINEERING IS<br><span>A LOOP.</span></h2>
-
-          <div class="approachSteps">
-            <article class="step reveal"><b>01</b><strong>UNDERSTAND</strong><p>Define the problem, constraints, interfaces, and what success actually means.</p></article>
-            <article class="step reveal"><b>02</b><strong>BUILD</strong><p>Turn the idea into something tangible enough to expose the real problems.</p></article>
-            <article class="step reveal"><b>03</b><strong>TEST</strong><p>Use evidence to separate what feels right from what actually works.</p></article>
-            <article class="step reveal"><b>04</b><strong>IMPROVE</strong><p>Use the result, the failure, and the feedback to make the next version better.</p></article>
-          </div>
-        </div>
-      </div>
-
-      <div class="skillsBlock">
-        <article class="skillGroup reveal"><h3>DESIGN</h3><p>SolidWorks · Fusion 360 · Mechanical Design · Prototyping</p></article>
-        <article class="skillGroup reveal"><h3>ANALYSIS</h3><p>Dynamics · Thermodynamics · Mechanics of Materials · Materials Science · Numerical Methods</p></article>
-        <article class="skillGroup reveal"><h3>BUILD + COMMUNICATE</h3><p>C++ · HTML/CSS/JavaScript · Technical Documentation · English + Spanish</p></article>
-      </div>
-    </div>
-  </section>
-
-  <!-- NEXT -->
-  <section class="next" id="next">
-    <div class="shell nextGrid">
-      <div class="sectionNum reveal">07<small>WHAT’S NEXT</small></div>
-
-      <div class="nextCopy">
-        <h2 class="reveal">I HAVE A LOT LEFT TO LEARN.<br><span>THAT’S WHY I’M HUNGRY TO START.</span></h2>
-        <p class="reveal">
-          I’m drawn to engineering environments where the problems are difficult,
-          the expectations are high, and there is always more to learn. I’m exploring
-          opportunities in mechanical design, automotive, aerospace, manufacturing,
-          and product development.
-        </p>
-
-        <div class="nextPanel reveal">
-          <strong>AT SHPE, I’M LOOKING FOR THE CONVERSATION THAT LEADS TO REAL WORK.</strong>
-          <a href="#contact">LET’S TALK ↘</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <footer class="contact" id="contact">
-    <div class="shell contactInner">
-      <div class="contactTop">
-        <h2 class="reveal">READY TO LEARN.<br>READY TO CONTRIBUTE.<br><span>READY FOR THE OPPORTUNITY.</span></h2>
-
-        <div class="contactPitch reveal">
-          I’m looking for the team that will challenge me, teach me, and expect me to keep getting better.
-          <strong class="contactPrompt">Don’t let this be the last page.</strong>
-        </div>
-      </div>
-
-      <div class="contactActions">
-        <a class="contactAction reveal" href="mailto:Juancorenr4@gmail.com">
-          <small class="mono">START HERE</small>
-          <strong>EMAIL JUAN ↗</strong>
-        </a>
-
-        <a class="contactAction reveal" href="https://www.linkedin.com/in/mecengineering-juancorenr" target="_blank" rel="noopener">
-          <small class="mono">CONNECT</small>
-          <strong>LINKEDIN ↗</strong>
-        </a>
-
-        <a class="contactAction reveal" href="resume.pdf" target="_blank" rel="noopener">
-          <small class="mono">THE DETAILS</small>
-          <strong>VIEW RÉSUMÉ ↗</strong>
-        </a>
-      </div>
-
-      <div class="contactFoot mono">
-        <span>JUAN CORONA ENRIQUEZ</span>
-        <span>MECHANICAL ENGINEERING</span>
-        <span>GRAND JUNCTION, COLORADO</span>
-      </div>
-    </div>
-  </footer>
-
-  <!-- RECRUITER BRIEF -->
-  <div class="modal" id="briefModal" role="dialog" aria-modal="true" aria-labelledby="briefTitle">
-    <div class="modalPanel">
-      <div class="modalHead">
-        <div>
-          <strong>JUAN CORONA ENRIQUEZ</strong>
-          <div class="mono eyebrow">60-SECOND ENGINEERING PROFILE</div>
-        </div>
-        <button class="modalClose" type="button" aria-label="Close recruiter brief">×</button>
-      </div>
-
-      <div class="modalBody">
-        <section class="briefHeroV40">
-          <div class="briefHeroCopy">
-            <div class="mono eyebrow">RECRUITER BRIEF // 60 SECONDS</div>
-            <h2 class="briefTitle" id="briefTitle">
-              I’M NOT TRYING TO LOOK FINISHED.<br>
-              <span>I’M TRYING TO BECOME EXCEPTIONAL.</span>
-            </h2>
-
-            <p class="briefIntroV40">
-              I’m a mechanical engineering student who likes turning ideas into
-              something that can be built, tested, questioned, and improved.
-              I’m early in my career, but I already know the standard I want
-              to work toward: learn quickly, take ownership, and become someone
-              a strong engineering team can rely on.
-            </p>
-
-            <div class="briefIdentityLine">
-              <span>UNIVERSITY OF COLORADO BOULDER</span>
-              <span>MECHANICAL ENGINEERING</span>
-              <span>OPEN TO INTERNSHIPS</span>
-            </div>
-          </div>
-
-          <figure class="briefPortrait">
-            <img src="profile.png" alt="Juan Corona Enriquez">
-            <figcaption>
-              <strong>JUAN CORONA ENRIQUEZ</strong>
-              <span>MECHANICAL ENGINEERING STUDENT</span>
-            </figcaption>
-          </figure>
-        </section>
-
-        <div class="briefStory briefStoryV40">
-          <article>
-            <div class="mono eyebrow">HOW I THINK</div>
-            <h3>BUILD → TEST → LEARN → IMPROVE.</h3>
-            <p>
-              I want to understand why something works, not just get it to work
-              once. Testing and iteration help expose problems that are easy to
-              miss on paper.
-            </p>
-          </article>
-
-          <article>
-            <div class="mono eyebrow">WHAT WORK TAUGHT ME</div>
-            <h3>DETAILS EARN TRUST.</h3>
-            <p>
-              Hospital pharmacy taught me that accuracy, process, documentation,
-              and communication matter every day. That discipline carries into
-              the way I approach engineering.
-            </p>
-          </article>
-
-          <article>
-            <div class="mono eyebrow">WHAT I BRING</div>
-            <h3>CURIOSITY + DISCIPLINE.</h3>
-            <p>
-              SolidWorks, Fusion 360, C++, prototyping, technical documentation,
-              bilingual communication, and experience training and supporting others.
-            </p>
-          </article>
-        </div>
-
-        <div class="briefClose briefCloseV40">
-          <div>
-            <div class="mono eyebrow">WHAT I WANT NEXT</div>
-            <h3>GIVE ME A DIFFICULT PROBLEM AND A STRONG TEAM TO LEARN FROM.</h3>
-            <p>
-              I’m exploring mechanical design, automotive, aerospace,
-              manufacturing, and product-development internships where I can
-              contribute now and keep earning greater responsibility.
-            </p>
-          </div>
-
-          <div class="briefActions">
-            <a href="resume.pdf" target="_blank" rel="noopener">VIEW RÉSUMÉ ↗</a>
-            <a href="mailto:Juancorenr4@gmail.com">EMAIL JUAN ↗</a>
-            <a href="https://www.linkedin.com/in/mecengineering-juancorenr" target="_blank" rel="noopener">LINKEDIN ↗</a>
-          </div>
-        </div>
-      </div>
-    </div>
+<section class="kinematics"><div class="v48-sectionNo" aria-hidden="true">02</div>
+ <div class="wrap kinGrid reveal">
+  <div class="kinCopy">
+   <div class="eyebrow">Kinematics // system visualization</div>
+   <h2 class="display">MOTION IS<br>A SYSTEM.</h2>
+   <p>This conceptual X-Y visualization is inspired by the claw-machine architecture. The point isn’t decoration—it shows the way I like to think: break a mechanism into axes, interfaces, actuation, structure, and observable response.</p>
   </div>
+  <div class="diagram">
+   <div class="railX"></div><div class="railY"></div><div class="pulley a"></div><div class="pulley b"></div><div class="carriage"></div>
+   <span class="axis ax">X AXIS →</span><span class="axis ay">Y AXIS ↓</span><div class="dimline"></div>
+  </div>
+ </div>
+</section>
 
-  <script>
-    // Reveal on scroll — native, light, and smooth.
-    const revealObserver = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          entry.target.classList.add("show");
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    },{threshold:.12,rootMargin:"0px 0px -7% 0px"});
+<section class="prof"><div class="v48-sectionNo" aria-hidden="true">03</div>
+ <div class="wrap profGrid reveal">
+  <div><div class="eyebrow">Professional discipline // 02</div><h2 class="display">PRECISION<br>BEFORE<br>ENGINEERING.</h2></div>
+  <div class="profStory">
+   <div class="profRow"><b>PROCESS</b><div><strong>Details earn trust.</strong><p>Hospital pharmacy taught me to work inside processes where accuracy, documentation, quality standards, and consistency matter every day.</p></div></div>
+   <div class="profRow"><b>SYSTEMS</b><div><strong>100+ automated dispensing systems.</strong><p>I support inventory readiness across a large network of automated medication dispensing systems while coordinating with pharmacists, nurses, and clinical staff.</p></div></div>
+   <div class="profRow"><b>TECHNICAL</b><div><strong>Sterile compounding workflows.</strong><p>I set up and operate sterile compounding equipment for TPN and IV workflows while following detailed procedures and process controls.</p></div></div>
+   <div class="profRow"><b>TEAM</b><div><strong>Train, troubleshoot, communicate.</strong><p>I regularly support other technicians, troubleshoot workflow issues, and collaborate across disciplines in a fast-paced environment.</p></div></div>
+  </div>
+ </div>
+</section>
 
-    document.querySelectorAll(".reveal").forEach(el=>revealObserver.observe(el));
+<section class="about" id="about"><div class="v48-sectionNo" aria-hidden="true">04</div>
+ <div class="wrap aboutGrid reveal">
+  <figure class="portrait"><img src="profile.png" alt="Juan Corona Enriquez"><i class="v48-focus" aria-hidden="true"></i></figure>
+  <div class="aboutContent">
+   <div>
+    <div class="eyebrow">Candidate profile // 03</div>
+    <h2 class="display">THE ENGINEER<br>I’M BECOMING.</h2>
+    <p class="aboutIntro">Curious enough to ask why. Disciplined enough to test it. Humble enough to change the design when the evidence says I should.</p>
+   </div>
+   <div class="aboutFacts">
+    <div class="fact"><b>EDUCATION</b><span>B.S. Mechanical Engineering<br>University of Colorado Boulder · May 2028</span></div>
+    <div class="fact"><b>LANGUAGES</b><span>English + Spanish</span></div>
+    <div class="fact"><b>TOOLS</b><span>SolidWorks · Fusion 360 · C++ · HTML/CSS/JavaScript</span></div>
+    <div class="fact"><b>COURSEWORK</b><span>Dynamics · Mechanics of Materials · Materials Science · Numerical Methods · Thermodynamics</span></div>
+    <div class="fact"><b>INTERESTS</b><span>Formula 1 · Aerodynamics · Product Development · Manufacturing</span></div>
+    <div class="fact"><b>SHPE 2026</b><span>National Convention attendee · October 2026</span></div>
+   </div>
+  </div>
+ </div>
+</section>
 
-    // Recruiter brief modal + cinematic transition.
-    const modal = document.getElementById("briefModal");
-    const transition = document.getElementById("briefTransition");
-    const transitionPanels = transition.querySelectorAll(".briefTransitionPanel");
-    const transitionContent = transition.querySelector(".briefTransitionContent");
-    const openButtons = document.querySelectorAll("[data-open-brief]");
-    const closeButton = modal.querySelector(".modalClose");
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+<section class="future"><div class="v48-sectionNo" aria-hidden="true">05</div>
+ <div class="wrap reveal">
+  <div class="eyebrow">Trajectory // 04</div>
+  <h2 class="display">WHAT’S<br>NEXT?</h2>
+  <div class="futureGrid">
+   <p>I’m exploring internships where I can contribute to real engineering work, learn from strong teams, and keep building depth in mechanical design, testing, manufacturing, and product development.</p>
+   <div class="sectors"><span>MECHANICAL DESIGN</span><span>AUTOMOTIVE</span><span>AEROSPACE</span><span>MANUFACTURING</span><span>PRODUCT DEVELOPMENT</span><span>TEST + VALIDATION</span></div>
+  </div>
+ </div>
+</section>
 
-    function openBrief(){
-      if(reduceMotion){
-        modal.classList.add("open");
-        document.body.classList.add("modal-open");
-        closeButton.focus();
-        return;
-      }
+<footer class="end" id="contact">
+ <div class="wrap reveal">
+  <div class="eyebrow">Open channel // 05</div>
+  <h2 class="display">GIVE ME A<br>DIFFICULT<br>PROBLEM.</h2>
+  <p>I’m looking for the team that will challenge me, teach me, and give me the opportunity to earn greater responsibility.</p>
+  <div class="endLinks">
+   <a href="resume.pdf" target="_blank" rel="noopener">Résumé ↗</a>
+   <a href="https://www.linkedin.com/in/mecengineering-juancorenr" target="_blank" rel="noopener">LinkedIn ↗</a>
+   <a href="mailto:juancorenr4@gmail.com">Email Juan ↗</a>
+  </div>
+  <div class="footer"><span>JUAN CORONA ENRIQUEZ // MECHANICAL ENGINEERING</span><span>DESIGN → BUILD → TEST → ITERATE</span></div>
+ </div>
+</footer>
 
-      transition.style.visibility = "visible";
-      transitionPanels.forEach(panel=>{
-        panel.style.transition = "transform .34s cubic-bezier(.76,0,.24,1)";
-        panel.style.transform = "scaleY(1)";
-      });
+<div class="modal" id="briefModal" role="dialog" aria-modal="true" aria-label="60-second engineering profile">
+ <div class="modalPanel">
+  <button class="modalClose" id="briefClose" aria-label="Close profile">×</button>
+  <div class="briefTop">
+   <div>
+    <div class="eyebrow">Recruiter brief // 60 seconds</div>
+    <h2 class="display">I’M NOT TRYING<br>TO LOOK FINISHED.</h2>
+    <p>I’m a mechanical engineering student who likes turning ideas into something that can be built, tested, questioned, and improved. I’m early in my career, but I already know the standard I want to work toward: learn quickly, take ownership, and become someone a strong engineering team can rely on.</p>
+   </div>
+   <div class="briefPhoto"><img src="profile.png" alt="Juan Corona Enriquez"></div>
+  </div>
+  <div class="briefThree">
+   <div class="briefCard"><b>HOW I THINK</b><strong>BUILD → TEST → LEARN → IMPROVE.</strong><p>I want to understand why something works, not just get it to work once.</p></div>
+   <div class="briefCard"><b>WHAT WORK TAUGHT ME</b><strong>DETAILS EARN TRUST.</strong><p>Accuracy, process, documentation, and communication matter every day.</p></div>
+   <div class="briefCard"><b>WHAT I BRING</b><strong>CURIOSITY + DISCIPLINE.</strong><p>CAD, prototyping, technical documentation, bilingual communication, training, and teamwork.</p></div>
+  </div>
+ </div>
+</div>
 
-      setTimeout(()=>{
-        transitionContent.style.transition = "opacity .22s ease, transform .22s ease";
-        transitionContent.style.opacity = "1";
-        transitionContent.style.transform = "translateY(0)";
-      },180);
+<script>
+(() => {
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const progress=document.getElementById('progress');
+ let ticking=false;
+ const update=()=>{const max=Math.max(1,document.documentElement.scrollHeight-innerHeight);progress.style.transform=`scaleX(${Math.min(1,scrollY/max)})`;ticking=false};
+ addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(update);ticking=true}},{passive:true});update();
 
-      setTimeout(()=>{
-        modal.classList.add("open");
-        document.body.classList.add("modal-open");
-      },520);
+ const els=[...document.querySelectorAll('.reveal')];
+ if(!reduced && 'IntersectionObserver' in window){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08,rootMargin:'0px 0px -8% 0px'});
+  els.forEach(e=>io.observe(e));
+ } else els.forEach(e=>e.classList.add('in'));
 
-      setTimeout(()=>{
-        transitionContent.style.opacity = "0";
-        transitionContent.style.transform = "translateY(-16px)";
+ document.querySelectorAll('img').forEach((img,i)=>{if(i>0)img.loading='lazy';img.decoding='async'});
 
-        transitionPanels.forEach(panel=>{
-          panel.style.transform = "scaleY(0)";
-        });
-      },680);
+ const modal=document.getElementById('briefModal'),close=document.getElementById('briefClose');
+ const open=e=>{e.preventDefault();modal.classList.add('open');document.body.style.overflow='hidden';close.focus()};
+ const shut=()=>{modal.classList.remove('open');document.body.style.overflow=''};
+ document.getElementById('briefOpen').addEventListener('click',open);
+ document.getElementById('briefOpen2').addEventListener('click',open);
+ close.addEventListener('click',shut);
+ modal.addEventListener('click',e=>{if(e.target===modal)shut()});
+ addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))shut()});
+})();
+</script>
+<div class="v48-cursor" id="v48Cursor" aria-hidden="true"></div><div class="v48-cursorDot" id="v48CursorDot" aria-hidden="true"></div>
 
-      setTimeout(()=>{
-        transition.style.visibility = "hidden";
-        transitionContent.style.opacity = "0";
-        transitionContent.style.transform = "translateY(18px)";
-        closeButton.focus();
-      },1040);
-    }
+<script id="v48-polish-js">
+(() => {
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
 
-    function closeBrief(){
-      modal.classList.remove("open");
-      document.body.classList.remove("modal-open");
-    }
+ // Fade in only after the DOM is ready.
+ requestAnimationFrame(()=>document.body.classList.add('v48-ready'));
 
-    openButtons.forEach(btn=>btn.addEventListener("click",openBrief));
-    closeButton.addEventListener("click",closeBrief);
-    modal.addEventListener("click",(e)=>{if(e.target===modal) closeBrief()});
-    document.addEventListener("keydown",(e)=>{if(e.key==="Escape" && modal.classList.contains("open")) closeBrief()});
+ // Precision cursor with rAF smoothing.
+ const ring=document.getElementById('v48Cursor'),dot=document.getElementById('v48CursorDot');
+ if(fine && !reduced && ring && dot){
+   let tx=-100,ty=-100,x=-100,y=-100,raf=0;
+   addEventListener('pointermove',e=>{tx=e.clientX;ty=e.clientY;dot.style.left=tx+'px';dot.style.top=ty+'px';if(!raf)raf=requestAnimationFrame(move)},{passive:true});
+   function move(){x+=(tx-x)*.18;y+=(ty-y)*.18;ring.style.left=x+'px';ring.style.top=y+'px';raf=requestAnimationFrame(move)}
+   document.querySelectorAll('a,button,.project,.diagram').forEach(el=>{
+     el.addEventListener('mouseenter',()=>document.body.classList.add('v48-hover'));
+     el.addEventListener('mouseleave',()=>document.body.classList.remove('v48-hover'));
+   });
+ }
 
-    // Graceful image fallback: no giant broken-image dead zones.
-    document.querySelectorAll("img").forEach(img=>{
-      img.addEventListener("error",()=>{
-        img.style.display="none";
-        const parent=img.parentElement;
-        if(parent){
-          parent.style.background="linear-gradient(135deg,#cfd8dd,#9eb2bf)";
-        }
-      });
-    });
-  </script>
+ // Lightweight scroll-linked parallax/rotation.
+ const machine=document.querySelector('.machine');
+ let scrollQueued=false;
+ function scrollFX(){
+   if(machine && !reduced){
+     const y=Math.min(1,scrollY/Math.max(1,innerHeight));
+     machine.style.transform=`translateY(calc(-50% + ${y*34}px)) rotate(${y*8}deg)`;
+   }
+   scrollQueued=false;
+ }
+ addEventListener('scroll',()=>{if(!scrollQueued){scrollQueued=true;requestAnimationFrame(scrollFX)}},{passive:true});
+
+ // Pause decorative animation in background tabs.
+ document.addEventListener('visibilitychange',()=>{
+   document.documentElement.style.setProperty('--motion-state',document.hidden?'paused':'running');
+ });
+
+ // Magnetic micro-interaction: intentionally small.
+ if(fine && !reduced){
+   document.querySelectorAll('.btn').forEach(btn=>{
+     btn.addEventListener('pointermove',e=>{
+       const r=btn.getBoundingClientRect(),dx=e.clientX-(r.left+r.width/2),dy=e.clientY-(r.top+r.height/2);
+       btn.style.transform=`translate(${dx*.08}px,${dy*.12}px)`;
+     });
+     btn.addEventListener('pointerleave',()=>btn.style.transform='');
+   });
+ }
+})();
+</script>
+
 </body>
 </html>
