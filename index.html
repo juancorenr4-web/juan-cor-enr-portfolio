@@ -1,10 +1,60 @@
 <!doctype
-<section class="profile-manifesto" aria-label="Engineering philosophy">
- <div class="profile-manifesto-inner">
-  <div class="kicker">How I approach engineering</div>
-  <blockquote>I learn by <span>building.</span> I improve by <span>testing.</span> I keep going until I understand <span>why.</span></blockquote>
+<section class="profile-lab" id="profile" aria-labelledby="profile-title">
+ <div class="profile-shell">
+  <div class="profile-top" data-reveal>
+   <div class="profile-eyebrow">01 // The person behind the work</div>
+   <h2 id="profile-title">MEET <em>JUAN.</em></h2>
+  </div>
+  <div class="profile-layout" data-reveal>
+   <div class="profile-photo">
+    <img src="profile.png" alt="Portrait of Juan Corona Enriquez">
+    <div class="profile-photo-tag">GRAND JUNCTION, CO // WILLING TO RELOCATE</div>
+   </div>
+   <div class="profile-console">
+    <div class="profile-tabs" role="tablist" aria-label="Profile topics">
+     <button class="profile-tab" type="button" role="tab" aria-selected="true" aria-controls="profile-story">My story</button>
+     <button class="profile-tab" type="button" role="tab" aria-selected="false" aria-controls="profile-build">How I build</button>
+     <button class="profile-tab" type="button" role="tab" aria-selected="false" aria-controls="profile-direction">Where I'm headed</button>
+     <button class="profile-tab" type="button" role="tab" aria-selected="false" aria-controls="profile-edge">What I bring</button>
+    </div>
+    <div class="profile-panel active" id="profile-story" role="tabpanel">
+     <h3>I LIKE MAKING IDEAS REAL.</h3>
+     <p>I’m a mechanical engineering student who learns best by turning an idea into something I can build, test, break down, and improve. My projects have taken me from mechanical launching systems to a three-axis claw machine and materials testing of 4140 steel.</p>
+     <div class="profile-chips"><span class="profile-chip">Mechanical Engineering</span><span class="profile-chip">Hands-on learner</span><span class="profile-chip">Problem solver</span></div>
+    </div>
+    <div class="profile-panel" id="profile-build" role="tabpanel">
+     <h3>DESIGN. BUILD. TEST. REPEAT.</h3>
+     <p>I enjoy the full engineering loop: modeling a concept, fabricating parts, assembling the system, testing what actually happens, and using the results to make the next iteration better.</p>
+     <div class="profile-chips"><span class="profile-chip">SolidWorks</span><span class="profile-chip">3D Printing</span><span class="profile-chip">Prototyping</span><span class="profile-chip">Testing</span></div>
+    </div>
+    <div class="profile-panel" id="profile-direction" role="tabpanel">
+     <h3>PERFORMANCE IS THE DIRECTION.</h3>
+     <p>I’m especially drawn to engineering where design decisions show up in real performance — automotive, aerospace, product development, testing, and other environments where teams keep pushing a system to work better.</p>
+     <div class="profile-chips"><span class="profile-chip">Automotive</span><span class="profile-chip">Aerospace</span><span class="profile-chip">Product Development</span><span class="profile-chip">Performance</span></div>
+    </div>
+    <div class="profile-panel" id="profile-edge" role="tabpanel">
+     <h3>PRECISION UNDER PRESSURE.</h3>
+     <p>Working in a hospital pharmacy has trained me to be accurate when details matter, communicate across teams, troubleshoot workflows, and take responsibility for systems other people rely on. I bring those habits into engineering.</p>
+     <div class="profile-chips"><span class="profile-chip">Reliability</span><span class="profile-chip">Communication</span><span class="profile-chip">Training</span><span class="profile-chip">Attention to detail</span></div>
+    </div>
+   </div>
+  </div>
  </div>
 </section>
+<section class="proof-story" aria-labelledby="proof-title">
+ <div class="proof-shell">
+  <div class="proof-head" data-reveal>
+   <h2 id="proof-title">PROOF,<br>NOT FILLER.</h2>
+   <p>Every number below connects to a real project or responsibility. Click one and the site takes you to the work behind it.</p>
+  </div>
+  <div class="proof-grid" data-reveal>
+   <button class="proof-card" type="button" data-target="projects"><span class="arrow">↗</span><small>Competition // Trebuchet</small><strong>1st / 25</strong><h3>Engineering challenge</h3><p>Designed, tested and refined a mechanical launching system under changing constraints.</p></button>
+   <button class="proof-card" type="button" data-target="projects"><span class="arrow">↗</span><small>Validation // Claw machine</small><strong>93%</strong><h3>Grab success</h3><p>Measured across 30 test items instead of relying on a one-time demonstration.</p></button>
+   <button class="proof-card" type="button" data-target="experience"><span class="arrow">↗</span><small>Responsibility // Hospital</small><strong>100+</strong><h3>Medication systems</h3><p>Inventory readiness and workflow responsibility across automated dispensing systems.</p></button>
+  </div>
+ </div>
+</section>
+
  html>
 <html lang="en">
 <head>
@@ -706,287 +756,251 @@ nav .navInner{
 </style>
 
 
-<style id="v71-profile-first">
-/* V71 — profile first, recruiter clean */
-.tech-figures,.figure-strip,.eng-figure,.hero-hud,.mech-marquee,.scroll-progress{display:none!important}
-:root{--safe:clamp(22px,5vw,88px);--max:1420px}
-html,body{overflow-x:hidden!important}
-.wrap,.heroInner,nav .navInner{
- width:min(var(--max),calc(100% - 2*var(--safe)))!important;
- max-width:none!important;margin-inline:auto!important;padding-inline:0!important
-}
-.section{padding-block:clamp(78px,8vw,126px)!important}
-
-/* Hero = Juan first */
-.hero{min-height:min(920px,94svh)!important;background:#050606!important}
-.heroInner{display:flex!important;align-items:center!important;padding-block:110px 72px!important}
-.heroCopy{width:min(820px,72%)!important;padding:0!important;z-index:5}
-.heroCopy:before{
- content:"JUAN CORONA ENRIQUEZ";display:block;margin-bottom:18px;
- color:#CFB87C;font:700 9px "DM Mono",monospace;letter-spacing:.16em;text-transform:uppercase
-}
-.heroCopy h1{font-size:clamp(4rem,7.3vw,8.3rem)!important;line-height:.84!important;max-width:9ch!important;margin:0 0 28px!important}
-.heroCopy .lede{max-width:600px!important;font-size:clamp(.95rem,1.1vw,1.08rem)!important;line-height:1.72!important;color:#d4d1c9!important}
-.heroMedia:after{background:linear-gradient(90deg,#050606 0%,rgba(5,6,6,.88) 35%,rgba(5,6,6,.25) 76%)!important}
-.heroActions{margin-top:30px!important}
-
-/* About = real professional profile */
-.about{background:#eee9df!important;color:#090a0a!important}
-.aboutGrid{display:grid!important;grid-template-columns:minmax(280px,.78fr) minmax(0,1.22fr)!important;gap:clamp(52px,7vw,110px)!important;align-items:center!important}
-.about .portrait{max-width:470px!important;margin:0!important;border:0!important;box-shadow:0 28px 80px rgba(0,0,0,.13)!important}
-.about .portrait img{width:100%!important;aspect-ratio:4/5!important;object-fit:cover!important;filter:grayscale(1) contrast(1.04)!important}
-.about h2{font-size:clamp(4rem,6.5vw,7.2rem)!important;line-height:.82!important;margin-bottom:30px!important}
-.about p{font-size:clamp(1rem,1.05vw,1.1rem)!important;line-height:1.8!important;max-width:680px!important}
-.profile-points{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:rgba(5,6,6,.18);margin-top:36px}
-.profile-point{background:#eee9df;padding:18px 16px}
-.profile-point strong{display:block;font:700 8px "DM Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:#76613e;margin-bottom:7px}
-.profile-point span{font-size:12px;line-height:1.45;color:#242424}
-
-/* Projects = actual evidence, not decorative diagrams */
-.projects{background:#070909!important}
-.caseTop{grid-template-columns:minmax(0,1.08fr) minmax(340px,.92fr)!important;gap:clamp(40px,6vw,90px)!important}
-.caseMedia{min-height:clamp(500px,52vw,720px)!important;border:1px solid rgba(207,184,124,.22)!important}
-.caseMedia img{width:100%!important;height:100%!important;object-fit:cover!important}
-.caseInfo h3{font-size:clamp(3.7rem,5.7vw,6.6rem)!important;line-height:.84!important}
-.metricStrip{grid-template-columns:repeat(4,minmax(0,1fr))!important}
-.metricBox{padding:22px 14px!important}
-.metricBox strong{font-size:clamp(1.7rem,2.5vw,3rem)!important}
-
-/* External resources are secondary */
-.engineering-launchpad .launch-intro{padding:clamp(58px,6vw,88px) var(--safe)!important}
-.resource-card{min-height:310px!important}
-
-/* Smooth, restrained interactions */
-a,button,.caseMedia img,.resource-card img{transition:transform .35s ease,opacity .35s ease,background-color .35s ease!important}
-@media(hover:hover){.caseMedia:hover img,.resource-card:hover img{transform:scale(1.018)!important}}
-
-/* tablet */
-@media(max-width:1000px){
- .heroCopy{width:86%!important}
- .aboutGrid,.expGrid,.eduGrid,.caseTop,.caseSecondary,.caseSecondary.reverse,.endGrid{grid-template-columns:1fr!important}
- .about .portrait{max-width:560px!important}
- .resource-grid{grid-template-columns:1fr 1fr!important}
-}
-/* mobile */
-@media(max-width:700px){
- :root{--safe:20px}
- .hero{min-height:760px!important}
- .heroInner{align-items:flex-end!important;padding-block:100px 52px!important}
- .heroCopy{width:100%!important}
- .heroCopy h1{font-size:clamp(3.45rem,16vw,5.4rem)!important}
- .heroActions{display:grid!important;grid-template-columns:1fr!important}
- .heroActions>*{width:100%!important;justify-content:center!important}
- .aboutGrid{gap:42px!important}
- .about h2{font-size:clamp(3.6rem,15vw,5.2rem)!important}
- .profile-points{grid-template-columns:1fr!important}
- .metricStrip,.systemBreakdown{grid-template-columns:1fr 1fr!important}
- .resource-grid{grid-template-columns:1fr!important}
- .resource-card{grid-column:1!important}
- .caseMedia{min-height:430px!important}
-}
-@media(max-width:430px){
- :root{--safe:16px}
- .metricStrip,.systemBreakdown{grid-template-columns:1fr!important}
- .heroCopy h1{font-size:3.35rem!important}
-}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
-</style>
-
-
-<style id="v72-stellar-profile">
+<style id="v74-clean-interactive-rebuild">
+/* ===== V74: CLEAN INTERACTIVE REBUILD ===== */
 :root{
- --gold:#CFB87C; --ink:#070808; --paper:#F1EDE4; --muted:#A9A69E;
- --gutter:clamp(20px,5vw,88px); --max:1440px;
+ --bg:#070808;--panel:#0d0f0f;--paper:#f1ede4;--gold:#CFB87C;--white:#f5f2ea;
+ --muted:#a8a59d;--line:rgba(207,184,124,.20);
+ --gutter:clamp(18px,4.8vw,82px);--max:1420px;
 }
 *{box-sizing:border-box}
-html,body{max-width:100%;overflow-x:hidden!important}
-body{background:var(--ink);-webkit-font-smoothing:antialiased}
-img{max-width:100%}
-.wrap,.heroInner,nav .navInner{
- width:min(var(--max),calc(100vw - 2*var(--gutter)))!important;
- margin-inline:auto!important;max-width:none!important;padding-inline:0!important
-}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{overflow-x:hidden!important;background:var(--bg);-webkit-font-smoothing:antialiased}
+img,svg{max-width:100%}
+.wrap,.heroInner,nav .navInner{width:min(var(--max),calc(100vw - 2*var(--gutter)))!important;max-width:none!important;margin-inline:auto!important;padding-inline:0!important}
+.section{padding-block:clamp(78px,8vw,126px)!important}
 
-/* Navigation */
-nav{background:rgba(7,8,8,.86)!important;backdrop-filter:blur(16px);border-bottom:1px solid rgba(207,184,124,.16)}
-.brandName{letter-spacing:.02em}
-.navLinks a{position:relative}
-.navLinks a:after{content:"";position:absolute;left:0;right:100%;bottom:-7px;height:1px;background:var(--gold);transition:right .25s ease}
-.navLinks a:hover:after{right:0}
+/* nav */
+nav{background:rgba(7,8,8,.88)!important;backdrop-filter:blur(15px);border-bottom:1px solid rgba(207,184,124,.13)}
+.navLinks a{transition:color .2s ease}.navLinks a:hover{color:var(--gold)!important}
 
-/* Hero: portfolio identity first */
-.hero{min-height:clamp(720px,94svh,980px)!important}
-.heroInner{display:flex!important;align-items:flex-end!important;padding:130px 0 clamp(65px,8vh,100px)!important}
-.heroCopy{width:min(900px,78%)!important;padding:0!important}
-.heroCopy:before{content:"JUAN CORONA ENRIQUEZ  /  MECHANICAL ENGINEERING";display:block;color:var(--gold);font:700 8px "DM Mono",monospace;letter-spacing:.14em;margin-bottom:20px}
-.heroCopy h1{font-size:clamp(4.2rem,7.5vw,8.6rem)!important;line-height:.82!important;letter-spacing:-.035em!important;max-width:9.2ch!important;margin:0 0 28px!important}
-.heroCopy .lede{font-size:clamp(1rem,1.12vw,1.12rem)!important;line-height:1.7!important;max-width:620px!important;color:#d9d6ce!important}
-.heroMedia img{filter:saturate(.72) contrast(1.06)}
-.heroMedia:after{background:linear-gradient(90deg,#070808 0%,rgba(7,8,8,.9) 34%,rgba(7,8,8,.26) 76%),linear-gradient(0deg,rgba(7,8,8,.6),transparent 45%)!important}
-.heroActions a,.heroActions button{min-height:48px!important}
+/* hero */
+.hero{min-height:clamp(700px,94svh,960px)!important;overflow:hidden}
+.heroInner{min-height:inherit!important;display:flex!important;align-items:flex-end!important;padding:120px 0 clamp(62px,8vh,96px)!important}
+.heroCopy{width:min(850px,78%)!important;padding:0!important;position:relative;z-index:4}
+.heroCopy:before{content:"JUAN CORONA ENRIQUEZ  //  MECHANICAL ENGINEERING";display:block;margin-bottom:20px;color:var(--gold);font:700 8px "DM Mono",monospace;letter-spacing:.14em}
+.heroCopy h1{font-size:clamp(4rem,7.2vw,8.3rem)!important;line-height:.82!important;letter-spacing:-.035em!important;max-width:9.2ch!important;margin:0 0 28px!important}
+.heroCopy .lede{max-width:610px!important;font-size:clamp(.98rem,1.08vw,1.08rem)!important;line-height:1.72!important;color:#d4d1c9!important}
+.heroMedia:after{background:linear-gradient(90deg,#070808 0%,rgba(7,8,8,.89) 36%,rgba(7,8,8,.16) 80%),linear-gradient(0deg,rgba(7,8,8,.55),transparent 45%)!important}
+.heroMedia img{filter:saturate(.78) contrast(1.05);transform:scale(1.01)}
+.hero-scroll{position:absolute;z-index:6;right:var(--gutter);bottom:44px;color:var(--gold);font:700 7px "DM Mono",monospace;letter-spacing:.14em;writing-mode:vertical-rl}
+.hero-scroll:after{content:"";display:block;width:1px;height:58px;background:var(--gold);margin:12px auto 0;transform-origin:top;animation:scrollPulse 1.8s ease-in-out infinite}
+@keyframes scrollPulse{0%,100%{transform:scaleY(.35);opacity:.4}50%{transform:scaleY(1);opacity:1}}
 
-/* Signature profile statement */
-.profile-manifesto{
- background:var(--gold);color:var(--ink);
- padding:clamp(62px,7vw,110px) var(--gutter);
-}
-.profile-manifesto-inner{
- width:min(var(--max),calc(100vw - 2*var(--gutter)));margin:auto;
- display:grid;grid-template-columns:.42fr 1.58fr;gap:clamp(36px,7vw,120px);align-items:start
-}
-.profile-manifesto .kicker{font:700 8px "DM Mono",monospace;letter-spacing:.14em;text-transform:uppercase;padding-top:9px}
-.profile-manifesto blockquote{margin:0;font:800 clamp(2.5rem,4.7vw,5.5rem)/.94 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:-.02em}
-.profile-manifesto blockquote span{color:#fff}
+/* interactive profile */
+.profile-lab{background:var(--paper);color:#080909;padding:clamp(82px,8vw,128px) var(--gutter)}
+.profile-shell{width:min(var(--max),calc(100vw - 2*var(--gutter)));margin:auto}
+.profile-top{display:grid;grid-template-columns:.65fr 1.35fr;gap:clamp(38px,7vw,110px);align-items:end;margin-bottom:55px}
+.profile-eyebrow{font:700 8px "DM Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:#78633f}
+.profile-top h2{font:800 clamp(4rem,6.5vw,7.3rem)/.82 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:-.025em;margin:0}
+.profile-top h2 em{font-style:normal;color:#9a7c48}
+.profile-layout{display:grid;grid-template-columns:minmax(280px,.82fr) minmax(0,1.18fr);gap:clamp(40px,7vw,100px);align-items:stretch}
+.profile-photo{position:relative;min-height:620px;overflow:hidden;background:#d9d3c7}
+.profile-photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.04);transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.profile-photo-tag{position:absolute;left:18px;bottom:18px;background:#080909;color:var(--gold);padding:10px 12px;font:700 7px "DM Mono",monospace;letter-spacing:.11em}
+.profile-console{border-top:1px solid rgba(8,9,9,.22)}
+.profile-tabs{display:flex;flex-wrap:wrap;border-bottom:1px solid rgba(8,9,9,.22)}
+.profile-tab{appearance:none;border:0;border-right:1px solid rgba(8,9,9,.15);background:transparent;color:#595954;padding:18px 20px;cursor:pointer;font:700 8px "DM Mono",monospace;letter-spacing:.08em;text-transform:uppercase;transition:background .22s,color .22s}
+.profile-tab[aria-selected="true"]{background:#080909;color:var(--gold)}
+.profile-tab:focus-visible{outline:2px solid #080909;outline-offset:-3px}
+.profile-panel{display:none;padding:clamp(30px,4vw,54px) 0}
+.profile-panel.active{display:block;animation:profileIn .34s ease both}
+@keyframes profileIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.profile-panel h3{font:800 clamp(2.8rem,4.6vw,5.2rem)/.88 "Barlow Condensed",sans-serif;text-transform:uppercase;margin:0 0 22px;max-width:9ch}
+.profile-panel p{font-size:clamp(1rem,1.08vw,1.1rem);line-height:1.8;max-width:680px;color:#363633}
+.profile-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.profile-chip{border:1px solid rgba(8,9,9,.24);padding:9px 11px;font:700 7px "DM Mono",monospace;letter-spacing:.07em;text-transform:uppercase}
 
-/* About */
-.about{background:var(--paper)!important}
-.aboutGrid{grid-template-columns:minmax(280px,.75fr) minmax(0,1.25fr)!important;gap:clamp(50px,8vw,120px)!important;align-items:center!important}
-.about .portrait{position:relative;max-width:480px!important}
-.about .portrait:after{content:"JCE / 2026";position:absolute;right:-14px;bottom:20px;background:var(--gold);padding:9px 11px;font:700 7px "DM Mono",monospace;letter-spacing:.12em;color:#070808}
-.about h2{font-size:clamp(4.1rem,6.4vw,7.2rem)!important;line-height:.82!important;max-width:8ch}
-.about p{font-size:clamp(1rem,1.05vw,1.1rem)!important;line-height:1.8!important;max-width:680px!important}
-.profile-points{margin-top:38px!important;border-top:1px solid rgba(7,8,8,.2);border-bottom:1px solid rgba(7,8,8,.2);background:none!important}
-.profile-point{background:transparent!important;padding:20px 16px!important}
-.profile-point+ .profile-point{border-left:1px solid rgba(7,8,8,.18)}
+/* replace random stats with clickable proof cards */
+.proof-story{background:#090b0b;padding:clamp(76px,8vw,120px) var(--gutter);color:var(--white)}
+.proof-shell{width:min(var(--max),calc(100vw - 2*var(--gutter)));margin:auto}
+.proof-head{display:flex;justify-content:space-between;gap:40px;align-items:end;margin-bottom:38px}
+.proof-head h2{font:800 clamp(3.5rem,5.5vw,6.5rem)/.84 "Barlow Condensed",sans-serif;text-transform:uppercase;margin:0}
+.proof-head p{max-width:480px;color:var(--muted);line-height:1.65}
+.proof-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.proof-card{appearance:none;border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:#090b0b;color:var(--white);text-align:left;padding:clamp(26px,3vw,42px);min-height:320px;cursor:pointer;position:relative;overflow:hidden;transition:background .28s ease,transform .28s ease}
+.proof-card:before{content:"";position:absolute;inset:auto 0 0;height:4px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .28s ease}
+.proof-card:hover,.proof-card.active{background:#111414}.proof-card:hover:before,.proof-card.active:before{transform:scaleX(1)}
+.proof-card small{font:700 7px "DM Mono",monospace;color:var(--gold);letter-spacing:.12em;text-transform:uppercase}
+.proof-card strong{display:block;font:800 clamp(3.6rem,5vw,6.4rem)/.8 "Barlow Condensed",sans-serif;color:var(--gold);margin:45px 0 16px}
+.proof-card h3{font:800 clamp(1.6rem,2.1vw,2.5rem)/.95 "Barlow Condensed",sans-serif;text-transform:uppercase;margin:0}
+.proof-card p{color:#97978f;line-height:1.55;margin:15px 0 0;font-size:13px}
+.proof-card .arrow{position:absolute;right:24px;top:24px;color:#676761;font-size:20px;transition:transform .25s,color .25s}
+.proof-card:hover .arrow,.proof-card.active .arrow{transform:translate(4px,-4px);color:var(--gold)}
 
-/* Proof bar */
-.proof-bar{background:#0B0D0D;border-block:1px solid rgba(207,184,124,.18)}
-.proof-bar-inner{width:min(var(--max),calc(100vw - 2*var(--gutter)));margin:auto;display:grid;grid-template-columns:repeat(4,1fr)}
-.proof-item{padding:30px 24px;border-right:1px solid rgba(207,184,124,.14)}
-.proof-item:first-child{border-left:1px solid rgba(207,184,124,.14)}
-.proof-item strong{display:block;color:var(--gold);font:800 clamp(2rem,3vw,3.8rem)/1 "Barlow Condensed",sans-serif}
-.proof-item span{display:block;margin-top:8px;color:#aaa79f;font:600 7px "DM Mono",monospace;letter-spacing:.09em;text-transform:uppercase;line-height:1.5}
-
-/* Experience and projects */
-.expGrid,.caseTop,.eduGrid{gap:clamp(45px,7vw,100px)!important}
+/* projects cleaner */
 .projects{background:#070808!important}
-.caseStudy{border-top:1px solid rgba(207,184,124,.24)!important}
-.caseInfo h3{font-size:clamp(3.8rem,5.7vw,6.7rem)!important;line-height:.83!important}
-.caseMedia{border:1px solid rgba(207,184,124,.22)!important;background:#0d0f0f}
-.caseMedia img{transition:transform .45s cubic-bezier(.2,.7,.2,1),filter .45s}
-@media(hover:hover){.caseMedia:hover img{transform:scale(1.018);filter:contrast(1.04)}}
+.caseStudy{border-top:1px solid var(--line)!important}
+.caseTop{grid-template-columns:minmax(0,1.06fr) minmax(340px,.94fr)!important;gap:clamp(42px,6vw,88px)!important}
+.caseMedia{overflow:hidden!important;border:1px solid var(--line)!important}
+.caseMedia img{transition:transform .55s cubic-bezier(.2,.7,.2,1),filter .55s!important}
+.caseInfo h3{font-size:clamp(3.8rem,5.6vw,6.5rem)!important;line-height:.84!important}
 .metricStrip{grid-template-columns:repeat(4,minmax(0,1fr))!important}
-.metricBox{min-width:0}
-.metricBox strong{font-size:clamp(1.8rem,2.7vw,3.2rem)!important}
+@media(hover:hover) and (pointer:fine){
+ .profile-photo:hover img{transform:scale(1.025)}
+ .caseMedia:hover img{transform:scale(1.022);filter:contrast(1.05)}
+ .proof-card:hover{transform:translateY(-4px)}
+}
 
-/* Resource section: secondary, polished */
-.engineering-launchpad{border-top:1px solid rgba(207,184,124,.22)}
-.launch-intro{padding:clamp(64px,7vw,100px) var(--gutter)!important}
-.resource-card{min-height:330px!important}
-.resource-card h3{font-size:clamp(2.4rem,3.7vw,4.7rem)!important}
+/* lightweight reveal, visible without JS */
+[data-reveal]{opacity:1;transform:none}
+.motion-on [data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .65s cubic-bezier(.2,.7,.2,1)}
+.motion-on [data-reveal].seen{opacity:1;transform:none}
 
-/* Contact ending */
-.end{background:#050606!important}
-.end h2{font-size:clamp(4rem,7vw,8rem)!important;line-height:.82!important}
-.contactCard{transition:transform .28s ease,border-color .28s ease!important}
-@media(hover:hover){.contactCard:hover{transform:translateY(-5px);border-color:var(--gold)!important}}
-
-/* Responsive */
+/* responsive */
 @media(max-width:1050px){
- .heroCopy{width:90%!important}
- .profile-manifesto-inner{grid-template-columns:1fr}
- .aboutGrid,.expGrid,.caseTop,.caseSecondary,.caseSecondary.reverse,.eduGrid,.endGrid{grid-template-columns:1fr!important}
- .about .portrait{max-width:540px!important}
- .proof-bar-inner{grid-template-columns:1fr 1fr}
+ .heroCopy{width:88%!important}
+ .profile-top,.profile-layout,.aboutGrid,.expGrid,.caseTop,.caseSecondary,.caseSecondary.reverse,.eduGrid,.endGrid{grid-template-columns:1fr!important}
+ .profile-photo{min-height:560px;max-width:600px}
+ .proof-grid{grid-template-columns:1fr 1fr}
+ .proof-card:last-child{grid-column:1/-1}
  .resource-grid{grid-template-columns:1fr 1fr!important}
 }
 @media(max-width:700px){
  :root{--gutter:20px}
- .hero{min-height:790px!important}
- .heroInner{padding:110px 0 56px!important}
+ .navLinks{display:none!important}
+ .hero{min-height:780px!important}
+ .heroInner{padding:110px 0 55px!important}
  .heroCopy{width:100%!important}
- .heroCopy h1{font-size:clamp(3.45rem,16vw,5.3rem)!important}
- .heroCopy:before{font-size:7px;line-height:1.5}
+ .heroCopy h1{font-size:clamp(3.4rem,16vw,5.3rem)!important}
+ .heroCopy:before{font-size:7px;line-height:1.55}
  .heroActions{display:grid!important;grid-template-columns:1fr!important}
  .heroActions>*{width:100%!important;justify-content:center!important}
- .profile-manifesto blockquote{font-size:clamp(2.6rem,12vw,4.2rem)}
- .profile-points{grid-template-columns:1fr!important}
- .profile-point+.profile-point{border-left:0;border-top:1px solid rgba(7,8,8,.16)}
- .proof-bar-inner{grid-template-columns:1fr 1fr}
- .proof-item{padding:24px 14px}
+ .hero-scroll{display:none}
+ .profile-top h2{font-size:clamp(3.7rem,15vw,5.4rem)}
+ .profile-photo{min-height:480px}
+ .profile-tabs{display:grid;grid-template-columns:1fr 1fr}
+ .profile-tab{border-bottom:1px solid rgba(8,9,9,.15)}
+ .proof-head{display:block}.proof-head p{margin-top:18px}
+ .proof-grid{grid-template-columns:1fr}
+ .proof-card:last-child{grid-column:auto}
+ .proof-card{min-height:270px}
  .metricStrip,.systemBreakdown{grid-template-columns:1fr 1fr!important}
  .resource-grid{grid-template-columns:1fr!important}
  .resource-card{grid-column:1!important}
 }
-@media(max-width:430px){
+@media(max-width:420px){
  :root{--gutter:16px}
- .proof-bar-inner,.metricStrip,.systemBreakdown{grid-template-columns:1fr!important}
- .heroCopy h1{font-size:3.3rem!important}
-}
-@media(min-width:1800px){:root{--max:1540px}}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
-</style>
-
-
-<style id="v73-interactive-story">
-/* V73 — evidence becomes a story, not random statistics */
-.proof-bar,.proof-mini{display:none!important}
-
-.evidence-story{background:#080a0a;color:#f1ede4;padding:clamp(76px,8vw,130px) var(--gutter);overflow:hidden}
-.evidence-shell{width:min(var(--max),calc(100vw - 2*var(--gutter)));margin:auto}
-.evidence-head{display:grid;grid-template-columns:.75fr 1.25fr;gap:clamp(32px,7vw,110px);align-items:end;margin-bottom:clamp(42px,6vw,78px)}
-.evidence-kicker{font:700 8px "DM Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
-.evidence-head h2{font:800 clamp(3.6rem,6vw,7rem)/.84 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:-.025em;margin:0}
-.evidence-head h2 span{color:var(--gold)}
-.evidence-head p{color:#aaa79f;line-height:1.7;max-width:560px;margin:18px 0 0}
-
-.evidence-stage{display:grid;grid-template-columns:330px minmax(0,1fr);border-top:1px solid rgba(207,184,124,.22);border-bottom:1px solid rgba(207,184,124,.22);min-height:520px}
-.evidence-nav{border-right:1px solid rgba(207,184,124,.22);padding:18px 0}
-.evidence-tab{appearance:none;width:100%;border:0;border-bottom:1px solid rgba(207,184,124,.12);background:transparent;color:#8e8c85;text-align:left;padding:24px 22px;cursor:pointer;display:grid;grid-template-columns:34px 1fr;gap:10px;transition:background .28s,color .28s}
-.evidence-tab b{font:700 8px "DM Mono",monospace;color:#5e5e59}
-.evidence-tab span{font:700 11px "DM Mono",monospace;letter-spacing:.07em;text-transform:uppercase;line-height:1.45}
-.evidence-tab[aria-selected="true"]{background:var(--gold);color:#070808}
-.evidence-tab[aria-selected="true"] b{color:#070808}
-.evidence-tab:focus-visible{outline:2px solid #fff;outline-offset:-3px}
-
-.evidence-panel{position:relative;display:none;min-width:0;padding:clamp(34px,5vw,72px)}
-.evidence-panel.active{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(230px,.8fr);gap:clamp(30px,5vw,72px);align-items:center;animation:panelIn .42s cubic-bezier(.2,.7,.2,1)}
-@keyframes panelIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-.evidence-index{font:700 8px "DM Mono",monospace;color:var(--gold);letter-spacing:.12em;text-transform:uppercase}
-.evidence-panel h3{font:800 clamp(3.2rem,5.4vw,6.3rem)/.84 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:-.02em;margin:18px 0}
-.evidence-panel p{font-size:clamp(.96rem,1.05vw,1.08rem);line-height:1.75;color:#b8b5ad;max-width:620px}
-.evidence-link{display:inline-flex;align-items:center;gap:10px;margin-top:24px;color:#f1ede4;font:700 8px "DM Mono",monospace;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid var(--gold);padding-bottom:8px}
-.evidence-number{border-left:1px solid rgba(207,184,124,.2);padding-left:clamp(25px,4vw,54px)}
-.evidence-number strong{display:block;color:var(--gold);font:800 clamp(4.8rem,8vw,9rem)/.75 "Barlow Condensed",sans-serif;letter-spacing:-.04em}
-.evidence-number span{display:block;margin-top:22px;color:#85857f;font:700 8px "DM Mono",monospace;letter-spacing:.1em;text-transform:uppercase;line-height:1.55}
-
-/* restrained site-wide transitions */
-@supports (animation-timeline:view()){
- .aboutGrid,.expGrid,.caseTop,.eduGrid,.resource-grid{
-   animation:sectionRise linear both;
-   animation-timeline:view();
-   animation-range:entry 5% cover 24%;
- }
- @keyframes sectionRise{from{opacity:.45;transform:translateY(20px)}to{opacity:1;transform:none}}
-}
-::view-transition-old(root),::view-transition-new(root){animation-duration:.28s}
-.caseStudy,.resource-card,.contactCard{transition:border-color .3s ease,transform .3s ease}
-.caseMedia img,.resource-photo{transition:transform .55s cubic-bezier(.2,.7,.2,1),filter .55s ease!important}
-@media(hover:hover) and (pointer:fine){
- .caseStudy:hover .caseMedia img{transform:scale(1.022)}
- .resource-card:hover .resource-photo{transform:scale(1.025)!important}
-}
-@media(max-width:900px){
- .evidence-head{grid-template-columns:1fr}
- .evidence-stage{grid-template-columns:1fr;min-height:0}
- .evidence-nav{border-right:0;border-bottom:1px solid rgba(207,184,124,.22);display:grid;grid-template-columns:repeat(2,1fr);padding:0}
- .evidence-tab{padding:18px 14px}
- .evidence-panel.active{grid-template-columns:1fr}
- .evidence-number{border-left:0;border-top:1px solid rgba(207,184,124,.2);padding:28px 0 0}
-}
-@media(max-width:520px){
- .evidence-nav{grid-template-columns:1fr}
- .evidence-panel{padding:32px 20px}
- .evidence-panel h3{font-size:3.2rem}
+ .profile-tabs{grid-template-columns:1fr}
+ .metricStrip,.systemBreakdown{grid-template-columns:1fr!important}
+ .heroCopy h1{font-size:3.25rem!important}
 }
 @media(prefers-reduced-motion:reduce){
- .evidence-panel.active{animation:none}
- @supports (animation-timeline:view()){.aboutGrid,.expGrid,.caseTop,.eduGrid,.resource-grid{animation:none}}
+ html{scroll-behavior:auto}
+ *,*:before,*:after{animation:none!important;transition:none!important}
+ .motion-on [data-reveal]{opacity:1!important;transform:none!important}
 }
 </style>
 
+
+<style id="v75-smooth-clean">
+/* V75 — smoother, cleaner, more intentional */
+:root{--ease:cubic-bezier(.22,.61,.36,1)}
+body{background:#070808}
+.section{scroll-margin-top:72px}
+a,button{-webkit-tap-highlight-color:transparent}
+
+/* cleaner vertical rhythm */
+.sectionHead{margin-bottom:clamp(42px,5vw,72px)!important}
+.caseStudy{padding-block:clamp(70px,7vw,112px)!important}
+.caseStudy+.caseStudy{margin-top:0!important}
+p{line-height:1.72}
+
+/* nav progress + active state */
+.site-progress{position:fixed;top:0;left:0;z-index:10001;height:2px;width:100%;transform:scaleX(0);transform-origin:left;background:#CFB87C;pointer-events:none}
+.navLinks a.is-active{color:#CFB87C!important}
+.navLinks a.is-active:after{right:0!important}
+
+/* smoother hero */
+.heroCopy>*{transition:transform .65s var(--ease),opacity .65s ease}
+.heroMedia img{transition:transform 1.1s var(--ease),filter .6s ease!important}
+body.loaded .heroMedia img{transform:scale(1)!important}
+.heroActions a,.heroActions button{transition:transform .25s var(--ease),background .25s ease,color .25s ease,border-color .25s ease!important}
+@media(hover:hover) and (pointer:fine){.heroActions a:hover,.heroActions button:hover{transform:translateY(-3px)}}
+
+/* profile: neater tabs, smoother panel swap */
+.profile-console{min-height:520px}
+.profile-tabs{position:relative}
+.profile-tab{min-height:54px;transition:background .25s ease,color .25s ease!important}
+.profile-panel.active{animation:panelClean .42s var(--ease) both}
+@keyframes panelClean{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.profile-chip{transition:background .22s ease,color .22s ease,border-color .22s ease}
+@media(hover:hover) and (pointer:fine){.profile-chip:hover{background:#080909;color:#CFB87C;border-color:#080909}}
+
+/* proof cards: less boxy, stronger interaction */
+.proof-grid{gap:12px;border:0!important}
+.proof-card{border:1px solid rgba(207,184,124,.18)!important;min-height:300px!important}
+.proof-card strong{margin-top:38px!important}
+.proof-card p{max-width:31ch}
+.proof-card:after{content:"EXPLORE";position:absolute;left:clamp(26px,3vw,42px);bottom:25px;font:700 7px "DM Mono",monospace;letter-spacing:.12em;color:#5f605c;transition:color .25s ease}
+.proof-card:hover:after{color:#CFB87C}
+
+/* project cards */
+.caseTop{align-items:center!important}
+.caseMedia{border-radius:2px}
+.caseMedia:after{content:"VIEW PROJECT";position:absolute;right:14px;bottom:14px;background:rgba(7,8,8,.88);color:#CFB87C;padding:9px 11px;font:700 7px "DM Mono",monospace;letter-spacing:.1em;opacity:0;transform:translateY(6px);transition:.28s var(--ease);pointer-events:none}
+@media(hover:hover) and (pointer:fine){
+ .caseMedia:hover:after{opacity:1;transform:none}
+ .caseMedia:hover img{transform:scale(1.028)!important}
+}
+.metricBox{transition:background .25s ease,border-color .25s ease}
+@media(hover:hover){.metricBox:hover{background:rgba(207,184,124,.055)}}
+
+/* resource/contact cards */
+.resource-card,.contactCard{transition:transform .3s var(--ease),border-color .3s ease,background .3s ease!important}
+@media(hover:hover) and (pointer:fine){
+ .resource-card:hover,.contactCard:hover{transform:translateY(-5px)}
+}
+
+/* elegant reveal — visible by default */
+[data-reveal]{opacity:1;transform:none}
+.motion-on [data-reveal]:not(.seen){opacity:0;transform:translateY(18px)}
+.motion-on [data-reveal]{transition:opacity .62s ease,transform .7s var(--ease)}
+.motion-on [data-reveal].seen{opacity:1;transform:none}
+
+/* subtle section separators */
+.experience,.projects,.education,.engineering-launchpad,.end{border-top:1px solid rgba(207,184,124,.12)}
+
+/* back to top */
+.back-top{position:fixed;right:22px;bottom:22px;z-index:1000;width:46px;height:46px;border:1px solid rgba(207,184,124,.35);background:rgba(7,8,8,.88);backdrop-filter:blur(10px);color:#CFB87C;display:grid;place-items:center;cursor:pointer;opacity:0;visibility:hidden;transform:translateY(8px);transition:.25s var(--ease);font-size:17px}
+.back-top.show{opacity:1;visibility:visible;transform:none}
+.back-top:focus-visible{outline:2px solid #CFB87C;outline-offset:2px}
+
+/* responsive refinements */
+@media(max-width:1050px){
+ .profile-console{min-height:0}
+ .proof-grid{gap:10px}
+}
+@media(max-width:700px){
+ .proof-grid{gap:8px}
+ .proof-card{min-height:245px!important}
+ .proof-card:after{bottom:20px}
+ .profile-panel{padding-bottom:16px!important}
+ .back-top{right:14px;bottom:14px;width:44px;height:44px}
+}
+@media(prefers-reduced-motion:reduce){
+ .site-progress{display:none}
+ .back-top,.heroMedia img,.profile-panel.active{animation:none!important;transition:none!important}
+}
+</style>
+
+<style id="v76-final-polish">
+:root{--gutter:clamp(20px,4.7vw,78px);--max:1400px;--gold:#CFB87C;--ink:#080909;--paper:#F4F1E9;--ease:cubic-bezier(.22,.61,.36,1)}
+html,body{max-width:100%;overflow-x:hidden} body{background:#080909;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.wrap,.heroInner,nav .navInner,.profile-shell,.proof-shell{width:min(var(--max),calc(100vw - 2*var(--gutter)))!important;margin-inline:auto!important;max-width:none!important;padding-inline:0!important}.section{padding-block:clamp(84px,8vw,128px)!important}
+nav{height:72px!important;background:rgba(8,9,9,.93)!important;backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.08)!important}nav .navInner{height:72px!important}.navLinks a{color:#b8b5ad!important;font-size:7px!important;letter-spacing:.12em!important}.navLinks a:hover,.navLinks a.is-active{color:var(--gold)!important}
+.hero{min-height:clamp(720px,92svh,940px)!important}.heroInner{padding:130px 0 clamp(64px,8vh,96px)!important}.heroCopy{width:min(820px,75%)!important}.heroCopy h1{font-size:clamp(4.2rem,7.2vw,8.1rem)!important;line-height:.83!important;letter-spacing:-.035em!important}.heroCopy .lede{max-width:590px!important;color:#c9c6be!important}.heroMedia:after{background:linear-gradient(90deg,#080909 0%,rgba(8,9,9,.9) 37%,rgba(8,9,9,.22) 78%),linear-gradient(0deg,rgba(8,9,9,.58),transparent 48%)!important}.heroActions a,.heroActions button{min-height:48px!important;border-radius:0!important}
+.profile-lab{background:var(--paper)!important;padding:clamp(92px,9vw,142px) var(--gutter)!important}.profile-top{margin-bottom:clamp(46px,6vw,72px)!important}.profile-layout{gap:clamp(48px,7vw,104px)!important}.profile-photo{min-height:600px!important}.profile-photo img{object-position:center top!important}.profile-console{min-height:0!important}.profile-panel h3{font-size:clamp(3rem,4.5vw,5rem)!important;line-height:.88!important}.profile-panel p{color:#3e3e39!important}.profile-chip{background:transparent!important;border-color:rgba(9,10,10,.2)!important;color:#454540!important}
+.proof-story{background:#0B0D0D!important;padding:clamp(88px,8vw,126px) var(--gutter)!important}.proof-grid{gap:0!important;border-top:1px solid rgba(207,184,124,.18)!important;border-left:1px solid rgba(207,184,124,.18)!important}.proof-card{transform:none!important;border:0!important;border-right:1px solid rgba(207,184,124,.18)!important;border-bottom:1px solid rgba(207,184,124,.18)!important;background:#0B0D0D!important;min-height:300px!important}.proof-card:hover,.proof-card.active{background:#111414!important;transform:none!important}.proof-card:after{display:none!important}
+.experience{background:#111313!important}.projects{background:#080909!important}.caseStudy{padding-block:clamp(78px,7vw,112px)!important;border-top:1px solid rgba(207,184,124,.18)!important}.caseTop{gap:clamp(50px,7vw,100px)!important;align-items:center!important}.caseMedia{border:1px solid rgba(255,255,255,.1)!important}.caseMedia:after{display:none!important}.caseMedia img{transition:transform .55s var(--ease),filter .55s ease!important}.metricStrip{border-color:rgba(207,184,124,.18)!important}.resource-grid{gap:12px!important}.resource-card,.contactCard{border-color:rgba(255,255,255,.1)!important}.education{background:var(--gold)!important}.end{background:#070808!important}
+.motion-on [data-reveal]:not(.seen){opacity:0;transform:translateY(14px)!important}.motion-on [data-reveal]{transition:opacity .55s ease,transform .62s var(--ease)!important}@media(hover:hover) and (pointer:fine){.profile-photo:hover img,.caseMedia:hover img{transform:scale(1.018)!important}.resource-card:hover,.contactCard:hover{transform:translateY(-3px)!important}}
+@media(max-width:1080px){.heroCopy{width:88%!important}.profile-top,.profile-layout,.expGrid,.caseTop,.caseSecondary,.caseSecondary.reverse,.eduGrid,.endGrid{grid-template-columns:1fr!important}.profile-photo{max-width:580px!important;min-height:560px!important}.resource-grid{grid-template-columns:1fr 1fr!important}}
+@media(max-width:720px){:root{--gutter:20px}nav{height:64px!important}nav .navInner{height:64px!important}.hero{min-height:760px!important}.heroInner{padding:105px 0 54px!important}.heroCopy{width:100%!important}.heroCopy h1{font-size:clamp(3.45rem,15.5vw,5.2rem)!important}.heroActions{display:grid!important;grid-template-columns:1fr!important}.heroActions>*{width:100%!important;justify-content:center!important}.profile-lab{padding-block:80px!important}.profile-photo{min-height:470px!important}.profile-tabs{grid-template-columns:1fr 1fr!important}.proof-grid{grid-template-columns:1fr!important;border-left:0!important}.proof-card{min-height:250px!important;border-left:1px solid rgba(207,184,124,.18)!important}.metricStrip,.systemBreakdown{grid-template-columns:1fr 1fr!important}.resource-grid{grid-template-columns:1fr!important}.resource-card{grid-column:1!important}}
+@media(max-width:430px){:root{--gutter:16px}.profile-tabs{grid-template-columns:1fr!important}.metricStrip,.systemBreakdown{grid-template-columns:1fr!important}.heroCopy h1{font-size:3.25rem!important}}
+@media(min-width:1800px){:root{--max:1500px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}.motion-on [data-reveal]{opacity:1!important;transform:none!important}}
+</style>
 </head>
-<body>
+<body><div class="site-progress" aria-hidden="true"></div>
 
 <nav>
  <div class="wrap navin">
@@ -1033,7 +1047,7 @@ nav{background:rgba(7,8,8,.86)!important;backdrop-filter:blur(16px);border-botto
    </div>
   </div>
 
-  <div class="resource-grid">
+  <div class="resource-grid data-reveal">
    <a class="resource-card nasa-card" href="https://www.nasa.gov/careers/engineering/" target="_blank" rel="noopener noreferrer">
     <img class="resource-photo" src="https://science.nasa.gov/wp-content/uploads/2023/07/Marc_Rayman_Dawn-1.jpeg?format=jpeg&w=3072" alt="NASA spacecraft engineering and integration">
     <div class="resource-mark"><span class="brand-glyph">N</span><span class="brand-name">NASA Engineering</span></div>
@@ -1065,13 +1079,14 @@ nav{background:rgba(7,8,8,.86)!important;backdrop-filter:blur(16px);border-botto
  </div>
 </section>
 
-<section class="section about" id="about">
+<section class="section about" id="about" style="display:none">
  <div class="wrap aboutGrid reveal">
   <div class="portrait"><img src="profile.png" alt="Juan Corona Enriquez"></div>
   <div>
    <div class="kicker">01 // About me</div>
    <h2>DRIVEN BY<br><span>PURPOSE.</span></h2>
-   <p>I’m a mechanical engineering student who learns best by turning ideas into physical systems. My experience spans design, prototyping, materials testing, and hands-on problem solving — from building a three-axis claw machine to testing 4140 steel and designing a competition-winning trebuchet.</p><p>Outside the classroom, working in a hospital pharmacy has taught me a different side of engineering: precision, reliability, communication, and staying composed when the details matter. I’m building toward a career where I can combine that discipline with mechanical design, testing, and performance-driven engineering.</p>
+   <p>I’m studying mechanical engineering at the University of Colorado Boulder. What interests me most is the complete engineering process: understanding the problem, designing a solution, building it, seeing what actually happens, and learning from the result.</p>
+   <p>Outside the classroom, working in a hospital pharmacy has strengthened the way I approach precision, responsibility, teamwork, and high-stakes processes. I want to bring that same discipline into engineering.</p>
    <div class="factrow">
     <div class="fact"><b>SolidWorks</b><span>Mechanical design</span></div>
     <div class="fact"><b>3D Printing</b><span>Prototyping</span></div>
@@ -1080,56 +1095,6 @@ nav{background:rgba(7,8,8,.86)!important;backdrop-filter:blur(16px);border-botto
   </div>
  </div>
 </section>
-<section class="evidence-story" id="evidence" aria-labelledby="evidence-title">
- <div class="evidence-shell">
-  <div class="evidence-head">
-   <div>
-    <div class="evidence-kicker">Selected evidence // Click to explore</div>
-    <h2 id="evidence-title">NUMBERS WITH<br><span>A STORY.</span></h2>
-   </div>
-   <p>These are not résumé counters. Each one points to a real situation where I had to design, test, improve, or work precisely under responsibility.</p>
-  </div>
-
-  <div class="evidence-stage">
-   <div class="evidence-nav" role="tablist" aria-label="Engineering evidence">
-    <button class="evidence-tab" type="button" role="tab" aria-selected="true" aria-controls="ev-trebuchet" id="tab-trebuchet"><b>01</b><span>Competition design</span></button>
-    <button class="evidence-tab" type="button" role="tab" aria-selected="false" aria-controls="ev-claw" id="tab-claw"><b>02</b><span>Prototype testing</span></button>
-    <button class="evidence-tab" type="button" role="tab" aria-selected="false" aria-controls="ev-cycles" id="tab-cycles"><b>03</b><span>Iteration & durability</span></button>
-    <button class="evidence-tab" type="button" role="tab" aria-selected="false" aria-controls="ev-work" id="tab-work"><b>04</b><span>Precision at work</span></button>
-   </div>
-
-   <article class="evidence-panel active" id="ev-trebuchet" role="tabpanel" aria-labelledby="tab-trebuchet">
-    <div><div class="evidence-index">Engineering challenge // Spring 2024</div><h3>DESIGN.<br>TEST.<br>WIN.</h3><p>My team designed and refined a mechanical launching system while adapting to changing constraints. The project finished first among 25 engineering teams.</p><a class="evidence-link" href="#projects">See the trebuchet project <span>↓</span></a></div>
-    <div class="evidence-number"><strong>1st</strong><span>of 25 engineering teams</span></div>
-   </article>
-
-   <article class="evidence-panel" id="ev-claw" role="tabpanel" aria-labelledby="tab-claw">
-    <div><div class="evidence-index">Claw machine // Functional validation</div><h3>TEST WHAT<br>YOU BUILD.</h3><p>The pneumatic end effector was tested across 30 prize items. The result mattered because it gave our team evidence that the mechanism worked beyond a single demonstration.</p><a class="evidence-link" href="#projects">Open the claw case study <span>↓</span></a></div>
-    <div class="evidence-number"><strong>93%</strong><span>grab success across 30 test items</span></div>
-   </article>
-
-   <article class="evidence-panel" id="ev-cycles" role="tabpanel" aria-labelledby="tab-cycles">
-    <div><div class="evidence-index">Claw machine // Reliability</div><h3>BUILD IT TO<br>KEEP WORKING.</h3><p>We pushed the prototype through repeated gameplay and structural testing rather than stopping when it worked once. That process helped expose fit, motion, and durability issues before final validation.</p><a class="evidence-link" href="#projects">See testing details <span>↓</span></a></div>
-    <div class="evidence-number"><strong>100+</strong><span>gameplay cycles completed</span></div>
-   </article>
-
-   <article class="evidence-panel" id="ev-work" role="tabpanel" aria-labelledby="tab-work">
-    <div><div class="evidence-index">Intermountain Health // Current role</div><h3>PRECISION<br>UNDER<br>RESPONSIBILITY.</h3><p>Managing medication-system readiness in a hospital environment has strengthened the habits I bring into engineering: accuracy, repeatability, troubleshooting, communication, and attention to detail.</p><a class="evidence-link" href="#experience">See professional experience <span>↓</span></a></div>
-    <div class="evidence-number"><strong>100+</strong><span>automated medication systems managed</span></div>
-   </article>
-  </div>
- </div>
-</section>
-
-<section class="proof-bar" aria-label="Selected proof points">
- <div class="proof-bar-inner">
-  <div class="proof-item"><strong>1st / 25</strong><span>Trebuchet engineering challenge</span></div>
-  <div class="proof-item"><strong>93%</strong><span>Claw pneumatic grab success</span></div>
-  <div class="proof-item"><strong>100+</strong><span>Claw gameplay test cycles</span></div>
-  <div class="proof-item"><strong>100+</strong><span>Medication systems managed at work</span></div>
- </div>
-</section>
-
 
 <section class="section experience" id="experience">
  <div class="wrap expGrid reveal">
@@ -1182,7 +1147,7 @@ nav{background:rgba(7,8,8,.86)!important;backdrop-filter:blur(16px);border-botto
   </div>
 
   <article class="caseStudy reveal">
-   <div class="caseTop">
+   <div class="caseTop data-reveal">
     <div class="caseMedia">
      <picture><source srcset="claw-machine-2.jpeg"><img src="claw-machine.jpeg" alt="Claw machine engineering project"></picture>
      <div class="caseMediaLabel">ASM-01 // Design → Fabrication → Testing</div>
@@ -1216,7 +1181,7 @@ nav{background:rgba(7,8,8,.86)!important;backdrop-filter:blur(16px);border-botto
   </article>
 
   <article class="caseStudy reveal">
-   <div class="caseSecondary">
+   <div class="caseSecondary data-reveal">
     <div class="caseInfo">
      <div class="caseId">MAT-02 // Materials science laboratory</div>
      <h3>4140 STEEL<br><span>TESTING.</span></h3>
@@ -1238,7 +1203,7 @@ nav{background:rgba(7,8,8,.86)!important;backdrop-filter:blur(16px);border-botto
   </article>
 
   <article class="caseStudy reveal">
-   <div class="caseSecondary reverse">
+   <div class="caseSecondary reverse data-reveal">
     <div class="caseMedia">
      <img src="trebuchet.jpeg" alt="Trebuchet engineering challenge">
      <div class="caseMediaLabel">MEC-03 // Mechanics + iteration</div>
@@ -1312,30 +1277,97 @@ document.getElementById('profileClose').onclick=()=>modal.close();
 modal.addEventListener('click',e=>{if(e.target===modal)modal.close()});
 </script>
 
-<script id="v73-evidence-interaction">
+<script id="v74-interactions">
 (() => {
- const root=document.querySelector('.evidence-story');
- if(!root) return;
- const tabs=[...root.querySelectorAll('.evidence-tab')];
- const panels=[...root.querySelectorAll('.evidence-panel')];
- function activate(tab){
+ const tabs=[...document.querySelectorAll('.profile-tab')];
+ const panels=[...document.querySelectorAll('.profile-panel')];
+ const select=(tab)=>{
    tabs.forEach(t=>t.setAttribute('aria-selected',String(t===tab)));
    panels.forEach(p=>p.classList.toggle('active',p.id===tab.getAttribute('aria-controls')));
- }
+ };
  tabs.forEach((tab,i)=>{
-   tab.addEventListener('click',()=>activate(tab));
+   tab.addEventListener('click',()=>select(tab));
    tab.addEventListener('keydown',e=>{
-     if(!['ArrowRight','ArrowDown','ArrowLeft','ArrowUp','Home','End'].includes(e.key)) return;
+     if(!['ArrowRight','ArrowLeft','Home','End'].includes(e.key)) return;
      e.preventDefault();
-     let n=i;
-     if(e.key==='ArrowRight'||e.key==='ArrowDown') n=(i+1)%tabs.length;
-     if(e.key==='ArrowLeft'||e.key==='ArrowUp') n=(i-1+tabs.length)%tabs.length;
-     if(e.key==='Home') n=0;
-     if(e.key==='End') n=tabs.length-1;
-     tabs[n].focus(); activate(tabs[n]);
+     let n=e.key==='Home'?0:e.key==='End'?tabs.length-1:e.key==='ArrowRight'?(i+1)%tabs.length:(i-1+tabs.length)%tabs.length;
+     tabs[n].focus(); select(tabs[n]);
    });
  });
+ document.querySelectorAll('.proof-card[data-target]').forEach(card=>{
+   card.addEventListener('click',()=>{
+     card.classList.add('active');
+     const target=document.getElementById(card.dataset.target);
+     if(target) target.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+   });
+ });
+ if(!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window){
+   document.documentElement.classList.add('motion-on');
+   const els=[...document.querySelectorAll('[data-reveal]')];
+   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('seen');io.unobserve(e.target)}}),{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+   els.forEach(el=>io.observe(el));
+   setTimeout(()=>els.forEach(el=>el.classList.add('seen')),1800);
+ }
 })();
 </script>
 
-</body></html>
+<button class="back-top" type="button" aria-label="Back to top">↑</button>
+
+<script id="v75-polish">
+(() => {
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ requestAnimationFrame(()=>document.body.classList.add('loaded'));
+
+ const progress=document.querySelector('.site-progress');
+ const topBtn=document.querySelector('.back-top');
+ let raf=false;
+ function onScroll(){
+   if(raf) return;
+   raf=true;
+   requestAnimationFrame(()=>{
+     const max=document.documentElement.scrollHeight-innerHeight;
+     if(progress) progress.style.transform=`scaleX(${max>0?Math.min(1,scrollY/max):0})`;
+     if(topBtn) topBtn.classList.toggle('show',scrollY>650);
+     raf=false;
+   });
+ }
+ addEventListener('scroll',onScroll,{passive:true}); onScroll();
+ topBtn?.addEventListener('click',()=>scrollTo({top:0,behavior:reduced?'auto':'smooth'}));
+
+ // Highlight nav section as the visitor moves through the page.
+ const links=[...document.querySelectorAll('.navLinks a[href^="#"]')];
+ const sections=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+ if('IntersectionObserver' in window && sections.length){
+   const navIO=new IntersectionObserver(entries=>{
+     const visible=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
+     if(!visible) return;
+     links.forEach(a=>a.classList.toggle('is-active',a.getAttribute('href')==='#'+visible.target.id));
+   },{rootMargin:'-28% 0px -60% 0px',threshold:[0,.1,.3,.6]});
+   sections.forEach(s=>navIO.observe(s));
+ }
+
+ // Smooth internal navigation.
+ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+   const id=a.getAttribute('href');
+   if(id==='#') return;
+   const t=document.querySelector(id);
+   if(!t) return;
+   e.preventDefault();
+   t.scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});
+ }));
+
+ // Gentle tilt on proof cards only for precise pointers.
+ if(!reduced && matchMedia('(hover:hover) and (pointer:fine)').matches){
+   document.querySelectorAll('.proof-card').forEach(card=>{
+     card.addEventListener('pointermove',e=>{
+       const r=card.getBoundingClientRect();
+       const x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+       card.style.transform='';
+     });
+     card.addEventListener('pointerleave',()=>card.style.transform='');
+   });
+ }
+})();
+</script>
+
+</body></html<div class="hero-scroll" aria-hidden="true">SCROLL TO EXPLORE</div>>
