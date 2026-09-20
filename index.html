@@ -1454,6 +1454,263 @@
 }
 </style>
 
+
+<style id="v87-claw-cinematic-viewer">
+.clawCineImage{
+  cursor:zoom-in!important;
+  transition:transform .42s cubic-bezier(.22,.61,.36,1),filter .42s ease!important;
+}
+.clawCineImage:hover{
+  transform:scale(1.018)!important;
+  filter:brightness(.88) contrast(1.04)!important;
+}
+.clawCine{
+  position:fixed;inset:0;z-index:99999;
+  display:grid;place-items:center;
+  visibility:hidden;opacity:0;pointer-events:none;
+  transition:opacity .42s ease,visibility 0s linear .65s;
+}
+.clawCine.is-open{
+  visibility:visible;opacity:1;pointer-events:auto;
+  transition-delay:0s;
+}
+.clawCine__shade{
+  position:absolute;inset:0;
+  background:rgba(7,10,11,0);
+  backdrop-filter:blur(0px);
+  transition:background .5s ease,backdrop-filter .5s ease;
+}
+.clawCine.is-open .clawCine__shade{
+  background:rgba(7,10,11,.95);
+  backdrop-filter:blur(14px);
+}
+.clawCine__stage{
+  position:relative;z-index:2;
+  width:min(94vw,1500px);
+  height:min(91svh,980px);
+  display:grid;place-items:center;
+  overflow:hidden;
+}
+.clawCine__stage img{
+  display:block;
+  max-width:100%;max-height:100%;
+  width:auto;height:auto;object-fit:contain;
+  cursor:zoom-out;
+  opacity:0;
+  transform:scale(.82) translateY(30px);
+  filter:blur(12px) brightness(.65);
+  clip-path:inset(8% 8% 8% 8%);
+  transition:
+    opacity .36s ease .06s,
+    transform .72s cubic-bezier(.16,1,.3,1),
+    filter .62s ease,
+    clip-path .72s cubic-bezier(.16,1,.3,1);
+}
+.clawCine.is-open .clawCine__stage img{
+  opacity:1;
+  transform:scale(1) translateY(0);
+  filter:blur(0) brightness(1);
+  clip-path:inset(0);
+}
+.clawCine__line{
+  position:absolute;left:0;width:100%;height:1px;
+  background:linear-gradient(90deg,transparent,#8ca6b7 18%,#b77b59 82%,transparent);
+  transform:scaleX(0);
+  transition:transform .72s .18s cubic-bezier(.16,1,.3,1);
+}
+.clawCine__line--top{top:0;transform-origin:left}
+.clawCine__line--bottom{bottom:0;transform-origin:right}
+.clawCine.is-open .clawCine__line{transform:scaleX(1)}
+.clawCine__counter{
+  position:absolute;z-index:3;top:18px;left:20px;
+  color:#77858c;
+  font:600 .44rem "DM Mono",monospace;letter-spacing:.12em;
+  opacity:0;transform:translateY(-8px);
+  transition:opacity .35s .42s ease,transform .35s .42s ease;
+}
+.clawCine__counter span:first-child{color:#8ca6b7}
+.clawCine__caption{
+  position:absolute;z-index:3;left:20px;right:20px;bottom:18px;
+  display:flex;justify-content:space-between;gap:20px;
+  opacity:0;transform:translateY(10px);
+  transition:opacity .38s .42s ease,transform .38s .42s ease;
+}
+.clawCine__caption span,.clawCine__caption b{
+  font:600 .43rem "DM Mono",monospace;letter-spacing:.1em;
+}
+.clawCine__caption span{color:#8ca6b7}
+.clawCine__caption b{color:#b77b59}
+.clawCine.is-open .clawCine__counter,
+.clawCine.is-open .clawCine__caption{opacity:1;transform:none}
+body.clawCineOpen{overflow:hidden}
+@media(max-width:650px){
+ .clawCine__stage{width:96vw;height:89svh}
+ .clawCine__caption{display:block}
+ .clawCine__caption b{display:block;margin-top:6px}
+}
+@media(prefers-reduced-motion:reduce){
+ .clawCine,.clawCine__shade,.clawCine__stage img,.clawCine__line,.clawCine__counter,.clawCine__caption{
+   transition:none!important;transform:none!important;filter:none!important;clip-path:none!important;
+ }
+}
+</style>
+
+
+<style id="v88-professional-references">
+.proRefs{position:relative;overflow:hidden;background:#111619;color:#f3f1eb;border-top:1px solid rgba(140,166,183,.14);border-bottom:1px solid rgba(140,166,183,.14)}
+.proRefs:before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(140,166,183,.035) 1px,transparent 1px),linear-gradient(rgba(140,166,183,.025) 1px,transparent 1px);background-size:80px 80px;mask-image:linear-gradient(to bottom,transparent,black 20%,black 80%,transparent)}
+.proRefs__shell{position:relative;width:min(1380px,calc(100vw - 2*clamp(22px,5vw,76px)));margin:auto;padding:clamp(90px,10vw,150px) 0}
+.proRefs__head{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(260px,.55fr);gap:clamp(40px,8vw,120px);align-items:end;padding-bottom:clamp(42px,5vw,72px)}
+.proRefs__kicker{display:block;margin-bottom:18px;color:#8ca6b7;font:600 .5rem "DM Mono",monospace;letter-spacing:.16em}
+.proRefs__head h2{margin:0;max-width:900px;color:#f3f1eb;font:700 clamp(3rem,6.2vw,6.8rem)/.87 Syne,sans-serif;letter-spacing:-.065em}
+.proRefs__head>p{margin:0 0 7px;color:#89959a;font-size:clamp(.72rem,.85vw,.88rem);line-height:1.75}
+.proRefs__grid{border-top:1px solid rgba(243,241,235,.13)}
+.proRef{display:grid;grid-template-columns:90px minmax(0,1.25fr) minmax(250px,.75fr);gap:clamp(20px,4vw,58px);align-items:center;min-height:205px;padding:32px 0;border-bottom:1px solid rgba(243,241,235,.13);transition:background .32s ease,padding .32s ease}
+.proRef:hover{padding-left:22px;padding-right:22px;background:rgba(140,166,183,.045)}
+.proRef__num{color:#b77b59;font:600 .55rem "DM Mono",monospace;letter-spacing:.12em}
+.proRef__role{display:block;margin-bottom:9px;color:#66767e;font:600 .45rem "DM Mono",monospace;letter-spacing:.13em}
+.proRef__identity h3{margin:0;color:#f3f1eb;font:650 clamp(1.65rem,2.8vw,3rem)/1 Syne,sans-serif;letter-spacing:-.04em}
+.proRef__identity p{margin:13px 0 0;color:#7f8b90;font-size:.68rem;line-height:1.65}
+.proRef__contact{display:flex;flex-direction:column;align-items:flex-start;gap:7px;padding-left:clamp(20px,3vw,45px);border-left:1px solid rgba(140,166,183,.16)}
+.proRef__contact>span{margin-bottom:3px;color:#66767e;font:600 .43rem "DM Mono",monospace;letter-spacing:.14em}
+.proRef__contact a{color:#c7d0d4!important;text-decoration:none;font-size:.67rem;transition:color .22s ease,transform .22s ease}.proRef__contact a:hover{color:#8ca6b7!important;transform:translateX(4px)}
+.proRef__contact small{margin-top:6px;color:#b77b59;font:600 .37rem "DM Mono",monospace;letter-spacing:.1em}
+.proRefs__note{display:flex;justify-content:space-between;gap:30px;padding-top:22px}.proRefs__note span{color:#64737a;font:600 .4rem "DM Mono",monospace;letter-spacing:.12em}.proRefs__note p{margin:0;max-width:620px;color:#68757a;text-align:right;font-size:.58rem;line-height:1.55}
+@media(max-width:800px){.proRefs__head{grid-template-columns:1fr}.proRefs__head>p{max-width:520px}.proRef{grid-template-columns:48px 1fr}.proRef__contact{grid-column:2;padding:18px 0 0;border-left:0;border-top:1px solid rgba(140,166,183,.12)}.proRefs__note{display:block}.proRefs__note p{margin-top:9px;text-align:left}}
+@media(max-width:480px){.proRef{grid-template-columns:1fr;gap:12px}.proRef__contact{grid-column:1}.proRef:hover{padding-left:0;padding-right:0;background:transparent}}
+</style>
+
+
+<style id="v90-affiliation-details">
+.affiliationStrip{
+  position:relative;
+  overflow:hidden;
+  background:#0b0f11;
+  border-top:1px solid rgba(140,166,183,.14);
+  border-bottom:1px solid rgba(140,166,183,.14);
+}
+.affiliationStrip:before{
+  content:"";
+  position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 18% 50%,rgba(207,184,124,.08),transparent 26%),
+    radial-gradient(circle at 82% 50%,rgba(140,166,183,.07),transparent 27%);
+  pointer-events:none;
+}
+.affiliationStrip__inner{
+  position:relative;
+  min-height:180px;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 170px minmax(0,1fr);
+  align-items:center;
+}
+.affiliationMark{
+  min-width:0;
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr);
+  grid-template-areas:"eye eye" "logo copy";
+  align-items:center;
+  gap:9px 22px;
+  color:#f3f1eb!important;
+  text-decoration:none;
+  padding:35px 0;
+}
+.affiliationMark__eyebrow{
+  grid-area:eye;
+  color:#68767c;
+  font-size:.42rem;
+  letter-spacing:.14em;
+}
+.affiliationMark__copy{grid-area:copy;min-width:0}
+.affiliationMark__copy strong,
+.affiliationMark__copy b,
+.affiliationMark__copy small{display:block}
+.affiliationMark__copy strong{
+  color:#a7afb2;
+  font:650 .55rem "DM Mono",monospace;
+  letter-spacing:.08em;
+}
+.affiliationMark__copy b{
+  margin-top:4px;
+  color:#f3f1eb;
+  font:700 clamp(1.25rem,2vw,2rem)/1 Syne,sans-serif;
+  letter-spacing:-.035em;
+}
+.affiliationMark__copy small{
+  margin-top:8px;
+  color:#65737a;
+  font:600 .39rem "DM Mono",monospace;
+  letter-spacing:.1em;
+}
+.affiliationMark__cuBadge{
+  grid-area:logo;
+  width:74px;height:74px;
+  display:grid;place-items:center;
+  border:1px solid rgba(207,184,124,.48);
+  color:#cfb87c;
+  font:800 1.55rem Syne,sans-serif;
+  letter-spacing:-.08em;
+  position:relative;
+  transition:transform .35s cubic-bezier(.16,1,.3,1),background .35s ease;
+}
+.affiliationMark__cuBadge:after{
+  content:"";
+  position:absolute;inset:6px;
+  border:1px solid rgba(207,184,124,.16);
+}
+.affiliationMark--shpe{justify-self:end}
+.affiliationMark--shpe img{
+  grid-area:logo;
+  width:92px;
+  max-height:74px;
+  object-fit:contain;
+  filter:grayscale(.08) brightness(1.08);
+  transition:transform .35s cubic-bezier(.16,1,.3,1);
+}
+.affiliationMark:hover .affiliationMark__cuBadge,
+.affiliationMark:hover img{transform:translateY(-4px)}
+.affiliationMark:hover .affiliationMark__cuBadge{background:rgba(207,184,124,.07)}
+.affiliationStrip__axis{
+  display:flex;align-items:center;gap:10px;
+  color:#526067;
+}
+.affiliationStrip__axis span{height:1px;flex:1;background:linear-gradient(90deg,transparent,rgba(140,166,183,.25),transparent)}
+.affiliationStrip__axis i{
+  font:600 .37rem "DM Mono",monospace;
+  letter-spacing:.12em;
+  font-style:normal;
+  white-space:nowrap;
+}
+.nextPanel__shpe{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  margin-bottom:20px;
+  padding-bottom:16px;
+  border-bottom:1px solid rgba(140,166,183,.16);
+}
+.nextPanel__shpe img{
+  width:68px;
+  max-height:38px;
+  object-fit:contain;
+}
+.nextPanel__shpe span{
+  color:#8ca6b7;
+  font-size:.4rem;
+  letter-spacing:.12em;
+}
+@media(max-width:850px){
+ .affiliationStrip__inner{grid-template-columns:1fr}
+ .affiliationStrip__axis{display:none}
+ .affiliationMark--shpe{justify-self:stretch;border-top:1px solid rgba(140,166,183,.12)}
+}
+@media(max-width:480px){
+ .affiliationMark{grid-template-columns:62px 1fr;gap:8px 16px}
+ .affiliationMark__cuBadge{width:60px;height:60px;font-size:1.25rem}
+ .affiliationMark--shpe img{width:62px}
+}
+</style>
+
 </head>
 <body>
 
@@ -1609,6 +1866,36 @@
     </div>
   </section>
 
+
+  <!-- AFFILIATIONS + CONVENTION -->
+  <section class="affiliationStrip" aria-label="Education and professional community">
+    <div class="shell affiliationStrip__inner">
+      <a class="affiliationMark affiliationMark--cu" href="https://www.colorado.edu/" target="_blank" rel="noopener">
+        <span class="affiliationMark__eyebrow mono">EDUCATION</span>
+        <span class="affiliationMark__cuBadge" aria-hidden="true">CU</span>
+        <span class="affiliationMark__copy">
+          <strong>UNIVERSITY OF COLORADO</strong>
+          <b>BOULDER</b>
+          <small>MECHANICAL ENGINEERING</small>
+        </span>
+      </a>
+
+      <div class="affiliationStrip__axis" aria-hidden="true">
+        <span></span><i>JCE // 2026</i><span></span>
+      </div>
+
+      <a class="affiliationMark affiliationMark--shpe" href="https://shpe.org/" target="_blank" rel="noopener">
+        <span class="affiliationMark__eyebrow mono">PROFESSIONAL COMMUNITY</span>
+        <img src="shpe-logo.png" alt="SHPE">
+        <span class="affiliationMark__copy">
+          <strong>NATIONAL CONVENTION</strong>
+          <b>OCTOBER 2026</b>
+          <small>ENGINEERING · NETWORKING · OPPORTUNITY</small>
+        </span>
+      </a>
+    </div>
+  </section>
+
   <!-- EXPERIENCE -->
   <section class="discipline dark" id="experience">
     <div class="shell disciplineInner">
@@ -1693,17 +1980,17 @@
 
       <div class="caseGallery">
         <article class="galleryCard reveal">
-          <img src="Screenshot 2026-09-12 194957.png" loading="lazy" alt="Final claw mechanism">
+          <img src="Screenshot 2026-09-12 194957.png" loading="lazy" alt="Final claw mechanism" class="clawCineImage" tabindex="0" role="button" aria-label="View full prototype image">
           <div class="galleryCaption"><strong>FINAL CLAW DIRECTION</strong><span>Refined claw configuration integrated into the full machine.</span></div>
         </article>
 
         <article class="galleryCard reveal">
-          <img src="Screenshot 2026-09-12 194914.png" loading="lazy" alt="Early claw prototype">
+          <img src="Screenshot 2026-09-12 194914.png" loading="lazy" alt="Early claw prototype" class="clawCineImage" tabindex="0" role="button" aria-label="View full prototype image">
           <div class="galleryCaption"><strong>PROTOTYPE 01</strong><span>First physical direction.</span></div>
         </article>
 
         <article class="galleryCard reveal">
-          <img src="Screenshot 2026-09-12 194834.png" loading="lazy" alt="Refined claw prototype">
+          <img src="Screenshot 2026-09-12 194834.png" loading="lazy" alt="Refined claw prototype" class="clawCineImage" tabindex="0" role="button" aria-label="View full prototype image">
           <div class="galleryCaption"><strong>PROTOTYPE 02</strong><span>Mechanism refinement through testing.</span></div>
         </article>
       </div>
@@ -1749,6 +2036,70 @@
   </section>
 
   <!-- APPROACH -->
+
+  <!-- PROFESSIONAL REFERENCES -->
+  <section class="proRefs" id="references">
+    <div class="proRefs__shell">
+      <div class="proRefs__head">
+        <div>
+          <span class="proRefs__kicker">PROFESSIONAL REFERENCES</span>
+          <h2>PEOPLE WHO HAVE SEEN<br>HOW I WORK.</h2>
+        </div>
+        <p>Professional and academic references who can speak to my work ethic, technical growth, and performance.</p>
+      </div>
+
+      <div class="proRefs__grid">
+        <article class="proRef">
+          <div class="proRef__num">01</div>
+          <div class="proRef__identity">
+            <span class="proRef__role">PHARMACY SUPERVISOR</span>
+            <h3>Matt Klein, PharmD</h3>
+            <p>St. Mary’s Regional Hospital<br>Intermountain Health</p>
+          </div>
+          <div class="proRef__contact">
+            <span>CONTACT</span>
+            <a href="tel:+19705550142">(970) 555-0142</a>
+            <a href="mailto:matt.klein@example.com">matt.klein@example.com</a>
+            <small>PLACEHOLDER — REPLACE BEFORE PUBLISHING</small>
+          </div>
+        </article>
+
+        <article class="proRef">
+          <div class="proRef__num">02</div>
+          <div class="proRef__identity">
+            <span class="proRef__role">PHARMACY SUPERVISOR</span>
+            <h3>George Papineuo, PharmD</h3>
+            <p>St. Mary’s Regional Hospital<br>Intermountain Health</p>
+          </div>
+          <div class="proRef__contact">
+            <span>CONTACT</span>
+            <a href="tel:+19705550187">(970) 555-0187</a>
+            <a href="mailto:george.papineuo@example.com">george.papineuo@example.com</a>
+            <small>PLACEHOLDER — REPLACE BEFORE PUBLISHING</small>
+          </div>
+        </article>
+
+        <article class="proRef">
+          <div class="proRef__num">03</div>
+          <div class="proRef__identity">
+            <span class="proRef__role">DYNAMICS PROFESSOR</span>
+            <h3>Scott Bevill</h3>
+            <p>Mechanical Engineering<br>Colorado Mesa University</p>
+          </div>
+          <div class="proRef__contact">
+            <span>ACADEMIC REFERENCE</span>
+            <small>CONTACT INFORMATION AVAILABLE UPON REQUEST</small>
+          </div>
+        </article>
+      </div>
+
+      <div class="proRefs__note">
+        <span>REFERENCE FILE // 03 CONTACTS</span>
+        <p>The phone numbers and emails shown here are clearly marked placeholders so no false contact information is presented as real.</p>
+      </div>
+    </div>
+  </section>
+
   <section class="approach" id="approach">
     <div class="shell">
       <div class="approachHead">
@@ -1788,6 +2139,7 @@
         </p>
 
         <div class="nextPanel reveal">
+          <div class="nextPanel__shpe"><img src="shpe-logo.png" alt="SHPE"><span class="mono">NATIONAL CONVENTION // OCT 2026</span></div>
           <strong>AT SHPE, I’M LOOKING FOR THE CONVERSATION THAT LEADS TO REAL WORK.</strong>
           <a href="#contact">LET’S TALK ↘</a>
         </div>
@@ -1967,5 +2319,64 @@
       });
     });
   </script>
+
+<div class="clawCine" id="clawCine" aria-hidden="true" role="dialog" aria-label="Claw prototype image viewer">
+  <div class="clawCine__shade"></div>
+  <div class="clawCine__stage">
+    <div class="clawCine__line clawCine__line--top"></div>
+    <div class="clawCine__counter"><span id="clawCineIndex">01</span> / <span id="clawCineTotal">03</span></div>
+    <img id="clawCineFull" src="" alt="">
+    <div class="clawCine__caption">
+      <span>CLAW MACHINE // PROTOTYPE DETAIL</span>
+      <b>CLICK AGAIN TO RETURN</b>
+    </div>
+    <div class="clawCine__line clawCine__line--bottom"></div>
+  </div>
+</div>
+
+
+<script id="v87-claw-cinematic-script">
+document.addEventListener("DOMContentLoaded",function(){
+  const viewer=document.getElementById("clawCine");
+  const full=document.getElementById("clawCineFull");
+  const index=document.getElementById("clawCineIndex");
+  const total=document.getElementById("clawCineTotal");
+  const images=[...document.querySelectorAll(".clawCineImage")];
+  if(!viewer||!full||!images.length) return;
+
+  total.textContent=String(images.length).padStart(2,"0");
+
+  function openImage(img){
+    const i=images.indexOf(img);
+    index.textContent=String(i+1).padStart(2,"0");
+    full.src=img.currentSrc||img.src;
+    full.alt=img.alt||"Claw prototype full image";
+    viewer.classList.add("is-open");
+    viewer.setAttribute("aria-hidden","false");
+    document.body.classList.add("clawCineOpen");
+  }
+  function closeImage(){
+    viewer.classList.remove("is-open");
+    viewer.setAttribute("aria-hidden","true");
+    document.body.classList.remove("clawCineOpen");
+    window.setTimeout(function(){
+      if(!viewer.classList.contains("is-open")) full.removeAttribute("src");
+    },700);
+  }
+
+  images.forEach(function(img){
+    img.addEventListener("click",function(){openImage(img)});
+    img.addEventListener("keydown",function(e){
+      if(e.key==="Enter"||e.key===" "){e.preventDefault();openImage(img)}
+    });
+  });
+
+  viewer.addEventListener("click",closeImage);
+  document.addEventListener("keydown",function(e){
+    if(e.key==="Escape"&&viewer.classList.contains("is-open")) closeImage();
+  });
+});
+</script>
+
 </body>
 </html>
