@@ -1037,6 +1037,423 @@
 }
 </style>
 
+
+<style id="v81-brief-elevation">
+/* V81 — elevated 60-second recruiter brief */
+.brief81Panel{
+  width:min(1180px,calc(100vw - 34px))!important;
+  max-height:min(92svh,940px)!important;
+  padding:0!important;
+  border-radius:0!important;
+  overflow:auto!important;
+  background:#F1EEE7!important;
+  border:1px solid rgba(255,255,255,.16)!important;
+  box-shadow:0 35px 100px rgba(0,0,0,.55)!important;
+  color:#111413!important;
+}
+.brief81Top{
+  position:sticky;top:0;z-index:10;
+  min-height:78px;padding:14px 18px;
+  display:grid;grid-template-columns:1fr auto auto;gap:20px;align-items:center;
+  background:rgba(241,238,231,.96);backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(17,20,19,.14);
+}
+.brief81Identity{display:flex;align-items:center;gap:13px;min-width:0}
+.brief81Monogram{
+  width:43px;height:43px;display:grid;place-items:center;flex:0 0 auto;
+  background:#101312;color:#CFB87C;
+  font:800 13px "DM Mono",monospace;letter-spacing:.08em;
+}
+.brief81Identity strong{display:block;font-family:Syne,sans-serif;font-size:.8rem}
+.brief81Identity small{display:block;margin-top:4px;color:#71746e;font:600 .48rem "DM Mono",monospace;letter-spacing:.08em}
+.brief81Timer{display:flex;align-items:center;gap:8px;padding-right:8px}
+.brief81Timer>span{font:800 2.1rem/1 Syne,sans-serif;color:#9a763d}
+.brief81Timer small{font:700 .43rem/1.35 "DM Mono",monospace;letter-spacing:.1em;color:#777a73}
+.brief81Close{
+  position:static!important;width:43px!important;height:43px!important;
+  display:grid!important;place-items:center!important;
+  border-radius:0!important;background:#101312!important;color:#F1EEE7!important;
+  border:0!important;font-size:1.35rem!important;
+}
+.brief81Body{padding:0!important}
+.brief81Hero{
+  display:grid;grid-template-columns:minmax(0,1.12fr) minmax(300px,.58fr);
+  min-height:490px;border-bottom:1px solid rgba(17,20,19,.14);
+}
+.brief81HeroCopy{
+  padding:clamp(42px,6vw,76px);
+  display:flex;flex-direction:column;justify-content:center;
+}
+.brief81Eyebrow{color:#876838;font-size:.52rem;letter-spacing:.11em;margin-bottom:24px}
+.brief81Hero h2{
+  margin:0;font-family:Syne,sans-serif;font-size:clamp(3.6rem,7vw,7.2rem);
+  line-height:.79;letter-spacing:-.065em;color:#111413;
+}
+.brief81Hero h2 span{color:#A27D42}
+.brief81HeroCopy>p{max-width:660px;margin:30px 0 0;color:#59605d;font-size:.88rem;line-height:1.82}
+.brief81Portrait{position:relative;min-height:490px;background:#D8D2C7;overflow:hidden}
+.brief81Portrait img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:none!important}
+.brief81Portrait:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(11,14,13,.52),transparent 42%);pointer-events:none}
+.brief81PortraitTag{position:absolute;z-index:2;left:20px;right:20px;bottom:18px;color:white}
+.brief81PortraitTag span{display:block;font:700 .46rem "DM Mono",monospace;letter-spacing:.1em;color:#CFB87C}
+.brief81PortraitTag b{display:block;margin-top:6px;font-family:Syne,sans-serif;font-size:.78rem}
+
+.brief81Proof,.brief81Story{padding:clamp(46px,5vw,68px)}
+.brief81Proof{background:#111413;color:#F1EEE7}
+.brief81SectionHead{display:grid;grid-template-columns:.34fr 1fr;gap:30px;align-items:start;margin-bottom:34px}
+.brief81SectionHead>span{color:#CFB87C;font-size:.48rem;letter-spacing:.1em}
+.brief81SectionHead h3{margin:0;font-family:Syne,sans-serif;font-size:clamp(1.9rem,3.3vw,3.5rem);line-height:.9;letter-spacing:-.045em}
+.brief81Metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid rgba(255,255,255,.15);border-left:1px solid rgba(255,255,255,.15)}
+.brief81Metrics article{min-width:0;padding:25px 22px;border-right:1px solid rgba(255,255,255,.15);border-bottom:1px solid rgba(255,255,255,.15)}
+.brief81Metrics strong{display:block;font:800 clamp(2.5rem,4vw,4.4rem)/.9 Syne,sans-serif;color:#CFB87C;letter-spacing:-.05em}
+.brief81Metrics small{display:block;margin-top:11px;font:700 .46rem "DM Mono",monospace;letter-spacing:.09em;color:#F1EEE7}
+.brief81Metrics p{margin:20px 0 0;color:#999E99;font-size:.7rem;line-height:1.65}
+
+.brief81Story{background:#E5E1D8}
+.brief81Story .brief81SectionHead>span{color:#80643A}
+.brief81Story .brief81SectionHead h3{color:#111413}
+.brief81Process{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.brief81Process article{padding:22px;background:#F3F0E9;border:1px solid rgba(17,20,19,.12)}
+.brief81Process b{display:block;color:#A27D42;font:700 .55rem "DM Mono",monospace}
+.brief81Process strong{display:block;margin-top:38px;font-family:Syne,sans-serif;font-size:1.15rem}
+.brief81Process p{margin:11px 0 0;color:#646A66;font-size:.7rem;line-height:1.65}
+
+.brief81Split{display:grid;grid-template-columns:1.12fr .88fr;border-top:1px solid rgba(17,20,19,.14);border-bottom:1px solid rgba(17,20,19,.14)}
+.brief81Value,.brief81Next{padding:clamp(42px,5vw,64px)}
+.brief81Value{background:#F3F0E9}
+.brief81Next{background:#CFB87C}
+.brief81Split .mono{font-size:.48rem;letter-spacing:.1em;color:#79603A}
+.brief81Split h3{margin:24px 0 0;font-family:Syne,sans-serif;font-size:clamp(1.7rem,2.8vw,3rem);line-height:.92;letter-spacing:-.045em}
+.brief81Split p{margin:20px 0 0;color:#5D625E;font-size:.76rem;line-height:1.75}
+.brief81Next p{color:#393C39}
+.brief81Tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:26px}
+.brief81Tags span{padding:7px 10px;border:1px solid rgba(17,20,19,.16);font:600 .48rem "DM Mono",monospace;letter-spacing:.04em}
+
+.brief81CTA{
+  padding:clamp(42px,5vw,62px);display:grid;
+  grid-template-columns:1fr minmax(210px,.32fr);gap:50px;align-items:end;
+  background:#0C0F0E;color:#F3F0E9;
+}
+.brief81CTA .mono{color:#CFB87C;font-size:.48rem;letter-spacing:.1em}
+.brief81CTA h3{margin:17px 0 0;font-family:Syne,sans-serif;font-size:clamp(2rem,4vw,4.5rem);line-height:.87;letter-spacing:-.055em}
+.brief81Actions{display:grid;gap:7px}
+.brief81Actions a{
+  min-height:46px;padding:0 14px;display:flex;align-items:center;justify-content:space-between;
+  border:1px solid rgba(255,255,255,.18);color:#F3F0E9!important;text-decoration:none;
+  font:700 .52rem "DM Mono",monospace;letter-spacing:.08em;
+  transition:background .2s,color .2s,transform .2s;
+}
+.brief81Actions a.primary{background:#CFB87C;color:#0C0F0E!important;border-color:#CFB87C}
+.brief81Actions a:hover{transform:translateX(3px);background:#F3F0E9;color:#0C0F0E!important}
+
+@media(max-width:900px){
+ .brief81Hero,.brief81Split,.brief81CTA{grid-template-columns:1fr}
+ .brief81Portrait{min-height:500px}
+ .brief81Metrics,.brief81Process{grid-template-columns:1fr 1fr}
+ .brief81SectionHead{grid-template-columns:1fr}
+ .brief81CTA{gap:32px}
+ .brief81Actions{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:600px){
+ .brief81Panel{width:100vw!important;max-height:100svh!important;height:100svh;border:0!important}
+ .brief81Top{grid-template-columns:1fr auto}
+ .brief81Timer{display:none}
+ .brief81Identity small{display:none}
+ .brief81HeroCopy,.brief81Proof,.brief81Story,.brief81Value,.brief81Next,.brief81CTA{padding:34px 20px}
+ .brief81Hero h2{font-size:clamp(3.2rem,17vw,5rem)}
+ .brief81Portrait{min-height:430px}
+ .brief81Metrics,.brief81Process{grid-template-columns:1fr}
+ .brief81Actions{grid-template-columns:1fr}
+}
+</style>
+
+
+<style id="v82-f1-brief-integration">
+/* =========================================================
+   V82 — F1 HERO INTEGRATION + MATCHED 60-SECOND EXPERIENCE
+   Uses the original V39 steel / copper / paper palette.
+   ========================================================= */
+
+/* ---------- HERO: integrate the car into the composition ---------- */
+.hero{
+  background:
+    radial-gradient(circle at 70% 20%,rgba(140,166,183,.12),transparent 26%),
+    radial-gradient(circle at 90% 75%,rgba(183,123,89,.09),transparent 25%),
+    var(--ink)!important;
+}
+.heroStage{
+  grid-template-columns:minmax(0,.82fr) minmax(500px,1.05fr)!important;
+  gap:clamp(28px,4vw,64px)!important;
+}
+.heroCopy{position:relative;z-index:4}
+.heroCopy::after{
+  content:"";
+  display:block;
+  width:clamp(90px,10vw,150px);
+  height:2px;
+  margin-top:34px;
+  background:linear-gradient(90deg,var(--copper),transparent);
+}
+.heroKicker{color:var(--steel)!important}
+.hero h1{font-size:clamp(5.2rem,9.6vw,10.6rem)!important}
+.hero h1 .outline{
+  -webkit-text-stroke:1.35px rgba(244,241,234,.9)!important;
+  transition:color .45s ease,-webkit-text-stroke .45s ease;
+}
+.hero:hover h1 .outline{
+  color:rgba(140,166,183,.06);
+  -webkit-text-stroke-color:var(--steel);
+}
+.heroPitch{grid-template-columns:1fr!important;max-width:620px}
+.heroPitch strong{
+  color:var(--steel)!important;
+  font-family:"DM Mono",monospace!important;
+  font-size:.62rem!important;
+  letter-spacing:.1em!important;
+  line-height:1.75!important;
+}
+
+/* Car is no longer a detached rounded card */
+.heroVisual{
+  min-height:clamp(570px,66vh,720px)!important;
+  margin-right:calc((100vw - var(--page))/2 * -1);
+  border-radius:0!important;
+  border:0!important;
+  border-left:1px solid rgba(140,166,183,.28)!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+  background:#101519!important;
+}
+.heroVisual::before{
+  content:"PERFORMANCE / AERODYNAMICS / SYSTEMS";
+  position:absolute;z-index:4;
+  top:22px;left:-1px;
+  padding:9px 12px;
+  background:var(--steel);
+  color:var(--ink);
+  font:500 .48rem "DM Mono",monospace;
+  letter-spacing:.11em;
+}
+.heroVisual img{
+  filter:saturate(.92) contrast(1.05) brightness(.78)!important;
+  object-position:center 54%!important;
+}
+.heroVisual::after{
+  background:
+    linear-gradient(90deg,var(--ink) 0%,rgba(13,16,18,.5) 10%,transparent 36%),
+    linear-gradient(180deg,rgba(13,16,18,.05),rgba(13,16,18,.08) 50%,rgba(13,16,18,.9))!important;
+}
+.heroVisualInfo{
+  left:clamp(24px,4vw,58px)!important;
+  right:clamp(24px,5vw,78px)!important;
+  bottom:28px!important;
+}
+.heroVisualInfo small{color:var(--steel)!important}
+.heroVisualInfo strong{max-width:430px!important}
+.heroVisualInfo b{
+  color:var(--paper)!important;
+  border:1px solid rgba(255,255,255,.18);
+  padding:10px 12px;
+}
+
+/* subtle engineering datum lines over the image */
+.heroVisualInfo::before{
+  content:"01";
+  position:absolute;
+  left:0;bottom:calc(100% + 18px);
+  color:var(--copper);
+  font:500 .52rem "DM Mono",monospace;
+  letter-spacing:.1em;
+}
+.heroVisualInfo::after{
+  content:"";
+  position:absolute;
+  left:27px;bottom:calc(100% + 22px);
+  width:72px;height:1px;background:rgba(183,123,89,.72);
+}
+
+/* ---------- 60 SECOND BUTTON: connect it visually ---------- */
+.navCta{
+  position:relative;overflow:hidden;
+  background:var(--steel)!important;color:var(--ink)!important;
+}
+.navCta::after{
+  content:"";
+  position:absolute;inset:0;
+  background:var(--paper);
+  transform:translateX(-102%);
+  transition:transform .35s cubic-bezier(.22,.61,.36,1);
+  z-index:-1;
+}
+.navCta:hover::after{transform:none}
+.navCta:hover{background:var(--steel)!important}
+
+/* ---------- MODAL OPEN/CLOSE TRANSITION ---------- */
+#briefModal{
+  display:flex!important;
+  visibility:hidden;
+  opacity:0;
+  pointer-events:none;
+  background:rgba(7,10,11,0);
+  backdrop-filter:blur(0);
+  transition:
+    opacity .38s ease,
+    visibility 0s linear .55s,
+    background .45s ease,
+    backdrop-filter .45s ease;
+}
+#briefModal.open{
+  visibility:visible;
+  opacity:1;
+  pointer-events:auto;
+  background:rgba(7,10,11,.82);
+  backdrop-filter:blur(12px);
+  transition-delay:0s;
+}
+#briefModal .brief81Panel{
+  opacity:0;
+  transform:translateY(36px) scale(.975);
+  clip-path:inset(0 0 100% 0);
+  transition:
+    clip-path .62s cubic-bezier(.22,.61,.36,1),
+    transform .62s cubic-bezier(.22,.61,.36,1),
+    opacity .28s ease;
+}
+#briefModal.open .brief81Panel{
+  opacity:1;
+  transform:none;
+  clip-path:inset(0 0 0 0);
+}
+#briefModal .brief81HeroCopy>*,
+#briefModal .brief81Portrait,
+#briefModal .brief81Proof,
+#briefModal .brief81Story,
+#briefModal .brief81Split,
+#briefModal .brief81CTA{
+  opacity:0;
+  transform:translateY(14px);
+}
+#briefModal.open .brief81HeroCopy>*,
+#briefModal.open .brief81Portrait,
+#briefModal.open .brief81Proof,
+#briefModal.open .brief81Story,
+#briefModal.open .brief81Split,
+#briefModal.open .brief81CTA{
+  opacity:1;transform:none;
+  transition:opacity .5s ease,transform .6s cubic-bezier(.22,.61,.36,1);
+}
+#briefModal.open .brief81HeroCopy>*:nth-child(1){transition-delay:.30s}
+#briefModal.open .brief81HeroCopy>*:nth-child(2){transition-delay:.36s}
+#briefModal.open .brief81HeroCopy>*:nth-child(3){transition-delay:.42s}
+#briefModal.open .brief81Portrait{transition-delay:.34s}
+#briefModal.open .brief81Proof{transition-delay:.44s}
+#briefModal.open .brief81Story{transition-delay:.50s}
+#briefModal.open .brief81Split{transition-delay:.56s}
+#briefModal.open .brief81CTA{transition-delay:.62s}
+
+/* ---------- 60-SECOND PROFILE: MATCH V39 COLORS ---------- */
+.brief81Panel{
+  background:var(--paper)!important;
+  color:var(--ink)!important;
+}
+.brief81Top{
+  background:rgba(244,241,234,.96)!important;
+  border-bottom-color:var(--line)!important;
+}
+.brief81Monogram{
+  background:var(--ink)!important;
+  color:var(--steel)!important;
+}
+.brief81Timer>span{color:var(--copper)!important}
+.brief81Close{background:var(--ink)!important;color:var(--paper)!important}
+.brief81Eyebrow{color:var(--steel-dark)!important}
+.brief81Hero h2 span{color:var(--steel-dark)!important}
+.brief81PortraitTag span{color:#b7c9d3!important}
+
+/* dark proof block uses steel as the primary accent */
+.brief81Proof{background:var(--ink)!important}
+.brief81Proof .brief81SectionHead>span{color:var(--steel)!important}
+.brief81Metrics strong{color:var(--steel)!important}
+.brief81Metrics article:nth-child(2) strong,
+.brief81Metrics article:nth-child(4) strong{color:#c88c68!important}
+
+/* process section uses V39 paper/steel language */
+.brief81Story{background:var(--paper-2)!important}
+.brief81Story .brief81SectionHead>span{color:var(--steel-dark)!important}
+.brief81Process article{
+  background:var(--paper)!important;
+  border-color:var(--line)!important;
+  transition:transform .25s ease,border-color .25s ease,background .25s ease;
+}
+.brief81Process article:hover{
+  transform:translateY(-4px);
+  border-color:rgba(95,120,138,.4)!important;
+  background:#f8f6f0!important;
+}
+.brief81Process b{color:var(--copper)!important}
+
+/* split section: steel + warm copper accent, not gold */
+.brief81Value{background:var(--paper)!important}
+.brief81Next{
+  background:var(--steel)!important;
+  color:var(--ink)!important;
+}
+.brief81Split .mono{color:var(--steel-dark)!important}
+.brief81Next .mono{color:#334956!important}
+.brief81Next p{color:#2f3b41!important}
+.brief81Tags span{border-color:rgba(95,120,138,.28)!important}
+
+/* final CTA mirrors V39 nav / hero */
+.brief81CTA{background:var(--ink)!important}
+.brief81CTA .mono{color:var(--steel)!important}
+.brief81Actions a.primary{
+  background:var(--steel)!important;
+  color:var(--ink)!important;
+  border-color:var(--steel)!important;
+}
+.brief81Actions a:not(.primary):hover{
+  background:var(--copper)!important;
+  border-color:var(--copper)!important;
+  color:var(--ink)!important;
+}
+
+/* thin progress rail inside the brief */
+.brief81Panel{scrollbar-color:var(--steel-dark) var(--ink)}
+.brief81Panel::-webkit-scrollbar{width:7px}
+.brief81Panel::-webkit-scrollbar-track{background:var(--ink)}
+.brief81Panel::-webkit-scrollbar-thumb{background:var(--steel-dark)}
+
+/* Responsive: keep car visually important without breaking layout */
+@media(max-width:1050px){
+  .heroStage{grid-template-columns:1fr!important}
+  .heroVisual{
+    margin-right:0!important;
+    min-height:clamp(470px,65vw,650px)!important;
+    border:1px solid rgba(140,166,183,.2)!important;
+  }
+  .heroVisual::after{
+    background:linear-gradient(180deg,rgba(13,16,18,.02),rgba(13,16,18,.08) 52%,rgba(13,16,18,.9))!important;
+  }
+}
+@media(max-width:620px){
+  #briefModal .brief81Panel{
+    transform:translateY(24px);
+    clip-path:inset(0 0 12% 0);
+  }
+  #briefModal.open .brief81Panel{transform:none;clip-path:inset(0)}
+  .heroVisual{min-height:410px!important}
+  .heroVisual::before{top:14px;font-size:.42rem}
+}
+@media(prefers-reduced-motion:reduce){
+  #briefModal,#briefModal .brief81Panel,
+  #briefModal .brief81HeroCopy>*,#briefModal .brief81Portrait,
+  #briefModal .brief81Proof,#briefModal .brief81Story,
+  #briefModal .brief81Split,#briefModal .brief81CTA{
+    transition:none!important;transform:none!important;clip-path:none!important;
+  }
+}
+</style>
+
 </head>
 <body>
 
@@ -1415,52 +1832,92 @@
     </div>
   </footer>
 
-  <!-- RECRUITER BRIEF -->
+  <!-- RECRUITER BRIEF — V81 ELEVATED -->
   <div class="modal" id="briefModal" role="dialog" aria-modal="true" aria-labelledby="briefTitle">
-    <div class="modalPanel">
-      <div class="modalHead">
-        <div>
-          <strong>JUAN CORONA ENRIQUEZ</strong>
-          <div class="mono eyebrow">60-SECOND ENGINEERING PROFILE</div>
+    <div class="modalPanel brief81Panel">
+      <div class="brief81Top">
+        <div class="brief81Identity">
+          <span class="brief81Monogram">JCE</span>
+          <div>
+            <strong>JUAN CORONA ENRIQUEZ</strong>
+            <small>MECHANICAL ENGINEERING // RECRUITER SNAPSHOT</small>
+          </div>
         </div>
-        <button class="modalClose" type="button" aria-label="Close recruiter brief">×</button>
+        <div class="brief81Timer"><span>60</span><small>SECONDS<br>TO KNOW ME</small></div>
+        <button class="modalClose brief81Close" type="button" aria-label="Close recruiter brief">×</button>
       </div>
 
-      <div class="modalBody">
-        <div class="briefHero">
+      <div class="modalBody brief81Body">
+        <section class="brief81Hero">
+          <div class="brief81HeroCopy">
+            <div class="mono brief81Eyebrow">THE SHORT VERSION</div>
+            <h2 id="briefTitle">I LEARN BY<br><span>BUILDING.</span></h2>
+            <p>I’m a mechanical engineering student who wants to understand how a system behaves after it leaves the page. I like building the first version, testing it, finding what is wrong, and making the next version better.</p>
+          </div>
+
+          <div class="brief81Portrait">
+            <img src="profile.png" alt="Juan Corona Enriquez">
+            <div class="brief81PortraitTag">
+              <span>MECHANICAL ENGINEERING</span>
+              <b>CU BOULDER // MAY 2028</b>
+            </div>
+          </div>
+        </section>
+
+        <section class="brief81Proof">
+          <div class="brief81SectionHead">
+            <span class="mono">01 // PROOF</span>
+            <h3>WHAT I’VE ALREADY PUT INTO PRACTICE.</h3>
+          </div>
+          <div class="brief81Metrics">
+            <article><strong>1st</strong><small>OF 25 TEAMS</small><p>Trebuchet engineering challenge — designed, built, tested, and refined under changing constraints.</p></article>
+            <article><strong>93%</strong><small>GRAB SUCCESS</small><p>Claw-machine pneumatic testing across 30 prize items during iterative prototype validation.</p></article>
+            <article><strong>100+</strong><small>GAMEPLAY CYCLES</small><p>Physical testing used to evaluate durability, motion, structure, and system integration.</p></article>
+            <article><strong>100+</strong><small>MEDICATION SYSTEMS</small><p>Professional responsibility supporting automated medication-dispensing readiness in a hospital environment.</p></article>
+          </div>
+        </section>
+
+        <section class="brief81Story">
+          <div class="brief81SectionHead">
+            <span class="mono">02 // HOW I WORK</span>
+            <h3>THE PATTERN BEHIND THE WORK.</h3>
+          </div>
+          <div class="brief81Process">
+            <article><b>01</b><strong>UNDERSTAND</strong><p>Start with the problem, constraints, interfaces, and what success actually means.</p></article>
+            <article><b>02</b><strong>BUILD</strong><p>Turn the idea into something physical enough to reveal the real problems.</p></article>
+            <article><b>03</b><strong>TEST</strong><p>Use measurements and observation instead of assuming the first idea is right.</p></article>
+            <article><b>04</b><strong>IMPROVE</strong><p>Use failures, results, and feedback to make the next version stronger.</p></article>
+          </div>
+        </section>
+
+        <section class="brief81Split">
+          <div class="brief81Value">
+            <span class="mono">03 // WHAT I BRING</span>
+            <h3>TECHNICAL CURIOSITY.<br>PROFESSIONAL DISCIPLINE.</h3>
+            <p>My engineering work has given me hands-on experience with SolidWorks, prototyping, 3D printing, materials testing, physical assembly, and technical documentation. Hospital pharmacy has added another layer: accuracy, reliability, communication, training, and responsibility when details matter.</p>
+            <div class="brief81Tags">
+              <span>SolidWorks</span><span>Prototyping</span><span>3D Printing</span><span>Materials Testing</span><span>English + Spanish</span>
+            </div>
+          </div>
+
+          <div class="brief81Next">
+            <span class="mono">04 // WHAT’S NEXT</span>
+            <h3>I’M LOOKING FOR THE TEAM THAT MAKES ME BETTER.</h3>
+            <p>I’m interested in mechanical design, automotive, aerospace, testing, manufacturing, and product-development environments where I can contribute, learn quickly, and earn more responsibility.</p>
+          </div>
+        </section>
+
+        <section class="brief81CTA">
           <div>
-            <div class="mono eyebrow">RECRUITER BRIEF // 60 SECONDS</div>
-            <h2 class="briefTitle" id="briefTitle">I’M NOT TRYING TO LOOK FINISHED.<br><span>I’M TRYING TO BECOME EXCEPTIONAL.</span></h2>
+            <span class="mono">IF YOU ONLY REMEMBER ONE THING</span>
+            <h3>I’M READY TO LEARN.<br>READY TO CONTRIBUTE.</h3>
           </div>
-          <p class="briefIntro">I’m a mechanical engineering student who likes turning ideas into something that can be built, tested, questioned, and improved. I’m early in my career, but I already know the standard I want to work toward: learn quickly, take ownership, and become someone a strong engineering team can rely on.</p>
-        </div>
-
-        <div class="briefProofLabel mono">SELECTED EVIDENCE // NOT JUST CLAIMS</div>
-        <div class="briefGrid">
-          <div class="briefItem"><b>1 / 25</b><span><strong>Trebuchet Challenge</strong>Designed, built, tested, and refined a mechanical system that finished first among 25 engineering teams.</span></div>
-          <div class="briefItem"><b>93%</b><span><strong>MST Claw Machine</strong>Validated pneumatic grab performance through testing with 30 prize items.</span></div>
-          <div class="briefItem"><b>&lt;2 mm</b><span><strong>Measured Performance</strong>Observed backlash after integrating and testing the claw machine’s motion system.</span></div>
-          <div class="briefItem"><b>80+</b><span><strong>Professional Responsibility</strong>Support operational readiness across more than 80 automated medication dispensing systems.</span></div>
-        </div>
-
-        <div class="briefStory">
-          <article><div class="mono eyebrow">HOW I THINK</div><h3>BUILD → TEST → LEARN → IMPROVE.</h3><p>I want to understand why something works, not just get it to work once. My projects have taught me to use physical testing and iteration to expose problems that are easy to miss on paper.</p></article>
-          <article><div class="mono eyebrow">WHAT WORK TAUGHT ME</div><h3>DETAILS EARN TRUST.</h3><p>Hospital pharmacy has put me in an environment where accuracy, process, documentation, and communication matter every day. That discipline shapes the way I approach engineering work.</p></article>
-          <article><div class="mono eyebrow">WHAT I BRING</div><h3>CURIOSITY + DISCIPLINE.</h3><p>SolidWorks, Fusion 360, C++, prototyping, technical documentation, bilingual English/Spanish communication, and experience training and supporting others.</p></article>
-        </div>
-
-        <div class="briefClose">
-          <div>
-            <div class="mono eyebrow">WHAT I WANT NEXT</div>
-            <h3>GIVE ME A DIFFICULT PROBLEM AND A STRONG TEAM TO LEARN FROM.</h3>
-            <p>I’m exploring mechanical design, automotive, aerospace, manufacturing, and product-development internships where I can contribute now and keep earning greater responsibility.</p>
+          <div class="brief81Actions">
+            <a class="primary" href="resume.pdf" target="_blank" rel="noopener">RÉSUMÉ <b>↗</b></a>
+            <a href="https://www.linkedin.com/in/mecengineering-juancorenr" target="_blank" rel="noopener">LINKEDIN <b>↗</b></a>
+            <a href="mailto:juancorenr4@gmail.com">EMAIL JUAN <b>↗</b></a>
           </div>
-          <div class="briefActions">
-            <a href="resume.pdf" target="_blank" rel="noopener">VIEW RÉSUMÉ ↗</a>
-            <a href="mailto:Juancorenr4@gmail.com">EMAIL JUAN ↗</a>
-            <a href="https://www.linkedin.com/in/mecengineering-juancorenr" target="_blank" rel="noopener">LINKEDIN ↗</a>
-          </div>
-        </div>
+        </section>
       </div>
     </div>
   </div>
@@ -1491,7 +1948,7 @@
 
     function closeBrief(){
       modal.classList.remove("open");
-      document.body.classList.remove("modal-open");
+      window.setTimeout(()=>document.body.classList.remove("modal-open"), 420);
     }
 
     openButtons.forEach(btn=>btn.addEventListener("click",openBrief));
