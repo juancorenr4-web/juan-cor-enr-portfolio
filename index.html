@@ -3,13 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Juan Corona Enriquez | Mechanical Engineering</title>
+  <meta name="theme-color" content="#080808">
+  <meta
+    name="description"
+    content="Connect with Juan Corona Enriquez, a mechanical engineering student at CU Boulder."
+  >
+
+  <title>Juan Corona Enriquez | Connect</title>
 
   <style>
     :root {
       --black: #080808;
-      --ivory: #faf8ef;
-      --gold: #d2a647;
+      --gold: #dfb45d;
+      --ivory: #fffdf8;
+      --text: #171717;
+      --muted: #625e54;
+      --border: #dfd7c5;
     }
 
     * {
@@ -17,526 +26,856 @@
     }
 
     body {
+      position: relative;
+      isolation: isolate;
       margin: 0;
-      padding: 24px;
-      background: #181818;
-      color: var(--ivory);
+      min-height: 100vh;
+      padding: 45px 18px;
+      background: #eae7df;
+      color: var(--text);
       font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
     }
 
-    main {
-      max-width: 760px;
+    /* Engineering paper grid */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background-image:
+        linear-gradient(#8c754512 1px, transparent 1px),
+        linear-gradient(90deg, #8c754512 1px, transparent 1px),
+        linear-gradient(#8c754508 1px, transparent 1px),
+        linear-gradient(90deg, #8c754508 1px, transparent 1px);
+      background-size:
+        100px 100px,
+        100px 100px,
+        20px 20px,
+        20px 20px;
+    }
+
+    .background-drawing {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 620px;
       margin: auto;
       overflow: hidden;
-      border: 1px solid #333;
+      border: 1px solid #cbb989;
+      border-radius: 16px;
+      background: var(--ivory);
+      box-shadow:
+        0 30px 85px #21180626,
+        0 3px 12px #21180612;
     }
 
-    .hero {
+    .header {
       position: relative;
       overflow: hidden;
-      padding: 40px;
-      background: var(--black);
+      padding: 34px 32px 38px;
+      border-bottom: 3px solid var(--gold);
+      background:
+        radial-gradient(
+          ellipse at 100% 0%,
+          #3c3019,
+          transparent 65%
+        ),
+        var(--black);
+      color: white;
     }
 
-    .top {
+    .header::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(#dfb45d0b 1px, transparent 1px),
+        linear-gradient(90deg, #dfb45d0b 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .brand-row {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       gap: 20px;
-      margin-bottom: 48px;
+      margin-bottom: 26px;
     }
 
-    .monogram {
-      width: 76px;
-      height: 76px;
-      display: grid;
-      place-items: center;
-      flex-shrink: 0;
-      background: var(--gold);
-      color: var(--black);
-      font-family: Georgia, serif;
-      font-weight: bold;
-      font-size: 30px;
-      letter-spacing: -4px;
-      padding-right: 4px;
+    .jce-logo {
+      display: block;
+      width: 66px;
+      height: 60px;
+      object-fit: contain;
+      border-radius: 3px;
+      box-shadow: 0 0 28px #dfb45d23;
     }
 
-    .label {
+    .brand-label {
+      color: var(--gold);
       text-align: right;
-      font-size: 11px;
+      font-size: 10px;
+      letter-spacing: 2px;
       line-height: 1.8;
+    }
+
+    .brand-label span {
+      color: #eee;
+      letter-spacing: 3px;
+    }
+
+    /* Circular profile picture */
+    .photo-frame {
+      width: 120px;
+      height: 120px;
+      margin: 0 0 24px;
+      padding: 4px;
+      border: 2px solid var(--gold);
+      border-radius: 50%;
+      background: #111;
+      box-shadow:
+        0 0 0 6px #dfb45d0f,
+        0 8px 24px #0000004d;
+    }
+
+    .profile-photo {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 25%;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 8vw, 51px);
+      font-weight: 900;
+      line-height: 1.02;
+      letter-spacing: -1.8px;
+      text-transform: uppercase;
+      text-shadow: 0 2px 10px black;
+    }
+
+    h1 span {
+      display: block;
+      color: #f0cf89;
+    }
+
+    .tagline {
+      margin: 18px 0 25px;
+      color: var(--gold);
+      font-size: clamp(11px, 2.7vw, 16px);
+      font-weight: 600;
       letter-spacing: 3px;
       text-transform: uppercase;
     }
 
-    .label span {
-      color: var(--gold);
+    .school-block {
+      width: fit-content;
+      background: #080808dc;
     }
 
-    h1 {
-      position: relative;
-      margin: 0;
-      font-size: clamp(36px, 7vw, 66px);
-      font-weight: 900;
-      line-height: 0.98;
-      letter-spacing: -2px;
-      text-transform: uppercase;
-    }
-
-    .tagline {
-      position: relative;
-      margin: 22px 0 38px;
-      color: var(--gold);
-      font-size: clamp(13px, 3vw, 21px);
-      letter-spacing: 4px;
-      text-transform: uppercase;
-    }
-
-    .education {
-      position: relative;
-      line-height: 1.7;
-      font-size: 15px;
-    }
-
-    .education::before {
+    .school-block::before {
       content: "";
       display: block;
-      width: 54px;
-      height: 3px;
-      margin-bottom: 16px;
+      width: 40px;
+      height: 2px;
+      margin-bottom: 12px;
       background: var(--gold);
     }
 
-    .education strong {
-      font-size: 20px;
+    .school {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 700;
     }
 
-    /* Decorative engineering drawing */
-    .drawing {
+    .degree,
+    .graduation {
+      margin: 3px 0 0;
+      color: #d0cec7;
+      font-size: 13px;
+    }
+
+    .header-drawing {
       position: absolute;
-      right: -50px;
-      bottom: 8px;
-      width: 260px;
-      height: 260px;
-      opacity: 0.16;
+      right: -15px;
+      bottom: 6px;
+      width: 225px;
+      height: auto;
+      opacity: 0.45;
       pointer-events: none;
     }
 
-    .connect {
-      padding: 36px 40px;
-      background: var(--ivory);
-      color: var(--black);
+    .content {
+      padding: 30px 32px;
     }
 
-    h2 {
-      margin: 0 0 14px;
-      font-size: clamp(34px, 6vw, 48px);
-      line-height: 1;
-      letter-spacing: -2px;
+    .availability {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 22px;
+      padding: 6px 11px;
+      border: 1px solid #d9c58d;
+      border-radius: 30px;
+      background: #f2e8d1;
+      color: #5b4417;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.7px;
+    }
+
+    .availability::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #856321;
+      box-shadow: 0 0 0 3px #b38c3520;
+    }
+
+    .welcome {
+      margin: 0 0 12px;
+      font-size: clamp(33px, 7.6vw, 46px);
+      font-weight: 900;
+      line-height: 1.02;
+      letter-spacing: -1.8px;
     }
 
     .intro {
-      margin: 0;
-      font-size: 17px;
-      line-height: 1.5;
-    }
-
-    .skills {
-      margin: 24px 0;
-      padding-top: 16px;
-      border-top: 2px solid var(--gold);
+      margin: 0 0 25px;
+      color: var(--muted);
       font-size: 14px;
-      line-height: 1.6;
+      line-height: 1.7;
     }
 
     .links {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
-    }
-
-    .button {
-      display: block;
-      width: 100%;
-      padding: 16px 12px;
-      border: 1px solid var(--black);
-      background: transparent;
-      color: var(--black);
-      font: inherit;
-      font-size: 14px;
-      font-weight: bold;
-      text-align: center;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    .primary {
-      background: var(--black);
-      color: var(--ivory);
-    }
-
-    .wide {
-      grid-column: 1 / -1;
-    }
-
-    .button:hover {
-      background: var(--gold);
-      color: var(--black);
-    }
-
-    a:focus-visible,
-    button:focus-visible {
-      outline: 3px solid var(--gold);
-      outline-offset: 4px;
-    }
-
-    .contact {
-      margin: 26px 0;
-      font-size: 15px;
-      line-height: 1.8;
-    }
-
-    .contact a {
-      color: inherit;
-      text-decoration: none;
-      overflow-wrap: anywhere;
-    }
-
-    .contact a:hover {
-      text-decoration: underline;
-    }
-
-    .logos {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 24px;
       padding-top: 24px;
-      border-top: 1px solid #d7d3c7;
-    }
-
-    .cu {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding-right: 24px;
-      border-right: 1px solid #777;
-      color: var(--black);
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 18px;
-    }
-
-    .cu img {
-      width: 120px;
-      height: auto;
-      background: var(--black);
-      padding: 12px;
-    }
-
-    .shpe img {
-      display: block;
-      width: 130px;
-      height: auto;
-    }
-
-    .references {
-      margin-top: 30px;
-      padding-top: 26px;
       border-top: 2px solid var(--gold);
     }
 
-    .references h2 {
-      font-size: 30px;
-      letter-spacing: -1px;
+    .button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 56px;
+      padding: 13px 10px;
+      border: 1px solid var(--black);
+      border-radius: 9px;
+      background: linear-gradient(140deg, #292824, #0b0b0b);
+      color: white;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 4px 9px #00000010;
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
     }
 
-    .sample-note {
+    .button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 9px 18px #00000020;
+    }
+
+    .button.gold {
+      border-color: #cfaa5c;
+      background: linear-gradient(120deg, #f1d491, #dbad50);
+      color: var(--black);
+      box-shadow: 0 5px 13px #a5782425;
+    }
+
+    .button.gold:hover {
+      background: linear-gradient(120deg, #f8e3b6, #e9bd69);
+    }
+
+    .icon {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    a:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid #92702b;
+      outline-offset: 4px;
+    }
+
+    details {
+      margin-top: 25px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fffdf9;
+    }
+
+    summary {
+      padding: 17px 16px;
+      cursor: pointer;
       font-size: 13px;
-      color: #555;
-      line-height: 1.5;
+      font-weight: 700;
+    }
+
+    details[open] summary {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .references {
+      padding: 0 16px;
     }
 
     .reference {
-      padding: 18px 0;
-      border-bottom: 1px solid #d7d3c7;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .reference:last-child {
+      border-bottom: 0;
     }
 
     .reference h3 {
-      margin: 0 0 8px;
-      font-size: 18px;
+      margin: 0;
+      font-size: 14px;
     }
 
     .reference p {
-      margin: 4px 0;
-      font-size: 14px;
-      line-height: 1.5;
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 12px;
     }
 
     .reference a {
       color: inherit;
       overflow-wrap: anywhere;
+      text-underline-offset: 3px;
     }
 
-    footer {
+    .reference a:hover {
+      color: #785715;
+    }
+
+    .contact-info {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .contact-info a {
+      display: inline-block;
+      margin: 3px 0;
+      color: var(--muted);
+      font-size: 13px;
+      text-decoration: none;
+      overflow-wrap: anywhere;
+    }
+
+    .contact-info a:hover {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    /* Equally spaced, centered logos */
+    .affiliation-logos {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: stretch;
+      margin: 0 32px;
+      padding: 24px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .university-logo,
+    .shpe-logo {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 16px;
-      margin-top: 30px;
-      font-size: 12px;
-      color: #555;
+      justify-content: center;
+      min-width: 0;
+      padding: 0 18px;
     }
 
-    .footer-logo {
-      color: #a77c26;
-      font-family: Georgia, serif;
-      font-size: 24px;
-      font-weight: bold;
-      letter-spacing: -3px;
+    .university-logo img {
+      display: block;
+      width: 65px;
+      max-width: 100%;
+      height: auto;
     }
 
-    [hidden] {
-      display: none;
+    .shpe-logo {
+      border-left: 1px solid var(--border);
     }
 
-    @media (max-width: 480px) {
+    .shpe-logo img {
+      display: block;
+      width: 105px;
+      max-width: 100%;
+      height: auto;
+    }
+
+    .footer {
+      padding: 21px 20px;
+      border-top: 1px solid var(--border);
+      background: #ede5d4;
+      color: #625b4e;
+      text-align: center;
+      font-size: 11px;
+    }
+
+    .footer strong {
+      display: block;
+      margin-bottom: 3px;
+      color: #454035;
+      font-weight: 600;
+    }
+
+    @media (max-width: 700px) {
+      .background-drawing {
+        opacity: 0.25;
+      }
+    }
+
+    @media (max-width: 420px) {
       body {
-        padding: 12px;
+        padding: 20px 12px;
       }
 
-      .hero,
-      .connect {
+      .header {
+        padding: 27px 22px 31px;
+      }
+
+      .content {
         padding: 28px 22px;
       }
 
-      .top {
-        margin-bottom: 36px;
+      .brand-label {
+        font-size: 8px;
+        letter-spacing: 1px;
       }
 
-      .label {
-        font-size: 9px;
-        letter-spacing: 1.5px;
+      .photo-frame {
+        width: 110px;
+        height: 110px;
       }
 
+      .tagline {
+        letter-spacing: 2px;
+      }
+
+      .header-drawing {
+        right: -23px;
+        bottom: 8px;
+        width: 165px;
+        opacity: 0.35;
+      }
+
+      .affiliation-logos {
+        margin: 0 20px;
+      }
+
+      .university-logo,
+      .shpe-logo {
+        padding: 0 15px;
+      }
+
+      .university-logo img {
+        width: 55px;
+      }
+
+      .shpe-logo img {
+        width: 85px;
+      }
+    }
+
+    @media (max-width: 340px) {
       .links {
         grid-template-columns: 1fr;
       }
+    }
 
-      .cu {
-        padding-right: 16px;
+    @media (prefers-reduced-motion: reduce) {
+      .button {
+        transition: none;
       }
 
-      .logos {
-        gap: 16px;
-      }
-
-      .shpe img {
-        width: 110px;
+      .button:hover {
+        transform: none;
       }
     }
   </style>
 </head>
 
 <body>
-  <main>
-    <header class="hero">
-      <div class="top">
-        <div class="monogram" aria-label="JCE">JCE</div>
 
-        <div class="label">
-          <span>Mechanical Engineering</span><br>
-          Student
-        </div>
-      </div>
+  <!-- Decorative mechanical drawing background -->
+  <svg
+    class="background-drawing"
+    viewBox="0 0 1440 1000"
+    preserveAspectRatio="xMidYMid slice"
+    fill="none"
+    aria-hidden="true"
+  >
+    <defs>
+      <pattern
+        id="section-hatch"
+        width="8"
+        height="8"
+        patternUnits="userSpaceOnUse"
+        patternTransform="rotate(45)"
+      >
+        <path d="M0 0v8" stroke="#b18b43" stroke-width=".7"/>
+      </pattern>
+    </defs>
 
-      <!-- Decorative engineering line drawing -->
+    <g stroke="#a27b32" stroke-width="1.5">
+      <!-- Flange -->
+      <path d="M35 125h250l35 35v250l-35 35H35L0 410V160z"/>
+      <circle cx="160" cy="285" r="105"/>
+      <circle cx="160" cy="285" r="65"/>
+      <circle cx="160" cy="285" r="20"/>
+      <circle cx="50" cy="175" r="15"/>
+      <circle cx="270" cy="175" r="15"/>
+      <circle cx="50" cy="395" r="15"/>
+      <circle cx="270" cy="395" r="15"/>
+
+      <!-- Section view -->
+      <path
+        d="M1075 110h60v30h90v-50h60v50h95v-30h45v150h-45v-30h-95v50h-60v-50h-90v30h-60z"
+        fill="url(#section-hatch)"
+      />
+      <path d="M1075 170h350v30h-350z" fill="#eae7df"/>
+
+      <!-- Isometric bracket -->
+      <path d="m20 760 160-92 160 92-160 93z"/>
+      <path d="M20 760v24l160 93 160-93v-24M180 853v24"/>
+      <path d="M115 705V560q0-34 30-51l25-14q30-17 30 17v144"/>
+      <path d="M135 716V570q0-22 20-34l22-13q12-7 12 8v132"/>
+      <path d="M115 705l20 11 65-37"/>
+      <ellipse
+        cx="160" cy="571" rx="16" ry="25"
+        transform="rotate(25 160 571)"
+      />
+      <ellipse cx="91" cy="763" rx="21" ry="11"/>
+      <ellipse cx="239" cy="790" rx="21" ry="11"/>
+      <path d="m200 584 69 157-25 15-44-99M200 584v73"/>
+
+      <!-- Slotted plate -->
+      <rect x="1140" y="600" width="240" height="285" rx="22"/>
+      <rect x="1160" y="620" width="200" height="245" rx="12"/>
+      <rect x="1220" y="660" width="80" height="165" rx="40"/>
+      <circle cx="1185" cy="645" r="9"/>
+      <circle cx="1335" cy="645" r="9"/>
+      <circle cx="1185" cy="840" r="9"/>
+      <circle cx="1335" cy="840" r="9"/>
+    </g>
+
+    <g
+      stroke="#a27b32"
+      stroke-width=".8"
+      stroke-dasharray="12 5 2 5"
+    >
+      <path d="M-20 285h380M160 80v410"/>
+      <path d="M1040 185h400M1260 565v355M1100 742h330"/>
+      <path d="M160 480v160M50 175h220M50 395h220"/>
+    </g>
+
+    <g stroke="#96712d" stroke-width=".9">
+      <path d="M0 105V65M320 140V65M0 80h320"/>
+      <path d="M0 75l8 5-8 5M320 75l-8 5 8 5"/>
+      <path d="M340 125h40M340 445h40M365 125v320"/>
+      <path d="M360 125l5 8 5-8M360 445l5-8 5 8"/>
+      <path d="M1075 90V40M1425 90V40M1075 55h350"/>
+      <path d="M1075 50l8 5-8 5M1425 50l-8 5 8 5"/>
+      <path d="M1140 905v45M1380 905v45M1140 935h240"/>
+      <path d="M1140 930l8 5-8 5M1380 930l-8 5 8 5"/>
+      <path d="m1300 685 65-130h55"/>
+      <path d="M20 900h320M20 888v24M340 888v24"/>
+    </g>
+
+    <g
+      fill="#96712d"
+      font-family="monospace"
+      font-size="11"
+      letter-spacing="1"
+    >
+      <text x="140" y="70">80.00</text>
+      <text x="1200" y="46">SECTION A–A</text>
+      <text x="1225" y="925">60.00</text>
+      <text x="1330" y="545">R10</text>
+      <text x="95" y="940">ISOMETRIC VIEW</text>
+      <text x="1155" y="980">DETAIL B / SCALE 2:1</text>
+    </g>
+  </svg>
+
+  <main class="card">
+
+    <header class="header">
+
+      <!-- Gold flange drawing -->
       <svg
-        class="drawing"
-        viewBox="0 0 260 260"
+        class="header-drawing"
+        viewBox="0 0 300 320"
         fill="none"
-        aria-hidden="true">
-        <g stroke="#d2a647" stroke-width="1">
-          <path d="M20 190 L135 125 L245 190 L130 255 Z"/>
-          <path d="M20 190 V205 L130 260 L245 205 V190"/>
-          <path d="M135 125 V30 L185 58 V155"/>
-          <path d="M135 30 L155 18 L205 46 V143 L185 155"/>
-          <ellipse cx="163" cy="76" rx="16" ry="24"/>
-          <ellipse cx="75" cy="191" rx="15" ry="8"/>
-          <ellipse cx="175" cy="210" rx="15" ry="8"/>
-          <path d="M185 155 L215 203 L185 188 Z"/>
-          <path
-            d="M0 125 L260 125 M155 0 V260 M0 230 L260 80"
-            stroke-dasharray="7 7"/>
+        aria-hidden="true"
+      >
+        <g stroke="#e4c47e" stroke-width="1.3">
+          <circle cx="150" cy="150" r="94"/>
+          <circle cx="150" cy="150" r="84"/>
+          <circle cx="150" cy="150" r="49"/>
+          <circle cx="150" cy="150" r="36"/>
+          <path d="M140 115v-12h20v12"/>
+          <circle cx="150" cy="81" r="10"/>
+          <circle cx="219" cy="150" r="10"/>
+          <circle cx="150" cy="219" r="10"/>
+          <circle cx="81" cy="150" r="10"/>
+        </g>
+
+        <g
+          stroke="#dfb45d"
+          stroke-width=".7"
+          stroke-dasharray="9 4 2 4"
+        >
+          <circle cx="150" cy="150" r="69"/>
+          <path d="M30 150h240M150 30v240"/>
+        </g>
+
+        <g stroke="#dfb45d" stroke-width=".8">
+          <path d="M56 251v31M244 251v31M56 272h188"/>
+          <path d="M56 268l8 4-8 4M244 268l-8 4 8 4"/>
+          <path d="M253 56h30M253 244h30M274 56v188"/>
+          <path d="M270 56l4 8 4-8M270 244l4-8 4 8"/>
+          <path d="m224 91 24-39h34M160 81l36-53h60"/>
+        </g>
+
+        <g
+          fill="#e4c47e"
+          font-family="monospace"
+          font-size="9"
+          letter-spacing="1"
+        >
+          <text x="128" y="266">Ø100</text>
+          <text x="203" y="22">4 × Ø10</text>
+          <text x="244" y="45">PCD 74</text>
+          <text x="87" y="304" font-size="8">
+            FLANGE / FRONT VIEW
+          </text>
         </g>
       </svg>
 
-      <h1>Juan Corona<br>Enriquez</h1>
-      <p class="tagline">Design. Build. Improve.</p>
+      <div class="header-content">
+        <div class="brand-row">
+          <img
+            class="jce-logo"
+            src="jce-logo.png"
+            alt="JCE logo"
+            width="66"
+            height="60"
+          >
 
-      <div class="education">
-        <strong>CU Boulder</strong><br>
-        B.S. Mechanical Engineering • May 2028
+          <div class="brand-label">
+            MECHANICAL ENGINEERING<br>
+            <span>STUDENT</span>
+          </div>
+        </div>
+
+        <div class="photo-frame">
+          <img
+            class="profile-photo"
+            src="profile.png"
+            alt="Juan Corona Enriquez"
+            width="120"
+            height="120"
+          >
+        </div>
+
+        <h1>
+          Juan Corona
+          <span>Enriquez</span>
+        </h1>
+
+        <p class="tagline">Design. Build. Improve.</p>
+
+        <div class="school-block">
+          <p class="school">CU Boulder</p>
+          <p class="degree">B.S. Mechanical Engineering</p>
+          <p class="graduation">
+            Expected graduation · May 2028
+          </p>
+        </div>
       </div>
     </header>
 
-    <section class="connect" aria-labelledby="connect-heading">
-      <h2 id="connect-heading">Let’s build<br>what’s next.</h2>
+    <div class="content">
+      <p class="availability">
+        OPEN TO ENGINEERING INTERNSHIPS
+      </p>
+
+      <h2 class="welcome">
+        Let’s build<br>
+        what’s next.
+      </h2>
 
       <p class="intro">
-        Seeking mechanical engineering internships.
+        View my résumé, connect on LinkedIn,
+        or reach out directly below.
       </p>
 
-      <p class="skills">
-        SolidWorks &nbsp;•&nbsp; MATLAB &nbsp;•&nbsp; 3D Printing
-      </p>
+      <nav class="links" aria-label="Connect with Juan">
 
-      <nav class="links" aria-label="Resume and contact links">
-        <!-- Keep resume.pdf in the same folder as index.html -->
-        <a
-          class="button primary"
-          href="resume.pdf"
-          target="_blank"
-          rel="noopener noreferrer">
-          View Resume
-        </a>
-
-        <!-- Replace YOUR-PROFILE with your LinkedIn username -->
         <a
           class="button"
-          href="https://www.linkedin.com/in/YOUR-PROFILE/"
+          href="YOUR-LINKEDIN-URL"
           target="_blank"
-          rel="noopener noreferrer">
+          rel="noopener noreferrer"
+        >
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <path d="M7 10v7M7 7v.1M11 17v-7"/>
+            <path d="M11 13a3 3 0 0 1 6 0v4"/>
+          </svg>
           LinkedIn
         </a>
 
-        <button
-          class="button wide"
-          id="references-button"
-          type="button"
-          aria-expanded="false"
-          aria-controls="references">
-          Professional References
-        </button>
+        <a
+          class="button"
+          href="Resumejce.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+            <path d="M14 3v6h6M8 13h8M8 17h6"/>
+          </svg>
+          View Résumé
+        </a>
+
+        <a class="button gold" href="tel:+19706973511">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/>
+          </svg>
+          Call Me
+        </a>
+
+        <a
+          class="button gold"
+          href="mailto:juancorenr4@gmail.com"
+        >
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="2"/>
+            <path d="m3 7 9 6 9-6"/>
+          </svg>
+          Email Me
+        </a>
       </nav>
 
-      <div class="contact">
-        <a href="mailto:juancorenr4@gmail.com">
-          juancorenr4@gmail.com
+      <details>
+        <summary>Professional References</summary>
+
+        <div class="references">
+          <div class="reference">
+            <h3>Matt Klein, PharmD</h3>
+            <p>Supervisor</p>
+            <p>
+              <a href="tel:+16056958180">
+                (605) 695-8180
+              </a><br>
+              <a href="mailto:matt.klein@imail.org">
+                matt.klein@imail.org
+              </a>
+            </p>
+          </div>
+
+          <div class="reference">
+            <h3>George Papineaou, PharmD</h3>
+            <p>
+              <a href="tel:+15157820914">
+                (515) 782-0914
+              </a><br>
+              <a href="mailto:george.papineau@imail.org">
+                george.papineau@imail.org
+              </a>
+            </p>
+          </div>
+
+          <div class="reference">
+            <h3>Dr. Scott Bevill</h3>
+            <p>Engineering Professor</p>
+            <p>
+              <a href="mailto:Scott.Bevill@mavs.coloradomesa.edu">
+                Scott.Bevill@mavs.coloradomesa.edu
+              </a>
+            </p>
+          </div>
+        </div>
+      </details>
+
+      <div class="contact-info">
+        <a href="tel:+19706973511">
+          (970) 697-3511
         </a><br>
 
-        <a href="tel:+19706973511">
-          970-697-3511
+        <a href="mailto:juancorenr4@gmail.com">
+          juancorenr4@gmail.com
         </a>
       </div>
+    </div>
 
-      <div class="logos">
-        <a
-          class="cu"
-          href="https://www.colorado.edu/"
-          target="_blank"
-          rel="noopener noreferrer">
-          <img
-            src="https://cdn.colorado.edu/static/brand-assets/live/images/cu-boulder-logo-text-white.svg"
-            alt="University of Colorado Boulder">
-        </a>
-
-        <a
-          class="shpe"
-          href="https://shpe.org/"
-          target="_blank"
-          rel="noopener noreferrer">
-          <img
-            src="https://shpe.org/wp-content/uploads/2022/06/shpe-logo.png"
-            alt="Society of Hispanic Professional Engineers">
-        </a>
+    <div
+      class="affiliation-logos"
+      aria-label="University and SHPE convention"
+    >
+      <div class="university-logo">
+        <img
+          src="cuu.png"
+          alt="CU Boulder logo"
+          width="192"
+          height="185"
+        >
       </div>
 
-      <section
-        class="references"
-        id="references"
-        aria-labelledby="references-heading"
-        hidden>
+      <div class="shpe-logo">
+        <img
+          src="shpe-logo(1).png"
+          alt="SHPE 2026 National Convention"
+          width="558"
+          height="549"
+        >
+      </div>
+    </div>
 
-        <h2 id="references-heading">Professional References</h2>
+    <footer class="footer">
+      <strong>
+        Grand Junction, Colorado · Willing to relocate
+      </strong>
+      © 2026 Juan Corona Enriquez
+    </footer>
 
-        <p class="sample-note">
-          Fictional placeholders — replace with your real references.
-        </p>
-
-        <article class="reference">
-          <h3>Dr. Alex Morgan</h3>
-          <p>Mechanical Engineering Professor</p>
-          <p>Example University</p>
-          <p>Relationship: Engineering instructor</p>
-          <p>
-            <a href="mailto:alex.morgan@example.com">
-              alex.morgan@example.com
-            </a>
-          </p>
-          <p>970-555-0101</p>
-        </article>
-
-        <article class="reference">
-          <h3>Jordan Parker</h3>
-          <p>Engineering Manager</p>
-          <p>Example Manufacturing Company</p>
-          <p>Relationship: Internship supervisor</p>
-          <p>
-            <a href="mailto:jordan.parker@example.com">
-              jordan.parker@example.com
-            </a>
-          </p>
-          <p>970-555-0102</p>
-        </article>
-
-        <article class="reference">
-          <h3>Taylor Bennett</h3>
-          <p>Pharmacy Operations Supervisor</p>
-          <p>Example Medical Center</p>
-          <p>Relationship: Workplace supervisor</p>
-          <p>
-            <a href="mailto:taylor.bennett@example.com">
-              taylor.bennett@example.com
-            </a>
-          </p>
-          <p>970-555-0103</p>
-        </article>
-
-        <article class="reference">
-          <h3>Casey Rivera</h3>
-          <p>Senior Mechanical Engineer</p>
-          <p>Example Design Company</p>
-          <p>Relationship: Project mentor</p>
-          <p>
-            <a href="mailto:casey.rivera@example.com">
-              casey.rivera@example.com
-            </a>
-          </p>
-          <p>970-555-0104</p>
-        </article>
-      </section>
-
-      <footer>
-        <span>Thanks for connecting at SHPE.</span>
-        <span class="footer-logo">JCE</span>
-      </footer>
-    </section>
   </main>
-
-  <script>
-    const button = document.getElementById("references-button");
-    const references = document.getElementById("references");
-
-    button.addEventListener("click", () => {
-      const opening = references.hidden;
-
-      references.hidden = !opening;
-      button.setAttribute("aria-expanded", String(opening));
-      button.textContent = opening
-        ? "Hide References"
-        : "Professional References";
-    });
-  </script>
 </body>
 </html>
